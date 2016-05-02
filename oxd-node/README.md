@@ -1,6 +1,6 @@
 # oxd-node
 
-oxd-node is oxD Server client implemented in node.js, using it you can integrate oxD server in your application.
+oxd-node is Oxd Server client implemented in node.js, using it you can integrate oxD server in your application.
 
 ### Installation
 
