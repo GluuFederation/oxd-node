@@ -28,4 +28,5 @@ exports.scopes = null;
 exports.access_token = null;
 //for logout
 exports.id_token = null;
+exports.id_token_hint = null;
 exports.http_based_logout = null;

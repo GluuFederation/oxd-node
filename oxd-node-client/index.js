@@ -59,7 +59,7 @@ app.use('/',login);
 app.use('/',register_site);
 
 var options = {
-  key: fs.readFileSync(__dirname+'//key.pem'), 
+  key: fs.readFileSync(__dirname+'//key.pem'),
   cert: fs.readFileSync(__dirname+'//cert.pem')
 };
 // you have to add your ssl key and certificate here

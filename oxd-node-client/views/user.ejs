@@ -50,7 +50,7 @@
   function logoutuser(){
     $.post("/logoutuser",function(response){
       var jsondata = JSON.parse(response);
-      window.location = "https://lanetteam.com:5053"
+      window.location = jsondata.data.uri;
     });
   }
 </script>

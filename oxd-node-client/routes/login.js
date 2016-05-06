@@ -31,23 +31,49 @@ router.post('/authenticate', function (req, res, next) {
        }
 });
 
-router.get('/logout', function (req, res, next) {
+router.get('/logoutadmin', function (req, res, next) {
        res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
 });
 
-router.post('/logoutuser', function (req, res, next) {
-  jsonfile.readFile(setting, function(err,obj) {
-    oxd.Request.oxd_id = obj.oxd_id;
-    oxd.Request.post_logout_redirect_uri = "https://lanetteam.com:5053";
-    oxd.Request.http_based_logout = "true";
-    oxd.logout(oxd.Request,function(response){
-          if(response.length > 0){
-            res.status(200).send(response);
-            return;
-          }
+
+function parseCookies (request) {
+    var list = {},
+        rc = request.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
     });
-  });
-       //res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
+
+    return list;
+}
+
+router.post('/logoutuser', function (req, res, next) {
+    jsonfile.readFile(setting, function(err,obj) {
+      var cookies = parseCookies(req);
+      oxd.Request.oxd_id = obj.oxd_id;
+      oxd.Request.post_logout_redirect_uri = "https://lanetteam.com:5053";
+      oxd.Request.session_state = cookies.ss;
+      oxd.Request.state = cookies.state;
+      oxd.get_logout_uri(oxd.Request,function(response){
+            if(response.length > 0){
+              res.status(200).send(response);
+              return;
+            }
+      });
+    });
 });
+
+router.get('/logout', function (req, res, next) {
+  var mysession = req.session;
+  mysession.access_token = null;
+  res.clearCookie('client_id');
+  res.clearCookie('ss');
+  res.clearCookie('session_state');
+  res.clearCookie('id_token');
+  res.clearCookie('state');
+  res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
+});
+
 
 module.exports = router;
