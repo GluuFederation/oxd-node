@@ -42,7 +42,7 @@ oxd.get_authorization_url(oxd.Request,function(response){
 });
 ```
 
-#### 4) get_authorization_url
+#### 4) get_tokens_by_code
 
 ```js
 var oxd = require("oxd-node");
