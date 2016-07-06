@@ -4,8 +4,8 @@ var router = express.Router();
 var url = require('url');
 var jsonfile = require('jsonfile');
 var path = require('path');
-var setting = path.join(__dirname, '/../settings.json');
 
+var setting = path.join(__dirname, '/../settings.json');
 router.post('/register_site', function (req, res, next) {
        if (req.body.email == null || req.body.email == "") {
            res.send(400, { error: "Please provide email" });
@@ -14,8 +14,9 @@ router.post('/register_site', function (req, res, next) {
        //Define scopes
        var scopes = [];
        scopes.push("openid");
+
+       console.log(req.body.scope_profile);
        if(req.body.scope_profile == 1 )
-       if(req.body.scope_email == 1 )
            scopes.push("profile");
        if(req.body.scope_email == 1 )
            scopes.push("email");
@@ -42,15 +43,26 @@ router.post('/register_site', function (req, res, next) {
        if(req.body.oxd_openid_u2f_enable == 1 )
            acr_value.push("u2f");
 
+       oxd.Request.op_host  = "https://ce-dev2.gluu.org";
+       oxd.Request.authorization_redirect_uri= req.protocol + "://" + req.get('host');
+       oxd.Request.application_type = "web";
+       oxd.Request.post_logout_redirect_uri = "https://lanetteam.com:5053";
+       oxd.Request.redirect_uris = [req.protocol + "://" + req.get('host')];
+       oxd.Request.response_types = ["code"];
+       oxd.Request.client_id =null;
+       oxd.Request.client_secret =null;
+       oxd.Request.client_jwks_uri =null;
+       oxd.Request.client_token_endpoint_auth_method =null;
+       oxd.Request.client_request_uris = null;
+       oxd.Request.client_logout_uris = ["https://lanetteam.com:5053/logout"];
+       oxd.Request.client_sector_identifier_uri =null;
+       oxd.Request.ui_locales =null;
+       oxd.Request.claims_locales =null;
+       oxd.Request.grant_types = ["authorization_code"];
+
        if(acr_value.length > 0)
           oxd.Request.acr_values = acr_value;
 
-       oxd.Request.authorization_redirect_uri= req.protocol + "://" + req.get('host');
-       oxd.Request.redirect_uris = [req.protocol + "://" + req.get('host')];
-       oxd.Request.post_logout_redirect_uri = req.protocol + "://" + req.get('host');
-       oxd.Request.response_types = ["code"];
-       oxd.Request.application_type = "web";
-       oxd.Request.grant_types = ["authorization_code"];
 
        var contacts = [];
        contacts.push(req.body.email);
@@ -150,20 +162,34 @@ router.post('/get_url_u2f', function (req, res, next) {
 router.get('/get_user_info', function (req, res, next) {
   jsonfile.readFile(setting, function(err,obj) {
     var mysession = req.session;
-    oxd.Request.oxd_id = obj.oxd_id;
-    oxd.Request.access_token = mysession.access_token;
-    oxd.get_user_info(oxd.Request,function(response){
-          if(response.length > 0){
-            var jsondata = JSON.parse(response);
-            if(jsondata.status == "ok"){
-              res.render("user.ejs", {name : jsondata.data.claims.name[0], email : jsondata.data.claims.email[0], birthdate : jsondata.data.claims.birthdate[0], website : jsondata.data.claims.website[0]})
+    if(mysession.access_token != null){
+      oxd.Request.oxd_id = obj.oxd_id;
+      oxd.Request.access_token = mysession.access_token;
+      oxd.get_user_info(oxd.Request,function(response){
+            if(response.length > 0){
+              var jsondata = JSON.parse(response);
+              if(jsondata.status == "ok"){
+                var claims = jsondata.data.claims;
+                if(Object.keys(claims).length > 0){
+                  //res.render("user.ejs", {name : jsondata.data.claims.name[0],email : jsondata.data.claims.email[0], given_name : jsondata.data.claims.given_name[0], family_name : jsondata.data.claims.family_name[0], preferred_username : jsondata.data.claims.preferred_username[0]})
+                  res.render("user.ejs", {name : jsondata.data.claims.name[0], given_name : jsondata.data.claims.given_name[0], family_name : jsondata.data.claims.family_name[0], preferred_username : jsondata.data.claims.preferred_username[0]})
+                }
+                else{
+                    res.redirect("logout");
+                    //res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
+                }
+              }
+              else{
+                res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
+              }
             }
-            else{
-              res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
-            }
-          }
-    });
+      });
+    }
+    else{
+      res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
+    }
   });
 
 });
+
 module.exports = router;

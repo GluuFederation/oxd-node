@@ -16,6 +16,6 @@
     "jsonfile": "^2.3.0",
     "less-middleware": "^2.1.0",
     "morgan": "^1.7.0",
-    "oxd-node": "^1.0.13"
+    "oxd-node": "^1.1.4"
   }
 }

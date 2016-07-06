@@ -50,8 +50,8 @@ function parseCookies (request) {
 
 router.post('/logoutuser', function (req, res, next) {
     jsonfile.readFile(setting, function(err,obj) {
-      var cookies = parseCookies(req);
       oxd.Request.oxd_id = obj.oxd_id;
+      var cookies = parseCookies(req);
       oxd.Request.post_logout_redirect_uri = "https://lanetteam.com:5053";
       oxd.Request.session_state = cookies.ss;
       oxd.Request.state = cookies.state;
@@ -75,5 +75,12 @@ router.get('/logout', function (req, res, next) {
   res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
 });
 
+router.get('/callrp', function (req, res, next) {
+  res.render('rpframe.ejs');
+});
+
+router.get('/callop', function (req, res, next) {
+  res.render('opframe.ejs');
+});
 
 module.exports = router;

@@ -1,0 +1,2153 @@
+2016-07-01 14:38:39,599 INFO  [org.xdi.oxd.server.ServerLauncher] Starting...
+2016-07-01 14:38:39,779 TRACE [org.xdi.oxd.server.service.ConfigurationService] Try to load configuration from system property: oxd.server.config, value: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf/oxd-conf.json
+2016-07-01 14:38:39,962 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration loaded successfully from system property: oxd.server.config.
+2016-07-01 14:38:39,963 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration: Configuration{port=8099, timeOutInSeconds=0, jettyPort=0, startJetty=false, localhostOnly=true, useClientAuthenticationForPat=true, useClientAuthenticationForAat=true, trustAllCerts=true, keyStorePath='', licenseServerEndpoint='', licenseId='', publicKey='', publicPassword='', licensePassword='', licenseCheckPeriodInHours=24}
+2016-07-01 14:38:39,981 INFO  [org.xdi.oxd.server.service.ConfigurationService] Configuration directory: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf
+2016-07-01 14:38:39,984 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3bcfeff1-acc7-4216-82db-c74639befbf6.json
+2016-07-01 14:38:40,059 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 1b50c79c-2047-4804-9f30-ea6eff795f4f.json
+2016-07-01 14:38:40,060 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7ba2ab53-a544-4892-aee0-1131d4c12f22.json
+2016-07-01 14:38:40,061 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 21c2e790-d63c-4ff9-82f7-670ce76f4060.json
+2016-07-01 14:38:40,062 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: oxd-default-site-config.json
+2016-07-01 14:38:40,063 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18ce6487-0704-4ab0-bcd2-e744153ccdca.json
+2016-07-01 14:38:40,064 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 288507c2-3446-4689-9a70-11f9d51aa86c.json
+2016-07-01 14:38:40,065 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8f9b4802-942e-49f3-ac72-ec85fe4ae1df.json
+2016-07-01 14:38:40,065 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 768e17dd-c657-433f-97ee-0756b9d31022.json
+2016-07-01 14:38:40,066 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 11892afa-058f-45c5-abe2-45272cc53a30.json
+2016-07-01 14:38:40,067 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: fafc198b-1a90-49e9-9968-26e6c78c15c0.json
+2016-07-01 14:38:40,068 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 0651bc72-cb6b-4d0a-b09d-5f7690628291.json
+2016-07-01 14:38:40,069 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8efacbdc-c18a-4695-b53f-94849f3b2536.json
+2016-07-01 14:38:40,070 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 52658686-4f0d-4499-868e-8e2ea1b7b56d.json
+2016-07-01 14:38:40,070 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 08db0d11-b5ff-4828-95f5-dee0016f3312.json
+2016-07-01 14:38:40,071 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 456f8cdf-e412-4534-9463-19e329e0393a.json
+2016-07-01 14:38:40,076 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 67fd6734-d877-466c-abd5-29baae4ffe5b.json
+2016-07-01 14:38:40,090 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bfa84ae3-d52e-4c48-b205-383da55e88bf.json
+2016-07-01 14:38:40,091 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bc66d652-3c97-43d1-90c5-d886cc2e300e.json
+2016-07-01 14:38:40,092 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f0b09231-df35-4b60-962b-f189b19f179d.json
+2016-07-01 14:38:40,093 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f8b36354-41f9-4a65-bfaa-6c2688bd5781.json
+2016-07-01 14:38:40,093 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7a1402aa-be38-4289-81af-7db6d55418d8.json
+2016-07-01 14:38:40,094 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3cef88a9-531f-4db9-a96d-fd955c560d94.json
+2016-07-01 14:38:40,095 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 14:38:40,095 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 14:38:40,095 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 14:38:40,097 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:58)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 14:38:40,112 INFO  [org.xdi.oxd.server.service.SocketService] Server runs in free license mode which delays commands execution on 0.5 second for each command.
+ In order to remove the transaction limitations placed on the free version of oxD, you need to purchase a commercial license at oxd.gluu.org
+2016-07-01 14:38:40,112 INFO  [org.xdi.oxd.server.service.SocketService] Server socket is bound to port: 8099, with timeout: 0 seconds. Start listening for notifications.
+2016-07-01 14:38:53,309 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 14:38:53,314 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 14:38:53,314 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 14:38:53,315 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 14:38:53,315 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.license.LicenseService$$FastClassByGuice$$bd74ee5e.newInstance(<generated>)
+	at com.google.inject.internal.cglib.reflect.$FastConstructor.newInstance(FastConstructor.java:40)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$1.newInstance(DefaultConstructionProxyFactory.java:60)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:85)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1031)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.Scopes$1$1.get(Scopes.java:65)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:40)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:84)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.InjectorImpl$4$1.call(InjectorImpl.java:978)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1024)
+	at com.google.inject.internal.InjectorImpl$4.get(InjectorImpl.java:974)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1013)
+	at org.xdi.oxd.server.SocketProcessor.<init>(SocketProcessor.java:36)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:90)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 14:38:53,319 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 14:38:53,319 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 14:38:53,319 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0603, commandSize: 603
+2016-07-01 14:38:53,320 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}', m_leftString=''}
+2016-07-01 14:38:53,320 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}
+2016-07-01 14:38:53,872 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 14:38:53,888 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 14:38:57,453 WARN  [org.apache.http.client.protocol.ResponseProcessCookies] Cookie rejected: "[version: 0][name: JSESSIONID][value: A2634A04603465D2ABD5CC45F09F6F9A][domain: ce-dev2.gluu.org][path: /oxauth/][expiry: null]". Illegal path attribute "/oxauth/". Path of origin: "/.well-known/openid-configuration"
+2016-07-01 14:38:57,477 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: {
+    "issuer": "https://ce-dev2.gluu.org",
+    "authorization_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/authorize",
+    "token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/token",
+    "userinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/userinfo",
+    "clientinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/clientinfo",
+    "check_session_iframe": "https://ce-dev2.gluu.org/oxauth/opiframe",
+    "end_session_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/end_session",
+    "jwks_uri": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/jwks",
+    "registration_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/register",
+    "validate_token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/validate",
+    "federation_metadata_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federationmetadata",
+    "federation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federation",
+    "id_generation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/id",
+    "introspection_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/introspection",
+    "auth_level_mapping": {},
+    "scopes_supported": [
+        "org_name",
+        "uma_authorization",
+        "profile",
+        "imapData",
+        "uma_protection",
+        "mt_scope",
+        "phone",
+        "mobile_phone",
+        "work_phone",
+        "user_name",
+        "email",
+        "clientinfo",
+        "address",
+        "openid"
+    ],
+    "response_types_supported": [
+        "code",
+        "code id_token",
+        "token",
+        "token id_token",
+        "code token",
+        "code token id_token",
+        "id_token"
+    ],
+    "grant_types_supported": [
+        "authorization_code",
+        "implicit",
+        "urn:ietf:params:oauth:grant-type:jwt-bearer"
+    ],
+    "acr_values_supported": [
+        "u2f",
+        "duo",
+        "basic",
+        "mt",
+        "oxpush2",
+        "gplus",
+        "internal"
+    ],
+    "subject_types_supported": [
+        "public",
+        "pairwise"
+    ],
+    "userinfo_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "userinfo_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "userinfo_encryption_enc_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "id_token_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "request_object_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "request_object_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "request_object_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_basic",
+        "client_secret_post",
+        "client_secret_jwt",
+        "private_key_jwt"
+    ],
+    "token_endpoint_auth_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "display_values_supported": [
+        "page",
+        "popup"
+    ],
+    "claim_types_supported": ["normal"],
+    "claims_supported": [
+        "birthdate",
+        "country",
+        "name",
+        "email",
+        "email_verified",
+        "given_name",
+        "gender",
+        "phone_number",
+        "inum",
+        "family_name",
+        "updated_at",
+        "locale",
+        "middle_name",
+        "phone_mobile_number",
+        "nickname",
+        "oxAuthAppType",
+        "oxAuthIdTokenSignedResponseAlg",
+        "oxAuthRedirectURI",
+        "oxAuthScope",
+        "phone_number_verified",
+        "picture",
+        "preferred_username",
+        "profile",
+        "zoneinfo",
+        "user_name",
+        "website"
+    ],
+    "service_documentation": "http://gluu.org/docs",
+    "claims_locales_supported": ["en"],
+    "ui_locales_supported": [
+        "en",
+        "es"
+    ],
+    "scope_to_claims_mapping": [
+        {"org_name": []},
+        {"uma_authorization": []},
+        {"profile": [
+            "name",
+            "family_name",
+            "given_name",
+            "middle_name",
+            "nickname",
+            "preferred_username",
+            "profile",
+            "picture",
+            "website",
+            "gender",
+            "birthdate",
+            "zoneinfo",
+            "locale",
+            "updated_at"
+        ]},
+        {"imapData": [
+            "imapHost",
+            "imapPassword",
+            "imapPort",
+            "imapUsername"
+        ]},
+        {"uma_protection": []},
+        {"mt_scope": []},
+        {"phone": [
+            "phone_number_verified",
+            "phone_number"
+        ]},
+        {"mobile_phone": ["phone_mobile_number"]},
+        {"work_phone": []},
+        {"user_name": ["user_name"]},
+        {"email": [
+            "email_verified",
+            "email"
+        ]},
+        {"clientinfo": [
+            "name",
+            "inum",
+            "oxAuthAppType",
+            "oxAuthIdTokenSignedResponseAlg",
+            "oxAuthRedirectURI",
+            "oxAuthScope"
+        ]},
+        {"address": [
+            "formatted",
+            "postal_code",
+            "street_address",
+            "locality",
+            "country",
+            "region"
+        ]},
+        {"openid": ["inum"]}
+    ],
+    "claims_parameter_supported": true,
+    "request_parameter_supported": true,
+    "request_uri_parameter_supported": true,
+    "require_request_uri_registration": false,
+    "op_policy_uri": "http://ox.gluu.org/doku.php?id=oxauth:policy",
+    "op_tos_uri": "http://ox.gluu.org/doku.php?id=oxauth:tos",
+    "http_logout_supported": "true",
+    "logout_session_supported": "true"
+}
+ 
+2016-07-01 14:38:57,485 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 14:38:58,580 TRACE [org.xdi.oxd.server.op.RegisterSiteOperation] Registered client for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!1763.4A70
+2016-07-01 14:38:58,620 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Site configuration created: SiteConfiguration{acrValues=[], oxdId='4d387116-65f8-42e4-afd4-e6256ea8a419', opHost='https://ce-dev2.gluu.org', authorizationRedirectUri='https://ce-dev2.gluu.org/.well-known/openid-configuration', applicationType='web', sectorIdentifierUri='null', redirectUris=[https://ce-dev2.gluu.org/.well-known/openid-configuration], responseTypes=[code, id_token, token], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!1763.4A70', clientSecret='9dc09784-3097-4809-b6e1-bd0217230b71', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=null, contacts=null, aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 14:38:58,631 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"4d387116-65f8-42e4-afd4-e6256ea8a419"}}
+2016-07-01 14:38:58,632 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 14:38:58,632 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 14:38:58,634 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 14:38:58,634 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 14:45:19,091 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 14:45:19,092 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 14:45:19,092 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 14:45:19,093 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0655, commandSize: 655
+2016-07-01 14:45:19,093 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"application_type":"web","response_types":["code"],"client_id":null,"client_secret":null,"post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"acr_values":null,"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"grant_types":["authorization_code"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"contacts":["test@admin.com"]}}', m_leftString=''}
+2016-07-01 14:45:19,094 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"application_type":"web","response_types":["code"],"client_id":null,"client_secret":null,"post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"acr_values":null,"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"grant_types":["authorization_code"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"contacts":["test@admin.com"]}}
+2016-07-01 14:45:19,595 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 14:45:19,596 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] op_host contains blank value. Please specify valid OP public address.
+java.lang.IllegalStateException: op_host contains blank value. Please specify valid OP public address.
+	at com.google.common.base.Preconditions.checkState(Preconditions.java:176)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.createSiteConfiguration(RegisterSiteOperation.java:217)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:71)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 14:45:19,596 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 14:45:19,597 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 14:48:17,141 INFO  [org.xdi.oxd.server.ServerLauncher] Starting...
+2016-07-01 14:48:17,324 TRACE [org.xdi.oxd.server.service.ConfigurationService] Try to load configuration from system property: oxd.server.config, value: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf/oxd-conf.json
+2016-07-01 14:48:17,489 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration loaded successfully from system property: oxd.server.config.
+2016-07-01 14:48:17,489 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration: Configuration{port=8099, timeOutInSeconds=0, jettyPort=0, startJetty=false, localhostOnly=true, useClientAuthenticationForPat=true, useClientAuthenticationForAat=true, trustAllCerts=true, keyStorePath='', licenseServerEndpoint='', licenseId='', publicKey='', publicPassword='', licensePassword='', licenseCheckPeriodInHours=24}
+2016-07-01 14:48:17,504 INFO  [org.xdi.oxd.server.service.ConfigurationService] Configuration directory: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf
+2016-07-01 14:48:17,508 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 4d387116-65f8-42e4-afd4-e6256ea8a419.json
+2016-07-01 14:48:17,577 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3bcfeff1-acc7-4216-82db-c74639befbf6.json
+2016-07-01 14:48:17,578 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 1b50c79c-2047-4804-9f30-ea6eff795f4f.json
+2016-07-01 14:48:17,580 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7ba2ab53-a544-4892-aee0-1131d4c12f22.json
+2016-07-01 14:48:17,581 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 21c2e790-d63c-4ff9-82f7-670ce76f4060.json
+2016-07-01 14:48:17,582 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: oxd-default-site-config.json
+2016-07-01 14:48:17,582 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18ce6487-0704-4ab0-bcd2-e744153ccdca.json
+2016-07-01 14:48:17,583 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 288507c2-3446-4689-9a70-11f9d51aa86c.json
+2016-07-01 14:48:17,584 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8f9b4802-942e-49f3-ac72-ec85fe4ae1df.json
+2016-07-01 14:48:17,585 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 768e17dd-c657-433f-97ee-0756b9d31022.json
+2016-07-01 14:48:17,586 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 11892afa-058f-45c5-abe2-45272cc53a30.json
+2016-07-01 14:48:17,587 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: fafc198b-1a90-49e9-9968-26e6c78c15c0.json
+2016-07-01 14:48:17,588 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 0651bc72-cb6b-4d0a-b09d-5f7690628291.json
+2016-07-01 14:48:17,589 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8efacbdc-c18a-4695-b53f-94849f3b2536.json
+2016-07-01 14:48:17,590 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 52658686-4f0d-4499-868e-8e2ea1b7b56d.json
+2016-07-01 14:48:17,591 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 08db0d11-b5ff-4828-95f5-dee0016f3312.json
+2016-07-01 14:48:17,594 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 456f8cdf-e412-4534-9463-19e329e0393a.json
+2016-07-01 14:48:17,603 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 67fd6734-d877-466c-abd5-29baae4ffe5b.json
+2016-07-01 14:48:17,604 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bfa84ae3-d52e-4c48-b205-383da55e88bf.json
+2016-07-01 14:48:17,605 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bc66d652-3c97-43d1-90c5-d886cc2e300e.json
+2016-07-01 14:48:17,606 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f0b09231-df35-4b60-962b-f189b19f179d.json
+2016-07-01 14:48:17,606 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f8b36354-41f9-4a65-bfaa-6c2688bd5781.json
+2016-07-01 14:48:17,607 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7a1402aa-be38-4289-81af-7db6d55418d8.json
+2016-07-01 14:48:17,607 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3cef88a9-531f-4db9-a96d-fd955c560d94.json
+2016-07-01 14:48:17,608 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 14:48:17,609 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 14:48:17,609 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 14:48:17,610 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:58)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 14:48:17,623 INFO  [org.xdi.oxd.server.service.SocketService] Server runs in free license mode which delays commands execution on 0.5 second for each command.
+ In order to remove the transaction limitations placed on the free version of oxD, you need to purchase a commercial license at oxd.gluu.org
+2016-07-01 14:48:17,623 INFO  [org.xdi.oxd.server.service.SocketService] Server socket is bound to port: 8099, with timeout: 0 seconds. Start listening for notifications.
+2016-07-01 14:48:33,575 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 14:48:33,582 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 14:48:33,582 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 14:48:33,582 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 14:48:33,582 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.license.LicenseService$$FastClassByGuice$$bd74ee5e.newInstance(<generated>)
+	at com.google.inject.internal.cglib.reflect.$FastConstructor.newInstance(FastConstructor.java:40)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$1.newInstance(DefaultConstructionProxyFactory.java:60)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:85)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1031)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.Scopes$1$1.get(Scopes.java:65)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:40)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:84)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.InjectorImpl$4$1.call(InjectorImpl.java:978)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1024)
+	at com.google.inject.internal.InjectorImpl$4.get(InjectorImpl.java:974)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1013)
+	at org.xdi.oxd.server.SocketProcessor.<init>(SocketProcessor.java:36)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:90)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 14:48:33,586 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 14:48:33,586 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 14:48:33,586 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0668, commandSize: 668
+2016-07-01 14:48:33,587 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"application_type":"web","response_types":["code"],"client_id":null,"client_secret":null,"post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"acr_values":["gplus","basic"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"grant_types":["authorization_code"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"contacts":["test@admin.com"]}}', m_leftString=''}
+2016-07-01 14:48:33,587 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"application_type":"web","response_types":["code"],"client_id":null,"client_secret":null,"post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"acr_values":["gplus","basic"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"grant_types":["authorization_code"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"contacts":["test@admin.com"]}}
+2016-07-01 14:48:34,141 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 14:48:34,141 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] op_host contains blank value. Please specify valid OP public address.
+java.lang.IllegalStateException: op_host contains blank value. Please specify valid OP public address.
+	at com.google.common.base.Preconditions.checkState(Preconditions.java:176)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.createSiteConfiguration(RegisterSiteOperation.java:217)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:71)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 14:48:34,166 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 14:48:34,166 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:16:14,905 INFO  [org.xdi.oxd.server.ServerLauncher] Starting...
+2016-07-01 15:16:15,090 TRACE [org.xdi.oxd.server.service.ConfigurationService] Try to load configuration from system property: oxd.server.config, value: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf/oxd-conf.json
+2016-07-01 15:16:15,263 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration loaded successfully from system property: oxd.server.config.
+2016-07-01 15:16:15,263 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration: Configuration{port=8099, timeOutInSeconds=0, jettyPort=0, startJetty=false, localhostOnly=true, useClientAuthenticationForPat=true, useClientAuthenticationForAat=true, trustAllCerts=true, keyStorePath='', licenseServerEndpoint='', licenseId='', publicKey='', publicPassword='', licensePassword='', licenseCheckPeriodInHours=24}
+2016-07-01 15:16:15,279 INFO  [org.xdi.oxd.server.service.ConfigurationService] Configuration directory: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf
+2016-07-01 15:16:15,282 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 4d387116-65f8-42e4-afd4-e6256ea8a419.json
+2016-07-01 15:16:15,353 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3bcfeff1-acc7-4216-82db-c74639befbf6.json
+2016-07-01 15:16:15,354 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 1b50c79c-2047-4804-9f30-ea6eff795f4f.json
+2016-07-01 15:16:15,356 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7ba2ab53-a544-4892-aee0-1131d4c12f22.json
+2016-07-01 15:16:15,357 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 21c2e790-d63c-4ff9-82f7-670ce76f4060.json
+2016-07-01 15:16:15,357 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: oxd-default-site-config.json
+2016-07-01 15:16:15,358 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18ce6487-0704-4ab0-bcd2-e744153ccdca.json
+2016-07-01 15:16:15,359 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 288507c2-3446-4689-9a70-11f9d51aa86c.json
+2016-07-01 15:16:15,360 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8f9b4802-942e-49f3-ac72-ec85fe4ae1df.json
+2016-07-01 15:16:15,360 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 768e17dd-c657-433f-97ee-0756b9d31022.json
+2016-07-01 15:16:15,361 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 11892afa-058f-45c5-abe2-45272cc53a30.json
+2016-07-01 15:16:15,362 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: fafc198b-1a90-49e9-9968-26e6c78c15c0.json
+2016-07-01 15:16:15,363 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 0651bc72-cb6b-4d0a-b09d-5f7690628291.json
+2016-07-01 15:16:15,364 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8efacbdc-c18a-4695-b53f-94849f3b2536.json
+2016-07-01 15:16:15,365 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 52658686-4f0d-4499-868e-8e2ea1b7b56d.json
+2016-07-01 15:16:15,365 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 08db0d11-b5ff-4828-95f5-dee0016f3312.json
+2016-07-01 15:16:15,370 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 456f8cdf-e412-4534-9463-19e329e0393a.json
+2016-07-01 15:16:15,381 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 67fd6734-d877-466c-abd5-29baae4ffe5b.json
+2016-07-01 15:16:15,382 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bfa84ae3-d52e-4c48-b205-383da55e88bf.json
+2016-07-01 15:16:15,383 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bc66d652-3c97-43d1-90c5-d886cc2e300e.json
+2016-07-01 15:16:15,383 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f0b09231-df35-4b60-962b-f189b19f179d.json
+2016-07-01 15:16:15,384 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f8b36354-41f9-4a65-bfaa-6c2688bd5781.json
+2016-07-01 15:16:15,385 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7a1402aa-be38-4289-81af-7db6d55418d8.json
+2016-07-01 15:16:15,385 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3cef88a9-531f-4db9-a96d-fd955c560d94.json
+2016-07-01 15:16:15,386 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:16:15,386 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:16:15,386 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:16:15,388 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:58)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:16:15,398 INFO  [org.xdi.oxd.server.service.SocketService] Server runs in free license mode which delays commands execution on 0.5 second for each command.
+ In order to remove the transaction limitations placed on the free version of oxD, you need to purchase a commercial license at oxd.gluu.org
+2016-07-01 15:16:15,398 INFO  [org.xdi.oxd.server.service.SocketService] Server socket is bound to port: 8099, with timeout: 0 seconds. Start listening for notifications.
+2016-07-01 15:16:54,519 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:16:54,525 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:16:54,525 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:16:54,525 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:16:54,525 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.license.LicenseService$$FastClassByGuice$$bd74ee5e.newInstance(<generated>)
+	at com.google.inject.internal.cglib.reflect.$FastConstructor.newInstance(FastConstructor.java:40)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$1.newInstance(DefaultConstructionProxyFactory.java:60)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:85)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1031)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.Scopes$1$1.get(Scopes.java:65)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:40)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:84)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.InjectorImpl$4$1.call(InjectorImpl.java:978)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1024)
+	at com.google.inject.internal.InjectorImpl$4.get(InjectorImpl.java:974)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1013)
+	at org.xdi.oxd.server.SocketProcessor.<init>(SocketProcessor.java:36)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:90)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:16:54,528 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:16:54,528 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:16:54,529 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0699, commandSize: 699
+2016-07-01 15:16:54,529 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}', m_leftString=''}
+2016-07-01 15:16:54,529 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}
+2016-07-01 15:16:55,085 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:16:55,100 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:17:01,764 ERROR [org.xdi.oxauth.client.OpenIdConfigurationClient] A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+org.codehaus.jettison.json.JSONException: A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+	at org.codehaus.jettison.json.JSONTokener.syntaxError(JSONTokener.java:439)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:169)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:266)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient._execOpenIdConfiguration(OpenIdConfigurationClient.java:111)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient.execOpenIdConfiguration(OpenIdConfigurationClient.java:78)
+	at org.xdi.oxd.server.service.DiscoveryService.getConnectDiscoveryResponse(DiscoveryService.java:67)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:95)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:17:01,765 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: Cannot GET /.well-known/openid-configuration
+ 
+2016-07-01 15:17:01,772 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:17:01,779 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:17:01,806 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:17:01,811 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:21:50,793 INFO  [org.xdi.oxd.server.ServerLauncher] Starting...
+2016-07-01 15:21:50,972 TRACE [org.xdi.oxd.server.service.ConfigurationService] Try to load configuration from system property: oxd.server.config, value: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf/oxd-conf.json
+2016-07-01 15:21:51,133 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration loaded successfully from system property: oxd.server.config.
+2016-07-01 15:21:51,135 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration: Configuration{port=8099, timeOutInSeconds=0, jettyPort=0, startJetty=false, localhostOnly=true, useClientAuthenticationForPat=true, useClientAuthenticationForAat=true, trustAllCerts=true, keyStorePath='', licenseServerEndpoint='', licenseId='', publicKey='', publicPassword='', licensePassword='', licenseCheckPeriodInHours=24}
+2016-07-01 15:21:51,152 INFO  [org.xdi.oxd.server.service.ConfigurationService] Configuration directory: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf
+2016-07-01 15:21:51,156 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 4d387116-65f8-42e4-afd4-e6256ea8a419.json
+2016-07-01 15:21:51,227 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3bcfeff1-acc7-4216-82db-c74639befbf6.json
+2016-07-01 15:21:51,228 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 1b50c79c-2047-4804-9f30-ea6eff795f4f.json
+2016-07-01 15:21:51,230 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7ba2ab53-a544-4892-aee0-1131d4c12f22.json
+2016-07-01 15:21:51,231 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 21c2e790-d63c-4ff9-82f7-670ce76f4060.json
+2016-07-01 15:21:51,232 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: oxd-default-site-config.json
+2016-07-01 15:21:51,232 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18ce6487-0704-4ab0-bcd2-e744153ccdca.json
+2016-07-01 15:21:51,233 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 288507c2-3446-4689-9a70-11f9d51aa86c.json
+2016-07-01 15:21:51,234 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8f9b4802-942e-49f3-ac72-ec85fe4ae1df.json
+2016-07-01 15:21:51,235 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 768e17dd-c657-433f-97ee-0756b9d31022.json
+2016-07-01 15:21:51,236 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 11892afa-058f-45c5-abe2-45272cc53a30.json
+2016-07-01 15:21:51,237 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: fafc198b-1a90-49e9-9968-26e6c78c15c0.json
+2016-07-01 15:21:51,237 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 0651bc72-cb6b-4d0a-b09d-5f7690628291.json
+2016-07-01 15:21:51,238 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8efacbdc-c18a-4695-b53f-94849f3b2536.json
+2016-07-01 15:21:51,239 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 52658686-4f0d-4499-868e-8e2ea1b7b56d.json
+2016-07-01 15:21:51,240 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 08db0d11-b5ff-4828-95f5-dee0016f3312.json
+2016-07-01 15:21:51,244 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 456f8cdf-e412-4534-9463-19e329e0393a.json
+2016-07-01 15:21:51,252 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 67fd6734-d877-466c-abd5-29baae4ffe5b.json
+2016-07-01 15:21:51,254 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bfa84ae3-d52e-4c48-b205-383da55e88bf.json
+2016-07-01 15:21:51,254 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bc66d652-3c97-43d1-90c5-d886cc2e300e.json
+2016-07-01 15:21:51,255 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f0b09231-df35-4b60-962b-f189b19f179d.json
+2016-07-01 15:21:51,255 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f8b36354-41f9-4a65-bfaa-6c2688bd5781.json
+2016-07-01 15:21:51,256 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7a1402aa-be38-4289-81af-7db6d55418d8.json
+2016-07-01 15:21:51,256 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3cef88a9-531f-4db9-a96d-fd955c560d94.json
+2016-07-01 15:21:51,257 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:21:51,258 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:21:51,258 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:21:51,259 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:58)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:21:51,272 INFO  [org.xdi.oxd.server.service.SocketService] Server runs in free license mode which delays commands execution on 0.5 second for each command.
+ In order to remove the transaction limitations placed on the free version of oxD, you need to purchase a commercial license at oxd.gluu.org
+2016-07-01 15:21:51,272 INFO  [org.xdi.oxd.server.service.SocketService] Server socket is bound to port: 8099, with timeout: 0 seconds. Start listening for notifications.
+2016-07-01 15:21:58,300 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:21:58,305 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:21:58,305 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:21:58,306 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:21:58,306 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.license.LicenseService$$FastClassByGuice$$bd74ee5e.newInstance(<generated>)
+	at com.google.inject.internal.cglib.reflect.$FastConstructor.newInstance(FastConstructor.java:40)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$1.newInstance(DefaultConstructionProxyFactory.java:60)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:85)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1031)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.Scopes$1$1.get(Scopes.java:65)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:40)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:84)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.InjectorImpl$4$1.call(InjectorImpl.java:978)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1024)
+	at com.google.inject.internal.InjectorImpl$4.get(InjectorImpl.java:974)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1013)
+	at org.xdi.oxd.server.SocketProcessor.<init>(SocketProcessor.java:36)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:90)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:21:58,309 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:21:58,309 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:21:58,310 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0574, commandSize: 574
+2016-07-01 15:21:58,310 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}', m_leftString=''}
+2016-07-01 15:21:58,311 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}
+2016-07-01 15:21:58,861 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:21:58,876 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:21:59,334 ERROR [org.xdi.oxauth.client.OpenIdConfigurationClient] A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+org.codehaus.jettison.json.JSONException: A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+	at org.codehaus.jettison.json.JSONTokener.syntaxError(JSONTokener.java:439)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:169)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:266)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient._execOpenIdConfiguration(OpenIdConfigurationClient.java:111)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient.execOpenIdConfiguration(OpenIdConfigurationClient.java:78)
+	at org.xdi.oxd.server.service.DiscoveryService.getConnectDiscoveryResponse(DiscoveryService.java:67)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:95)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:21:59,336 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: Cannot GET /.well-known/openid-configuration
+ 
+2016-07-01 15:21:59,347 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:21:59,355 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:21:59,381 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:21:59,381 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:22:44,758 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:22:44,759 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:22:44,759 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:22:44,768 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0605, commandSize: 605
+2016-07-01 15:22:44,769 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}', m_leftString=''}
+2016-07-01 15:22:44,769 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}
+2016-07-01 15:22:45,271 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:22:45,271 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:22:45,285 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:22:45,287 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:22:45,287 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:23:02,506 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:23:02,507 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:23:02,507 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:23:02,512 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0604, commandSize: 604
+2016-07-01 15:23:02,513 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org/","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}', m_leftString=''}
+2016-07-01 15:23:02,513 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org/","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}
+2016-07-01 15:23:03,015 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:23:03,015 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:23:05,140 WARN  [org.apache.http.client.protocol.ResponseProcessCookies] Cookie rejected: "[version: 0][name: JSESSIONID][value: E783F5F53254A87FE69C7874169661E2][domain: ce-dev2.gluu.org][path: /oxauth/][expiry: null]". Illegal path attribute "/oxauth/". Path of origin: "/.well-known/openid-configuration"
+2016-07-01 15:23:05,155 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: {
+    "issuer": "https://ce-dev2.gluu.org",
+    "authorization_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/authorize",
+    "token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/token",
+    "userinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/userinfo",
+    "clientinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/clientinfo",
+    "check_session_iframe": "https://ce-dev2.gluu.org/oxauth/opiframe",
+    "end_session_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/end_session",
+    "jwks_uri": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/jwks",
+    "registration_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/register",
+    "validate_token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/validate",
+    "federation_metadata_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federationmetadata",
+    "federation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federation",
+    "id_generation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/id",
+    "introspection_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/introspection",
+    "auth_level_mapping": {},
+    "scopes_supported": [
+        "org_name",
+        "uma_authorization",
+        "profile",
+        "imapData",
+        "uma_protection",
+        "mt_scope",
+        "phone",
+        "mobile_phone",
+        "work_phone",
+        "user_name",
+        "email",
+        "clientinfo",
+        "address",
+        "openid"
+    ],
+    "response_types_supported": [
+        "code",
+        "code id_token",
+        "token",
+        "token id_token",
+        "code token",
+        "code token id_token",
+        "id_token"
+    ],
+    "grant_types_supported": [
+        "authorization_code",
+        "implicit",
+        "urn:ietf:params:oauth:grant-type:jwt-bearer"
+    ],
+    "acr_values_supported": [
+        "u2f",
+        "duo",
+        "basic",
+        "mt",
+        "oxpush2",
+        "gplus",
+        "internal"
+    ],
+    "subject_types_supported": [
+        "public",
+        "pairwise"
+    ],
+    "userinfo_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "userinfo_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "userinfo_encryption_enc_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "id_token_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "request_object_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "request_object_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "request_object_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_basic",
+        "client_secret_post",
+        "client_secret_jwt",
+        "private_key_jwt"
+    ],
+    "token_endpoint_auth_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "display_values_supported": [
+        "page",
+        "popup"
+    ],
+    "claim_types_supported": ["normal"],
+    "claims_supported": [
+        "birthdate",
+        "country",
+        "name",
+        "email",
+        "email_verified",
+        "given_name",
+        "gender",
+        "phone_number",
+        "inum",
+        "family_name",
+        "updated_at",
+        "locale",
+        "middle_name",
+        "phone_mobile_number",
+        "nickname",
+        "oxAuthAppType",
+        "oxAuthIdTokenSignedResponseAlg",
+        "oxAuthRedirectURI",
+        "oxAuthScope",
+        "phone_number_verified",
+        "picture",
+        "preferred_username",
+        "profile",
+        "zoneinfo",
+        "user_name",
+        "website"
+    ],
+    "service_documentation": "http://gluu.org/docs",
+    "claims_locales_supported": ["en"],
+    "ui_locales_supported": [
+        "en",
+        "es"
+    ],
+    "scope_to_claims_mapping": [
+        {"org_name": []},
+        {"uma_authorization": []},
+        {"profile": [
+            "name",
+            "family_name",
+            "given_name",
+            "middle_name",
+            "nickname",
+            "preferred_username",
+            "profile",
+            "picture",
+            "website",
+            "gender",
+            "birthdate",
+            "zoneinfo",
+            "locale",
+            "updated_at"
+        ]},
+        {"imapData": [
+            "imapHost",
+            "imapPassword",
+            "imapPort",
+            "imapUsername"
+        ]},
+        {"uma_protection": []},
+        {"mt_scope": []},
+        {"phone": [
+            "phone_number_verified",
+            "phone_number"
+        ]},
+        {"mobile_phone": ["phone_mobile_number"]},
+        {"work_phone": []},
+        {"user_name": ["user_name"]},
+        {"email": [
+            "email_verified",
+            "email"
+        ]},
+        {"clientinfo": [
+            "name",
+            "inum",
+            "oxAuthAppType",
+            "oxAuthIdTokenSignedResponseAlg",
+            "oxAuthRedirectURI",
+            "oxAuthScope"
+        ]},
+        {"address": [
+            "formatted",
+            "postal_code",
+            "street_address",
+            "locality",
+            "country",
+            "region"
+        ]},
+        {"openid": ["inum"]}
+    ],
+    "claims_parameter_supported": true,
+    "request_parameter_supported": true,
+    "request_uri_parameter_supported": true,
+    "require_request_uri_registration": false,
+    "op_policy_uri": "http://ox.gluu.org/doku.php?id=oxauth:policy",
+    "op_tos_uri": "http://ox.gluu.org/doku.php?id=oxauth:tos",
+    "http_logout_supported": "true",
+    "logout_session_supported": "true"
+}
+ 
+2016-07-01 15:23:05,160 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:23:06,303 TRACE [org.xdi.oxd.server.op.RegisterSiteOperation] Registered client for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!8E60.645D
+2016-07-01 15:23:06,339 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Site configuration created: SiteConfiguration{acrValues=[], oxdId='937d09ea-0746-4599-914c-3e8d8a184d4f', opHost='https://ce-dev2.gluu.org/', authorizationRedirectUri='https://ce-dev2.gluu.org/.well-known/openid-configuration', applicationType='web', sectorIdentifierUri='null', redirectUris=[https://ce-dev2.gluu.org/.well-known/openid-configuration], responseTypes=[code, id_token, token], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!8E60.645D', clientSecret='7a52fc00-7679-4aa2-bf97-e44bce26236b', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=null, contacts=null, aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 15:23:06,340 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"937d09ea-0746-4599-914c-3e8d8a184d4f"}}
+2016-07-01 15:23:06,341 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:23:06,341 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:23:06,343 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:23:06,343 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:24:15,606 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:24:15,607 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:24:15,607 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:24:15,613 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0605, commandSize: 605
+2016-07-01 15:24:15,613 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}', m_leftString=''}
+2016-07-01 15:24:15,613 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://ce-dev2.gluu.org/.well-known/openid-configuration","scope":["openid","uma_protection","uma_authorization"],"contacts":null,"application_type":null,"post_logout_redirect_uri":null,"redirect_uris":null,"response_types":null,"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":[""],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":null,"grant_types":null}}
+2016-07-01 15:24:16,115 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:24:16,116 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:24:16,130 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:24:16,132 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:24:16,132 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:25:28,062 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:25:28,062 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:25:28,063 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:25:28,064 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0705, commandSize: 705
+2016-07-01 15:25:28,065 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["basic","duo"],"grant_types":["authorization_code"]}}', m_leftString=''}
+2016-07-01 15:25:28,065 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["basic","duo"],"grant_types":["authorization_code"]}}
+2016-07-01 15:25:28,566 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:25:28,572 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:25:28,584 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:25:28,586 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:25:28,588 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:26:05,886 INFO  [org.xdi.oxd.server.ServerLauncher] Starting...
+2016-07-01 15:26:06,063 TRACE [org.xdi.oxd.server.service.ConfigurationService] Try to load configuration from system property: oxd.server.config, value: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf/oxd-conf.json
+2016-07-01 15:26:06,226 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration loaded successfully from system property: oxd.server.config.
+2016-07-01 15:26:06,226 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration: Configuration{port=8099, timeOutInSeconds=0, jettyPort=0, startJetty=false, localhostOnly=true, useClientAuthenticationForPat=true, useClientAuthenticationForAat=true, trustAllCerts=true, keyStorePath='', licenseServerEndpoint='', licenseId='', publicKey='', publicPassword='', licensePassword='', licenseCheckPeriodInHours=24}
+2016-07-01 15:26:06,241 INFO  [org.xdi.oxd.server.service.ConfigurationService] Configuration directory: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf
+2016-07-01 15:26:06,245 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 4d387116-65f8-42e4-afd4-e6256ea8a419.json
+2016-07-01 15:26:06,308 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 937d09ea-0746-4599-914c-3e8d8a184d4f.json
+2016-07-01 15:26:06,309 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3bcfeff1-acc7-4216-82db-c74639befbf6.json
+2016-07-01 15:26:06,311 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 1b50c79c-2047-4804-9f30-ea6eff795f4f.json
+2016-07-01 15:26:06,312 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7ba2ab53-a544-4892-aee0-1131d4c12f22.json
+2016-07-01 15:26:06,313 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 21c2e790-d63c-4ff9-82f7-670ce76f4060.json
+2016-07-01 15:26:06,314 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: oxd-default-site-config.json
+2016-07-01 15:26:06,314 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18ce6487-0704-4ab0-bcd2-e744153ccdca.json
+2016-07-01 15:26:06,315 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 288507c2-3446-4689-9a70-11f9d51aa86c.json
+2016-07-01 15:26:06,316 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8f9b4802-942e-49f3-ac72-ec85fe4ae1df.json
+2016-07-01 15:26:06,317 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 768e17dd-c657-433f-97ee-0756b9d31022.json
+2016-07-01 15:26:06,318 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 11892afa-058f-45c5-abe2-45272cc53a30.json
+2016-07-01 15:26:06,319 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: fafc198b-1a90-49e9-9968-26e6c78c15c0.json
+2016-07-01 15:26:06,320 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 0651bc72-cb6b-4d0a-b09d-5f7690628291.json
+2016-07-01 15:26:06,320 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8efacbdc-c18a-4695-b53f-94849f3b2536.json
+2016-07-01 15:26:06,321 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 52658686-4f0d-4499-868e-8e2ea1b7b56d.json
+2016-07-01 15:26:06,324 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 08db0d11-b5ff-4828-95f5-dee0016f3312.json
+2016-07-01 15:26:06,336 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 456f8cdf-e412-4534-9463-19e329e0393a.json
+2016-07-01 15:26:06,339 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 67fd6734-d877-466c-abd5-29baae4ffe5b.json
+2016-07-01 15:26:06,342 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bfa84ae3-d52e-4c48-b205-383da55e88bf.json
+2016-07-01 15:26:06,345 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bc66d652-3c97-43d1-90c5-d886cc2e300e.json
+2016-07-01 15:26:06,347 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f0b09231-df35-4b60-962b-f189b19f179d.json
+2016-07-01 15:26:06,348 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f8b36354-41f9-4a65-bfaa-6c2688bd5781.json
+2016-07-01 15:26:06,348 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7a1402aa-be38-4289-81af-7db6d55418d8.json
+2016-07-01 15:26:06,348 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3cef88a9-531f-4db9-a96d-fd955c560d94.json
+2016-07-01 15:26:06,349 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:26:06,350 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:26:06,350 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:26:06,351 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:58)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:26:06,361 INFO  [org.xdi.oxd.server.service.SocketService] Server runs in free license mode which delays commands execution on 0.5 second for each command.
+ In order to remove the transaction limitations placed on the free version of oxD, you need to purchase a commercial license at oxd.gluu.org
+2016-07-01 15:26:06,361 INFO  [org.xdi.oxd.server.service.SocketService] Server socket is bound to port: 8099, with timeout: 0 seconds. Start listening for notifications.
+2016-07-01 15:26:15,859 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:26:15,865 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:26:15,865 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:26:15,866 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:26:15,866 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.license.LicenseService$$FastClassByGuice$$bd74ee5e.newInstance(<generated>)
+	at com.google.inject.internal.cglib.reflect.$FastConstructor.newInstance(FastConstructor.java:40)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$1.newInstance(DefaultConstructionProxyFactory.java:60)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:85)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1031)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.Scopes$1$1.get(Scopes.java:65)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:40)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:84)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.InjectorImpl$4$1.call(InjectorImpl.java:978)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1024)
+	at com.google.inject.internal.InjectorImpl$4.get(InjectorImpl.java:974)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1013)
+	at org.xdi.oxd.server.SocketProcessor.<init>(SocketProcessor.java:36)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:90)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:26:15,869 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:26:15,869 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:26:15,869 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0692, commandSize: 692
+2016-07-01 15:26:15,870 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":[],"grant_types":["authorization_code"]}}', m_leftString=''}
+2016-07-01 15:26:15,870 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":[],"grant_types":["authorization_code"]}}
+2016-07-01 15:26:16,421 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:26:16,434 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:26:16,935 ERROR [org.xdi.oxauth.client.OpenIdConfigurationClient] A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+org.codehaus.jettison.json.JSONException: A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+	at org.codehaus.jettison.json.JSONTokener.syntaxError(JSONTokener.java:439)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:169)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:266)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient._execOpenIdConfiguration(OpenIdConfigurationClient.java:111)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient.execOpenIdConfiguration(OpenIdConfigurationClient.java:78)
+	at org.xdi.oxd.server.service.DiscoveryService.getConnectDiscoveryResponse(DiscoveryService.java:67)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:95)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:26:16,936 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: Cannot GET /.well-known/openid-configuration
+ 
+2016-07-01 15:26:16,944 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:26:16,953 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:26:16,983 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:26:16,987 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:29:09,124 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:29:09,125 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:29:09,125 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:29:09,127 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0697, commandSize: 697
+2016-07-01 15:29:09,128 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}', m_leftString=''}
+2016-07-01 15:29:09,128 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}
+2016-07-01 15:29:09,630 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:29:09,630 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:29:12,412 WARN  [org.apache.http.client.protocol.ResponseProcessCookies] Cookie rejected: "[version: 0][name: JSESSIONID][value: 0B6C42E183428EABE656EDC147E85CD6][domain: ce-dev2.gluu.org][path: /oxauth/][expiry: null]". Illegal path attribute "/oxauth/". Path of origin: "/.well-known/openid-configuration"
+2016-07-01 15:29:12,430 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: {
+    "issuer": "https://ce-dev2.gluu.org",
+    "authorization_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/authorize",
+    "token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/token",
+    "userinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/userinfo",
+    "clientinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/clientinfo",
+    "check_session_iframe": "https://ce-dev2.gluu.org/oxauth/opiframe",
+    "end_session_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/end_session",
+    "jwks_uri": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/jwks",
+    "registration_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/register",
+    "validate_token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/validate",
+    "federation_metadata_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federationmetadata",
+    "federation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federation",
+    "id_generation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/id",
+    "introspection_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/introspection",
+    "auth_level_mapping": {},
+    "scopes_supported": [
+        "org_name",
+        "uma_authorization",
+        "profile",
+        "imapData",
+        "uma_protection",
+        "mt_scope",
+        "phone",
+        "mobile_phone",
+        "work_phone",
+        "user_name",
+        "email",
+        "clientinfo",
+        "address",
+        "openid"
+    ],
+    "response_types_supported": [
+        "code",
+        "code id_token",
+        "token",
+        "token id_token",
+        "code token",
+        "code token id_token",
+        "id_token"
+    ],
+    "grant_types_supported": [
+        "authorization_code",
+        "implicit",
+        "urn:ietf:params:oauth:grant-type:jwt-bearer"
+    ],
+    "acr_values_supported": [
+        "u2f",
+        "duo",
+        "basic",
+        "mt",
+        "oxpush2",
+        "gplus",
+        "internal"
+    ],
+    "subject_types_supported": [
+        "public",
+        "pairwise"
+    ],
+    "userinfo_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "userinfo_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "userinfo_encryption_enc_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "id_token_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "request_object_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "request_object_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "request_object_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_basic",
+        "client_secret_post",
+        "client_secret_jwt",
+        "private_key_jwt"
+    ],
+    "token_endpoint_auth_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "display_values_supported": [
+        "page",
+        "popup"
+    ],
+    "claim_types_supported": ["normal"],
+    "claims_supported": [
+        "birthdate",
+        "country",
+        "name",
+        "email",
+        "email_verified",
+        "given_name",
+        "gender",
+        "phone_number",
+        "inum",
+        "family_name",
+        "updated_at",
+        "locale",
+        "middle_name",
+        "phone_mobile_number",
+        "nickname",
+        "oxAuthAppType",
+        "oxAuthIdTokenSignedResponseAlg",
+        "oxAuthRedirectURI",
+        "oxAuthScope",
+        "phone_number_verified",
+        "picture",
+        "preferred_username",
+        "profile",
+        "zoneinfo",
+        "user_name",
+        "website"
+    ],
+    "service_documentation": "http://gluu.org/docs",
+    "claims_locales_supported": ["en"],
+    "ui_locales_supported": [
+        "en",
+        "es"
+    ],
+    "scope_to_claims_mapping": [
+        {"org_name": []},
+        {"uma_authorization": []},
+        {"profile": [
+            "name",
+            "family_name",
+            "given_name",
+            "middle_name",
+            "nickname",
+            "preferred_username",
+            "profile",
+            "picture",
+            "website",
+            "gender",
+            "birthdate",
+            "zoneinfo",
+            "locale",
+            "updated_at"
+        ]},
+        {"imapData": [
+            "imapHost",
+            "imapPassword",
+            "imapPort",
+            "imapUsername"
+        ]},
+        {"uma_protection": []},
+        {"mt_scope": []},
+        {"phone": [
+            "phone_number_verified",
+            "phone_number"
+        ]},
+        {"mobile_phone": ["phone_mobile_number"]},
+        {"work_phone": []},
+        {"user_name": ["user_name"]},
+        {"email": [
+            "email_verified",
+            "email"
+        ]},
+        {"clientinfo": [
+            "name",
+            "inum",
+            "oxAuthAppType",
+            "oxAuthIdTokenSignedResponseAlg",
+            "oxAuthRedirectURI",
+            "oxAuthScope"
+        ]},
+        {"address": [
+            "formatted",
+            "postal_code",
+            "street_address",
+            "locality",
+            "country",
+            "region"
+        ]},
+        {"openid": ["inum"]}
+    ],
+    "claims_parameter_supported": true,
+    "request_parameter_supported": true,
+    "request_uri_parameter_supported": true,
+    "require_request_uri_registration": false,
+    "op_policy_uri": "http://ox.gluu.org/doku.php?id=oxauth:policy",
+    "op_tos_uri": "http://ox.gluu.org/doku.php?id=oxauth:tos",
+    "http_logout_supported": "true",
+    "logout_session_supported": "true"
+}
+ 
+2016-07-01 15:29:12,432 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:29:17,721 TRACE [org.xdi.oxd.server.op.RegisterSiteOperation] Registered client for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!1A18.A010
+2016-07-01 15:29:17,754 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Site configuration created: SiteConfiguration{acrValues=[gplus], oxdId='18fc3b1b-de7d-4675-b2c2-981570c18634', opHost='https://ce-dev2.gluu.org', authorizationRedirectUri='https://lanetteam.com:5053', applicationType='web', sectorIdentifierUri='null', redirectUris=[https://lanetteam.com:5053], responseTypes=[code], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!1A18.A010', clientSecret='493eb11c-5bfe-4ff5-ab98-36e7f213e919', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=[authorization_code], contacts=[test@admin.com], aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 15:29:17,757 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"18fc3b1b-de7d-4675-b2c2-981570c18634"}}
+2016-07-01 15:29:17,759 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:29:17,759 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:29:17,764 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:29:17,764 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:30:37,133 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:30:37,133 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:30:37,133 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:30:37,136 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0691, commandSize: 691
+2016-07-01 15:30:37,136 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}', m_leftString=''}
+2016-07-01 15:30:37,136 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}
+2016-07-01 15:30:37,638 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:30:37,638 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:30:37,715 ERROR [org.xdi.oxauth.client.OpenIdConfigurationClient] A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+org.codehaus.jettison.json.JSONException: A JSONObject text must begin with '{' at character 1 of Cannot GET /.well-known/openid-configuration
+
+	at org.codehaus.jettison.json.JSONTokener.syntaxError(JSONTokener.java:439)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:169)
+	at org.codehaus.jettison.json.JSONObject.<init>(JSONObject.java:266)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient._execOpenIdConfiguration(OpenIdConfigurationClient.java:111)
+	at org.xdi.oxauth.client.OpenIdConfigurationClient.execOpenIdConfiguration(OpenIdConfigurationClient.java:78)
+	at org.xdi.oxd.server.service.DiscoveryService.getConnectDiscoveryResponse(DiscoveryService.java:67)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:95)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:30:37,716 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: Cannot GET /.well-known/openid-configuration
+ 
+2016-07-01 15:30:37,717 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:30:37,721 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:30:37,724 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:30:37,732 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:30:53,807 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:30:53,807 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:30:53,807 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:30:53,807 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0684, commandSize: 684
+2016-07-01 15:30:53,807 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":[],"grant_types":["authorization_code"]}}', m_leftString=''}
+2016-07-01 15:30:53,808 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"lanetteam.com:5053","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":[],"grant_types":["authorization_code"]}}
+2016-07-01 15:30:54,309 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:30:54,310 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:30:54,317 ERROR [org.xdi.oxd.server.op.RegisterSiteOperation] 
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at org.jboss.resteasy.specimpl.UriBuilderImpl.uriTemplate(UriBuilderImpl.java:77)
+	at org.jboss.resteasy.client.ClientRequest.getBuilder(ClientRequest.java:152)
+	at org.jboss.resteasy.client.ClientRequest.<init>(ClientRequest.java:103)
+	at org.xdi.oxauth.client.BaseClient.initClientRequest(BaseClient.java:229)
+	at org.xdi.oxauth.client.RegisterClient.exec(RegisterClient.java:104)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.registerClient(RegisterSiteOperation.java:98)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.persistSiteConfiguration(RegisterSiteOperation.java:74)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:55)
+	at org.xdi.oxd.server.op.RegisterSiteOperation.execute(RegisterSiteOperation.java:34)
+	at org.xdi.oxd.server.Processor.process(Processor.java:100)
+	at org.xdi.oxd.server.Processor.process(Processor.java:56)
+	at org.xdi.oxd.server.SocketProcessor.run(SocketProcessor.java:60)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-01 15:30:54,319 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"error","data":{"error":"internal_error","error_description":"Unknown internal server error occurs."}}
+2016-07-01 15:30:54,323 ERROR [org.xdi.oxd.server.SocketProcessor] Quit. Enable to process command.
+2016-07-01 15:31:34,885 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:31:34,886 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:31:34,887 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:31:34,888 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0697, commandSize: 697
+2016-07-01 15:31:34,888 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}', m_leftString=''}
+2016-07-01 15:31:34,888 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"register_site","params":{"op_host":"https://ce-dev2.gluu.org","authorization_redirect_uri":"https://lanetteam.com:5053","scope":["openid","uma_protection","uma_authorization"],"contacts":["test@admin.com"],"application_type":"web","post_logout_redirect_uri":"https://lanetteam.com:5053","redirect_uris":["https://lanetteam.com:5053"],"response_types":["code"],"client_id":null,"client_secret":null,"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"client_logout_uris":["https://lanetteam.com:5053/logout"],"client_sector_identifier_uri":null,"ui_locales":null,"claims_locales":null,"acr_values":["gplus"],"grant_types":["authorization_code"]}}
+2016-07-01 15:31:35,390 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Creating site configuration ...
+2016-07-01 15:31:35,390 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:31:36,585 TRACE [org.xdi.oxd.server.op.RegisterSiteOperation] Registered client for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449
+2016-07-01 15:31:36,588 INFO  [org.xdi.oxd.server.op.RegisterSiteOperation] Site configuration created: SiteConfiguration{acrValues=[gplus], oxdId='62310b9b-917b-41a6-9647-b131471113bb', opHost='https://ce-dev2.gluu.org', authorizationRedirectUri='https://lanetteam.com:5053', applicationType='web', sectorIdentifierUri='null', redirectUris=[https://lanetteam.com:5053], responseTypes=[code], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449', clientSecret='fb48a144-7729-490f-8e32-d6b2d243f511', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=[authorization_code], contacts=[test@admin.com], aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 15:31:36,588 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb"}}
+2016-07-01 15:31:36,588 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:31:36,588 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:31:36,593 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:31:36,594 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:37:07,442 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:37:07,443 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:37:07,443 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:37:07,443 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0516, commandSize: 516
+2016-07-01 15:37:07,443 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":[],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}', m_leftString=''}
+2016-07-01 15:37:07,443 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":[],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}
+2016-07-01 15:37:07,978 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Updating site configuration ...
+2016-07-01 15:37:07,979 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:37:09,418 TRACE [org.xdi.oxd.server.op.UpdateSiteOperation] Client updated successfully. for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449
+2016-07-01 15:37:09,420 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Site configuration updated: SiteConfiguration{acrValues=[gplus], oxdId='62310b9b-917b-41a6-9647-b131471113bb', opHost='https://ce-dev2.gluu.org', authorizationRedirectUri='https://lanetteam.com:5053', applicationType='WEB', sectorIdentifierUri='null', redirectUris=[https://lanetteam.com:5053, https://lanetteam.com:5053, https://lanetteam.com:5053], responseTypes=[code], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449', clientSecret='fb48a144-7729-490f-8e32-d6b2d243f511', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=[authorization_code], contacts=[test@admin.com], aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 15:37:09,421 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb"}}
+2016-07-01 15:37:09,423 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:37:09,423 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:37:09,425 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:37:09,425 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:38:15,156 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:38:15,160 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:38:15,160 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:38:15,160 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0529, commandSize: 529
+2016-07-01 15:38:15,160 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":["basic","duo"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}', m_leftString=''}
+2016-07-01 15:38:15,163 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":["basic","duo"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}
+2016-07-01 15:38:15,664 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Updating site configuration ...
+2016-07-01 15:38:15,664 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:38:17,290 TRACE [org.xdi.oxd.server.op.UpdateSiteOperation] Client updated successfully. for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449
+2016-07-01 15:38:17,292 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Site configuration updated: SiteConfiguration{acrValues=[gplus], oxdId='62310b9b-917b-41a6-9647-b131471113bb', opHost='https://ce-dev2.gluu.org', authorizationRedirectUri='https://lanetteam.com:5053', applicationType='WEB', sectorIdentifierUri='null', redirectUris=[https://lanetteam.com:5053, https://lanetteam.com:5053, https://lanetteam.com:5053], responseTypes=[code], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449', clientSecret='fb48a144-7729-490f-8e32-d6b2d243f511', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=[authorization_code], contacts=[test@admin.com], aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 15:38:17,292 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb"}}
+2016-07-01 15:38:17,292 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:38:17,293 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:38:17,295 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:38:17,296 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:39:01,340 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:39:01,340 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:39:01,340 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:39:01,340 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0523, commandSize: 523
+2016-07-01 15:39:01,340 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":["gplus"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}', m_leftString=''}
+2016-07-01 15:39:01,341 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":["gplus"],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}
+2016-07-01 15:39:01,842 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Updating site configuration ...
+2016-07-01 15:39:01,842 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:39:03,559 TRACE [org.xdi.oxd.server.op.UpdateSiteOperation] Client updated successfully. for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449
+2016-07-01 15:39:03,561 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Site configuration updated: SiteConfiguration{acrValues=[gplus], oxdId='62310b9b-917b-41a6-9647-b131471113bb', opHost='https://ce-dev2.gluu.org', authorizationRedirectUri='https://lanetteam.com:5053', applicationType='WEB', sectorIdentifierUri='null', redirectUris=[https://lanetteam.com:5053, https://lanetteam.com:5053, https://lanetteam.com:5053], responseTypes=[code], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449', clientSecret='fb48a144-7729-490f-8e32-d6b2d243f511', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=[authorization_code], contacts=[test@admin.com], aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 15:39:03,561 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb"}}
+2016-07-01 15:39:03,561 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:39:03,561 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:39:03,567 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:39:03,567 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:40:51,038 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:40:51,039 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:40:51,039 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:40:51,040 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0117, commandSize: 117
+2016-07-01 15:40:51,040 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_authorization_url","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","acr_values":["basic"]}}', m_leftString=''}
+2016-07-01 15:40:51,040 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_authorization_url","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","acr_values":["basic"]}}
+2016-07-01 15:40:51,562 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"authorization_url":"https://ce-dev2.gluu.org/oxauth/authorize?response_type=code&client_id=@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449&client_secret=fb48a144-7729-490f-8e32-d6b2d243f511&redirect_uri=https://lanetteam.com:5053&scope=openid+uma_protection+uma_authorization&state=af0ifjsldkj&nonce=n-0S6_WzA2Mj&acr_values=basic&prompt=login"}}
+2016-07-01 15:40:51,563 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:40:51,563 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:40:51,571 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:40:51,571 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:42:28,727 INFO  [org.xdi.oxd.server.ServerLauncher] Starting...
+2016-07-01 15:42:28,895 TRACE [org.xdi.oxd.server.service.ConfigurationService] Try to load configuration from system property: oxd.server.config, value: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf/oxd-conf.json
+2016-07-01 15:42:29,064 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration loaded successfully from system property: oxd.server.config.
+2016-07-01 15:42:29,064 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration: Configuration{port=8099, timeOutInSeconds=0, jettyPort=0, startJetty=false, localhostOnly=true, useClientAuthenticationForPat=true, useClientAuthenticationForAat=true, trustAllCerts=true, keyStorePath='', licenseServerEndpoint='', licenseId='', publicKey='', publicPassword='', licensePassword='', licenseCheckPeriodInHours=24}
+2016-07-01 15:42:29,081 INFO  [org.xdi.oxd.server.service.ConfigurationService] Configuration directory: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf
+2016-07-01 15:42:29,084 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 4d387116-65f8-42e4-afd4-e6256ea8a419.json
+2016-07-01 15:42:29,157 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 937d09ea-0746-4599-914c-3e8d8a184d4f.json
+2016-07-01 15:42:29,158 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3bcfeff1-acc7-4216-82db-c74639befbf6.json
+2016-07-01 15:42:29,160 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 1b50c79c-2047-4804-9f30-ea6eff795f4f.json
+2016-07-01 15:42:29,161 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7ba2ab53-a544-4892-aee0-1131d4c12f22.json
+2016-07-01 15:42:29,161 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 21c2e790-d63c-4ff9-82f7-670ce76f4060.json
+2016-07-01 15:42:29,165 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: oxd-default-site-config.json
+2016-07-01 15:42:29,166 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18ce6487-0704-4ab0-bcd2-e744153ccdca.json
+2016-07-01 15:42:29,167 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 288507c2-3446-4689-9a70-11f9d51aa86c.json
+2016-07-01 15:42:29,168 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8f9b4802-942e-49f3-ac72-ec85fe4ae1df.json
+2016-07-01 15:42:29,168 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 768e17dd-c657-433f-97ee-0756b9d31022.json
+2016-07-01 15:42:29,169 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 11892afa-058f-45c5-abe2-45272cc53a30.json
+2016-07-01 15:42:29,170 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: fafc198b-1a90-49e9-9968-26e6c78c15c0.json
+2016-07-01 15:42:29,171 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 0651bc72-cb6b-4d0a-b09d-5f7690628291.json
+2016-07-01 15:42:29,172 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8efacbdc-c18a-4695-b53f-94849f3b2536.json
+2016-07-01 15:42:29,173 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 52658686-4f0d-4499-868e-8e2ea1b7b56d.json
+2016-07-01 15:42:29,177 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 08db0d11-b5ff-4828-95f5-dee0016f3312.json
+2016-07-01 15:42:29,189 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 456f8cdf-e412-4534-9463-19e329e0393a.json
+2016-07-01 15:42:29,191 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 67fd6734-d877-466c-abd5-29baae4ffe5b.json
+2016-07-01 15:42:29,191 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18fc3b1b-de7d-4675-b2c2-981570c18634.json
+2016-07-01 15:42:29,192 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bfa84ae3-d52e-4c48-b205-383da55e88bf.json
+2016-07-01 15:42:29,192 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bc66d652-3c97-43d1-90c5-d886cc2e300e.json
+2016-07-01 15:42:29,193 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f0b09231-df35-4b60-962b-f189b19f179d.json
+2016-07-01 15:42:29,193 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f8b36354-41f9-4a65-bfaa-6c2688bd5781.json
+2016-07-01 15:42:29,194 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7a1402aa-be38-4289-81af-7db6d55418d8.json
+2016-07-01 15:42:29,195 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 62310b9b-917b-41a6-9647-b131471113bb.json
+2016-07-01 15:42:29,195 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3cef88a9-531f-4db9-a96d-fd955c560d94.json
+2016-07-01 15:42:29,196 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:42:29,196 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:42:29,197 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:42:29,198 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:58)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:42:29,214 INFO  [org.xdi.oxd.server.service.SocketService] Server runs in free license mode which delays commands execution on 0.5 second for each command.
+ In order to remove the transaction limitations placed on the free version of oxD, you need to purchase a commercial license at oxd.gluu.org
+2016-07-01 15:42:29,215 INFO  [org.xdi.oxd.server.service.SocketService] Server socket is bound to port: 8099, with timeout: 0 seconds. Start listening for notifications.
+2016-07-01 15:44:21,957 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:44:21,962 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 15:44:21,962 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 15:44:21,962 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 15:44:21,963 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.license.LicenseService$$FastClassByGuice$$bd74ee5e.newInstance(<generated>)
+	at com.google.inject.internal.cglib.reflect.$FastConstructor.newInstance(FastConstructor.java:40)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$1.newInstance(DefaultConstructionProxyFactory.java:60)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:85)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1031)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.Scopes$1$1.get(Scopes.java:65)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:40)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:84)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:254)
+	at com.google.inject.internal.InjectorImpl$4$1.call(InjectorImpl.java:978)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1024)
+	at com.google.inject.internal.InjectorImpl$4.get(InjectorImpl.java:974)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1013)
+	at org.xdi.oxd.server.SocketProcessor.<init>(SocketProcessor.java:36)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:90)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 15:44:21,971 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:21,971 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:21,971 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0516, commandSize: 516
+2016-07-01 15:44:21,972 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":[],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}', m_leftString=''}
+2016-07-01 15:44:21,972 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"update_site_registration","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","authorization_redirect_uri":"https://lanetteam.com:5053","post_logout_redirect_uri":"https://lanetteam.com:5053","client_logout_uris":["https://lanetteam.com:5053/logout"],"application_type":"web","grant_types":["authorization_code"],"redirect_uris":["https://lanetteam.com:5053"],"acr_values":[],"client_jwks_uri":null,"client_token_endpoint_auth_method":null,"client_request_uris":null,"contacts":["test@admin.com"]}}
+2016-07-01 15:44:22,530 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Updating site configuration ...
+2016-07-01 15:44:22,546 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:44:24,473 TRACE [org.xdi.oxd.server.op.UpdateSiteOperation] Client updated successfully. for site - client_id: @!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449
+2016-07-01 15:44:24,517 INFO  [org.xdi.oxd.server.op.UpdateSiteOperation] Site configuration updated: SiteConfiguration{acrValues=[gplus], oxdId='62310b9b-917b-41a6-9647-b131471113bb', opHost='https://ce-dev2.gluu.org', authorizationRedirectUri='https://lanetteam.com:5053', applicationType='WEB', sectorIdentifierUri='null', redirectUris=[https://lanetteam.com:5053, https://lanetteam.com:5053, https://lanetteam.com:5053], responseTypes=[code], clientId='@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449', clientSecret='fb48a144-7729-490f-8e32-d6b2d243f511', scope=[openid, uma_protection, uma_authorization], uiLocales=[en], claimsLocales=[en], grantType=[authorization_code], contacts=[test@admin.com], aat=null, aatCreatedAt=null, aatExpiresIn=0, pat=null, patCreatedAt=null, patExpiresIn=0, umaProtectedResources=[], rpt=null, rptCreatedAt=null, rptExpiresIn=null, gat=null, gatCreatedAt=null, gatExpiresIn=null}
+2016-07-01 15:44:24,528 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb"}}
+2016-07-01 15:44:24,528 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:24,528 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:24,531 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:44:24,531 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:44:31,251 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:44:31,252 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:31,253 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:31,253 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0117, commandSize: 117
+2016-07-01 15:44:31,253 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_authorization_url","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","acr_values":["basic"]}}', m_leftString=''}
+2016-07-01 15:44:31,253 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_authorization_url","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","acr_values":["basic"]}}
+2016-07-01 15:44:31,762 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:44:33,103 WARN  [org.apache.http.client.protocol.ResponseProcessCookies] Cookie rejected: "[version: 0][name: JSESSIONID][value: 5D94D830D6DDAC107D2AF6C02B0783A2][domain: ce-dev2.gluu.org][path: /oxauth/][expiry: null]". Illegal path attribute "/oxauth/". Path of origin: "/.well-known/openid-configuration"
+2016-07-01 15:44:33,115 TRACE [org.xdi.oxd.server.service.DiscoveryService] Discovery response: {
+    "issuer": "https://ce-dev2.gluu.org",
+    "authorization_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/authorize",
+    "token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/token",
+    "userinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/userinfo",
+    "clientinfo_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/clientinfo",
+    "check_session_iframe": "https://ce-dev2.gluu.org/oxauth/opiframe",
+    "end_session_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/end_session",
+    "jwks_uri": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/jwks",
+    "registration_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/register",
+    "validate_token_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/validate",
+    "federation_metadata_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federationmetadata",
+    "federation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/oxauth/federation",
+    "id_generation_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/id",
+    "introspection_endpoint": "https://ce-dev2.gluu.org/oxauth/seam/resource/restv1/introspection",
+    "auth_level_mapping": {},
+    "scopes_supported": [
+        "org_name",
+        "uma_authorization",
+        "profile",
+        "imapData",
+        "uma_protection",
+        "mt_scope",
+        "phone",
+        "mobile_phone",
+        "work_phone",
+        "user_name",
+        "email",
+        "clientinfo",
+        "address",
+        "openid"
+    ],
+    "response_types_supported": [
+        "code",
+        "code id_token",
+        "token",
+        "token id_token",
+        "code token",
+        "code token id_token",
+        "id_token"
+    ],
+    "grant_types_supported": [
+        "authorization_code",
+        "implicit",
+        "urn:ietf:params:oauth:grant-type:jwt-bearer"
+    ],
+    "acr_values_supported": [
+        "u2f",
+        "duo",
+        "basic",
+        "mt",
+        "oxpush2",
+        "gplus",
+        "internal"
+    ],
+    "subject_types_supported": [
+        "public",
+        "pairwise"
+    ],
+    "userinfo_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "userinfo_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "userinfo_encryption_enc_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "id_token_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "id_token_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "request_object_signing_alg_values_supported": [
+        "none",
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "request_object_encryption_alg_values_supported": [
+        "RSA1_5",
+        "RSA-OAEP",
+        "A128KW",
+        "A256KW"
+    ],
+    "request_object_encryption_enc_values_supported": [
+        "A128CBC+HS256",
+        "A256CBC+HS512",
+        "A128GCM",
+        "A256GCM"
+    ],
+    "token_endpoint_auth_methods_supported": [
+        "client_secret_basic",
+        "client_secret_post",
+        "client_secret_jwt",
+        "private_key_jwt"
+    ],
+    "token_endpoint_auth_signing_alg_values_supported": [
+        "HS256",
+        "HS384",
+        "HS512",
+        "RS256",
+        "RS384",
+        "RS512",
+        "ES256",
+        "ES384",
+        "ES512"
+    ],
+    "display_values_supported": [
+        "page",
+        "popup"
+    ],
+    "claim_types_supported": ["normal"],
+    "claims_supported": [
+        "birthdate",
+        "country",
+        "name",
+        "email",
+        "email_verified",
+        "given_name",
+        "gender",
+        "phone_number",
+        "inum",
+        "family_name",
+        "updated_at",
+        "locale",
+        "middle_name",
+        "phone_mobile_number",
+        "nickname",
+        "oxAuthAppType",
+        "oxAuthIdTokenSignedResponseAlg",
+        "oxAuthRedirectURI",
+        "oxAuthScope",
+        "phone_number_verified",
+        "picture",
+        "preferred_username",
+        "profile",
+        "zoneinfo",
+        "user_name",
+        "website"
+    ],
+    "service_documentation": "http://gluu.org/docs",
+    "claims_locales_supported": ["en"],
+    "ui_locales_supported": [
+        "en",
+        "es"
+    ],
+    "scope_to_claims_mapping": [
+        {"org_name": []},
+        {"uma_authorization": []},
+        {"profile": [
+            "name",
+            "family_name",
+            "given_name",
+            "middle_name",
+            "nickname",
+            "preferred_username",
+            "profile",
+            "picture",
+            "website",
+            "gender",
+            "birthdate",
+            "zoneinfo",
+            "locale",
+            "updated_at"
+        ]},
+        {"imapData": [
+            "imapHost",
+            "imapPassword",
+            "imapPort",
+            "imapUsername"
+        ]},
+        {"uma_protection": []},
+        {"mt_scope": []},
+        {"phone": [
+            "phone_number_verified",
+            "phone_number"
+        ]},
+        {"mobile_phone": ["phone_mobile_number"]},
+        {"work_phone": []},
+        {"user_name": ["user_name"]},
+        {"email": [
+            "email_verified",
+            "email"
+        ]},
+        {"clientinfo": [
+            "name",
+            "inum",
+            "oxAuthAppType",
+            "oxAuthIdTokenSignedResponseAlg",
+            "oxAuthRedirectURI",
+            "oxAuthScope"
+        ]},
+        {"address": [
+            "formatted",
+            "postal_code",
+            "street_address",
+            "locality",
+            "country",
+            "region"
+        ]},
+        {"openid": ["inum"]}
+    ],
+    "claims_parameter_supported": true,
+    "request_parameter_supported": true,
+    "request_uri_parameter_supported": true,
+    "require_request_uri_registration": false,
+    "op_policy_uri": "http://ox.gluu.org/doku.php?id=oxauth:policy",
+    "op_tos_uri": "http://ox.gluu.org/doku.php?id=oxauth:tos",
+    "http_logout_supported": "true",
+    "logout_session_supported": "true"
+}
+ 
+2016-07-01 15:44:33,119 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"authorization_url":"https://ce-dev2.gluu.org/oxauth/authorize?response_type=code&client_id=@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449&client_secret=fb48a144-7729-490f-8e32-d6b2d243f511&redirect_uri=https://lanetteam.com:5053&scope=openid+uma_protection+uma_authorization&state=af0ifjsldkj&nonce=n-0S6_WzA2Mj&acr_values=basic&prompt=login"}}
+2016-07-01 15:44:33,119 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:33,121 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:33,122 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:44:33,122 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:44:44,291 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:44:44,292 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:44,292 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:44,293 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0216, commandSize: 216
+2016-07-01 15:44:44,293 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_tokens_by_code","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","code":"de2ff457-6964-47cb-b72c-b6c7d5da6f18","state":"af0ifjsldkj","scopes":["uma_protection","openid","uma_authorization"]}}', m_leftString=''}
+2016-07-01 15:44:44,293 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_tokens_by_code","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","code":"de2ff457-6964-47cb-b72c-b6c7d5da6f18","state":"af0ifjsldkj","scopes":["uma_protection","openid","uma_authorization"]}}
+2016-07-01 15:44:44,807 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:44:48,110 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"access_token":"a06a2842-b492-404b-8001-bd71f7809eeb","expires_in":299,"id_token":"eyJraWQiOiI0OWU5ZjVhYy03ZDNkLTRiY2EtYjQ3ZS1lM2U5MzU0ZjA0MjMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NlLWRldjIuZ2x1dS5vcmciLCJhdWQiOiJAITQwRUEuRDQ1NC45RDRGLkU4NzYhMDAwMSFFQ0U4LkJCRUYhMDAwOCFGMzkyLkM0NDkiLCJleHAiOjE0NjczNzE2OTEsImlhdCI6MTQ2NzM2ODA5MSwiYWNyIjoiYmFzaWMiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImF1dGhfdGltZSI6MTQ2NzM2ODA4NSwiYXRfaGFzaCI6IlJCVF84QXFrUFBoT0hxV2ZPTlota3ciLCJveFZhbGlkYXRpb25VUkkiOiJodHRwczovL2NlLWRldjIuZ2x1dS5vcmcvb3hhdXRoL29waWZyYW1lIiwib3hPcGVuSURDb25uZWN0VmVyc2lvbiI6Im9wZW5pZGNvbm5lY3QtMS4wIiwiaW51bSI6IkAhNDBFQS5ENDU0LjlENEYuRTg3NiEwMDAxIUVDRTguQkJFRiEwMDAwIUIxRjMuQUVBRS5CNzk4Iiwic3ViIjoiQCE0MEVBLkQ0NTQuOUQ0Ri5FODc2ITAwMDEhRUNFOC5CQkVGITAwMDAhQjFGMy5BRUFFLkI3OTgifQ.juvEuv3BOuSxyUa1NLPevjTbeYk4yl8omknyxraq6Jt9YHUIoygShkSP6soz1jQqqdHPsmp5kv8Zicmij_sODong60kctT2WEZPcMvHHW8sUowYW0BBZC3QW6bUuYUAoFntuobtYxopxkIR0owVnhc245G4d3tif6P-U9TRfJAp9ijXUyHwtukjV8Hmy9fx6QHP-SZQU7N4coYMeK2bl7A7Q4qfQrZwDONCRRjKIfZnTVP9XB-d6URyswKOH9O6X1-ikcIskxEMKxS9Qodx6IFskNYHpInQ1wVc_5cgmZSDcKGKIuWr67VyZE45rnskqnDe4ejokClNJFmQLt2j9iA","refresh_token":"c448a755-be88-47ba-95ae-8bbd8a593c19","id_token_claims":{"at_hash":["RBT_8AqkPPhOHqWfONZ-kw"],"aud":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449"],"acr":["basic"],"sub":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"],"auth_time":["1467368085"],"iss":["https://ce-dev2.gluu.org"],"exp":["1467371691"],"inum":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"],"iat":["1467368091"],"nonce":["n-0S6_WzA2Mj"],"oxValidationURI":["https://ce-dev2.gluu.org/oxauth/opiframe"],"oxOpenIDConnectVersion":["openidconnect-1.0"]}}}
+2016-07-01 15:44:48,117 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:48,117 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:48,117 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:44:48,118 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 15:44:48,124 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 15:44:48,125 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:48,125 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:48,126 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0140, commandSize: 140
+2016-07-01 15:44:48,126 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_user_info","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","access_token":"a06a2842-b492-404b-8001-bd71f7809eeb"}}', m_leftString=''}
+2016-07-01 15:44:48,126 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_user_info","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","access_token":"a06a2842-b492-404b-8001-bd71f7809eeb"}}
+2016-07-01 15:44:48,632 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 15:44:49,856 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"claims":{"sub":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"],"inum":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"]}}}
+2016-07-01 15:44:49,856 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 15:44:49,856 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 15:44:49,868 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 15:44:49,868 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 16:02:14,039 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 16:02:14,041 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 16:02:14,041 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 16:02:14,044 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0117, commandSize: 117
+2016-07-01 16:02:14,044 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_authorization_url","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","acr_values":["basic"]}}', m_leftString=''}
+2016-07-01 16:02:14,044 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_authorization_url","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","acr_values":["basic"]}}
+2016-07-01 16:02:14,545 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"authorization_url":"https://ce-dev2.gluu.org/oxauth/authorize?response_type=code&client_id=@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449&client_secret=fb48a144-7729-490f-8e32-d6b2d243f511&redirect_uri=https://lanetteam.com:5053&scope=openid+uma_protection+uma_authorization&state=af0ifjsldkj&nonce=n-0S6_WzA2Mj&acr_values=basic&prompt=login"}}
+2016-07-01 16:02:14,546 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 16:02:14,546 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 16:02:14,548 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 16:02:14,548 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 16:03:08,027 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 16:03:08,027 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 16:03:08,027 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 16:03:08,028 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0216, commandSize: 216
+2016-07-01 16:03:08,028 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_tokens_by_code","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","code":"7a9b0579-8542-463a-963e-51686086acc3","state":"af0ifjsldkj","scopes":["uma_protection","openid","uma_authorization"]}}', m_leftString=''}
+2016-07-01 16:03:08,028 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_tokens_by_code","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","code":"7a9b0579-8542-463a-963e-51686086acc3","state":"af0ifjsldkj","scopes":["uma_protection","openid","uma_authorization"]}}
+2016-07-01 16:03:08,529 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 16:03:11,437 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"access_token":"3b097893-e8e5-45ff-aed2-936d226c315c","expires_in":299,"id_token":"eyJraWQiOiI0OWU5ZjVhYy03ZDNkLTRiY2EtYjQ3ZS1lM2U5MzU0ZjA0MjMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NlLWRldjIuZ2x1dS5vcmciLCJhdWQiOiJAITQwRUEuRDQ1NC45RDRGLkU4NzYhMDAwMSFFQ0U4LkJCRUYhMDAwOCFGMzkyLkM0NDkiLCJleHAiOjE0NjczNzI3OTUsImlhdCI6MTQ2NzM2OTE5NSwiYWNyIjoiYmFzaWMiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImF1dGhfdGltZSI6MTQ2NzM2OTE4OSwiYXRfaGFzaCI6ImVqalpTV0szZGtWMDk4aTVpVlZPTnciLCJveFZhbGlkYXRpb25VUkkiOiJodHRwczovL2NlLWRldjIuZ2x1dS5vcmcvb3hhdXRoL29waWZyYW1lIiwib3hPcGVuSURDb25uZWN0VmVyc2lvbiI6Im9wZW5pZGNvbm5lY3QtMS4wIiwiaW51bSI6IkAhNDBFQS5ENDU0LjlENEYuRTg3NiEwMDAxIUVDRTguQkJFRiEwMDAwIUIxRjMuQUVBRS5CNzk4Iiwic3ViIjoiQCE0MEVBLkQ0NTQuOUQ0Ri5FODc2ITAwMDEhRUNFOC5CQkVGITAwMDAhQjFGMy5BRUFFLkI3OTgifQ.SG0rR-v1C96EKTBkGPNaV7TEy2xTAM4b2SmoExJETzsA4bRr1smNIP0e03f-1_z1WyfuZp4OJGgidJW3351JB_kY-PXl7SR8mwMp-d2ZbLNVgpR41vboC4wtwiOKfQOgIwjCksoGKFNb1NjGE0XVDqsAMV15J-LquiSpOU630w9enkTPqWEspEf4CLP7VdJLmvHd2Sh9VdiCD0fVLegZJc2FbPf75WjUqdarFiPIKiyWcwFOePzoyg7v7UCvVKFTBV9Q10Ikiek6QM-UnfZGKfvl7UYagp6gQPAaZAhEkkOgN6suT6RgWxYMJPqjTE7Cf5ZDZRbvEQe9F5mxT3fxXw","refresh_token":"e1bb7ee5-ebbf-423c-ab66-7ce20bdc0566","id_token_claims":{"at_hash":["ejjZSWK3dkV098i5iVVONw"],"aud":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0008!F392.C449"],"acr":["basic"],"sub":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"],"auth_time":["1467369189"],"iss":["https://ce-dev2.gluu.org"],"exp":["1467372795"],"inum":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"],"iat":["1467369195"],"nonce":["n-0S6_WzA2Mj"],"oxValidationURI":["https://ce-dev2.gluu.org/oxauth/opiframe"],"oxOpenIDConnectVersion":["openidconnect-1.0"]}}}
+2016-07-01 16:03:11,440 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 16:03:11,440 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 16:03:11,445 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 16:03:11,445 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 16:03:11,451 DEBUG [org.xdi.oxd.server.service.SocketService] Start new SocketProcessor...
+2016-07-01 16:03:11,452 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 16:03:11,452 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 16:03:11,452 TRACE [org.xdi.oxd.common.CoreUtils] Parsed sizeString: 0140, commandSize: 140
+2016-07-01 16:03:11,452 TRACE [org.xdi.oxd.common.CoreUtils] Read result: ReadResult{m_command='{"command":"get_user_info","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","access_token":"3b097893-e8e5-45ff-aed2-936d226c315c"}}', m_leftString=''}
+2016-07-01 16:03:11,452 TRACE [org.xdi.oxd.server.Processor] Command: {"command":"get_user_info","params":{"oxd_id":"62310b9b-917b-41a6-9647-b131471113bb","access_token":"3b097893-e8e5-45ff-aed2-936d226c315c"}}
+2016-07-01 16:03:11,953 TRACE [org.xdi.oxd.server.service.HttpService] Created TRUST_ALL client.
+2016-07-01 16:03:13,105 TRACE [org.xdi.oxd.server.Processor] Send back response: {"status":"ok","data":{"claims":{"sub":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"],"inum":["@!40EA.D454.9D4F.E876!0001!ECE8.BBEF!0000!B1F3.AEAE.B798"]}}}
+2016-07-01 16:03:13,106 TRACE [org.xdi.oxd.server.SocketProcessor] Socket processor handling...
+2016-07-01 16:03:13,106 TRACE [org.xdi.oxd.common.CoreUtils] commandSize: -1, stringStorage: 
+2016-07-01 16:03:13,118 TRACE [org.xdi.oxd.common.CoreUtils] End of stream. Quit.
+2016-07-01 16:03:13,118 TRACE [org.xdi.oxd.server.SocketProcessor] Quit. Read result is null or command string is blank.
+2016-07-01 16:04:42,387 INFO  [org.xdi.oxd.server.ServerLauncher] Starting...
+2016-07-01 16:04:42,549 TRACE [org.xdi.oxd.server.service.ConfigurationService] Try to load configuration from system property: oxd.server.config, value: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf/oxd-conf.json
+2016-07-01 16:04:42,717 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration loaded successfully from system property: oxd.server.config.
+2016-07-01 16:04:42,718 TRACE [org.xdi.oxd.server.service.ConfigurationService] Configuration: Configuration{port=8099, timeOutInSeconds=0, jettyPort=0, startJetty=false, localhostOnly=true, useClientAuthenticationForPat=true, useClientAuthenticationForAat=true, trustAllCerts=true, keyStorePath='', licenseServerEndpoint='', licenseId='', publicKey='', publicPassword='', licensePassword='', licenseCheckPeriodInHours=24}
+2016-07-01 16:04:42,734 INFO  [org.xdi.oxd.server.service.ConfigurationService] Configuration directory: /home/lcom77/Documents/NJ/oxd-server-2.4.4/bin/../conf
+2016-07-01 16:04:42,737 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 4d387116-65f8-42e4-afd4-e6256ea8a419.json
+2016-07-01 16:04:42,799 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 937d09ea-0746-4599-914c-3e8d8a184d4f.json
+2016-07-01 16:04:42,800 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3bcfeff1-acc7-4216-82db-c74639befbf6.json
+2016-07-01 16:04:42,802 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 1b50c79c-2047-4804-9f30-ea6eff795f4f.json
+2016-07-01 16:04:42,803 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7ba2ab53-a544-4892-aee0-1131d4c12f22.json
+2016-07-01 16:04:42,804 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 21c2e790-d63c-4ff9-82f7-670ce76f4060.json
+2016-07-01 16:04:42,804 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: oxd-default-site-config.json
+2016-07-01 16:04:42,805 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18ce6487-0704-4ab0-bcd2-e744153ccdca.json
+2016-07-01 16:04:42,806 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 288507c2-3446-4689-9a70-11f9d51aa86c.json
+2016-07-01 16:04:42,807 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8f9b4802-942e-49f3-ac72-ec85fe4ae1df.json
+2016-07-01 16:04:42,807 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 768e17dd-c657-433f-97ee-0756b9d31022.json
+2016-07-01 16:04:42,808 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 11892afa-058f-45c5-abe2-45272cc53a30.json
+2016-07-01 16:04:42,808 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: fafc198b-1a90-49e9-9968-26e6c78c15c0.json
+2016-07-01 16:04:42,809 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 0651bc72-cb6b-4d0a-b09d-5f7690628291.json
+2016-07-01 16:04:42,810 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 8efacbdc-c18a-4695-b53f-94849f3b2536.json
+2016-07-01 16:04:42,810 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 52658686-4f0d-4499-868e-8e2ea1b7b56d.json
+2016-07-01 16:04:42,815 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 08db0d11-b5ff-4828-95f5-dee0016f3312.json
+2016-07-01 16:04:42,826 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 456f8cdf-e412-4534-9463-19e329e0393a.json
+2016-07-01 16:04:42,829 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 67fd6734-d877-466c-abd5-29baae4ffe5b.json
+2016-07-01 16:04:42,830 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 18fc3b1b-de7d-4675-b2c2-981570c18634.json
+2016-07-01 16:04:42,831 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bfa84ae3-d52e-4c48-b205-383da55e88bf.json
+2016-07-01 16:04:42,831 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: bc66d652-3c97-43d1-90c5-d886cc2e300e.json
+2016-07-01 16:04:42,832 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f0b09231-df35-4b60-962b-f189b19f179d.json
+2016-07-01 16:04:42,832 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: f8b36354-41f9-4a65-bfaa-6c2688bd5781.json
+2016-07-01 16:04:42,833 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 7a1402aa-be38-4289-81af-7db6d55418d8.json
+2016-07-01 16:04:42,833 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 62310b9b-917b-41a6-9647-b131471113bb.json
+2016-07-01 16:04:42,834 TRACE [org.xdi.oxd.server.service.SiteConfigurationService] Loading site file name: 3cef88a9-531f-4db9-a96d-fd955c560d94.json
+2016-07-01 16:04:42,835 ERROR [org.xdi.oxd.server.license.LicenseUpdateService] Failed to start LicenseUpdateService. Configuration licenseId or licenseServerEndpoint is empty.
+2016-07-01 16:04:42,835 DEBUG [org.xdi.oxd.server.license.LicenseService] licenseChanged: false
+2016-07-01 16:04:42,835 DEBUG [org.xdi.oxd.server.license.LicenseService] License file location: /home/lcom77/Documents/NJ/oxd-node-client/.oxd-license
+2016-07-01 16:04:42,837 ERROR [org.xdi.oxd.server.license.LicenseFile] No content to map to Object due to end of input
+java.io.EOFException: No content to map to Object due to end of input
+	at org.codehaus.jackson.map.ObjectMapper._initForReading(ObjectMapper.java:2775)
+	at org.codehaus.jackson.map.ObjectMapper._readMapAndClose(ObjectMapper.java:2718)
+	at org.codehaus.jackson.map.ObjectMapper.readValue(ObjectMapper.java:1909)
+	at org.xdi.oxd.server.license.LicenseFile.create(LicenseFile.java:46)
+	at org.xdi.oxd.server.license.LicenseService.loadLicenseFile(LicenseService.java:132)
+	at org.xdi.oxd.server.license.LicenseService.validate(LicenseService.java:73)
+	at org.xdi.oxd.server.license.LicenseService.<init>(LicenseService.java:56)
+	at org.xdi.oxd.server.service.SocketService.listenSocket(SocketService.java:58)
+	at org.xdi.oxd.server.ServerLauncher.startOxd(ServerLauncher.java:66)
+	at org.xdi.oxd.server.ServerLauncher.start(ServerLauncher.java:58)
+	at org.xdi.oxd.server.ServerLauncher.main(ServerLauncher.java:48)
+2016-07-01 16:04:42,848 INFO  [org.xdi.oxd.server.service.SocketService] Server runs in free license mode which delays commands execution on 0.5 second for each command.
+ In order to remove the transaction limitations placed on the free version of oxD, you need to purchase a commercial license at oxd.gluu.org
+2016-07-01 16:04:42,849 INFO  [org.xdi.oxd.server.service.SocketService] Server socket is bound to port: 8099, with timeout: 0 seconds. Start listening for notifications.

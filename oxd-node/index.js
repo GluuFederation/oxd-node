@@ -1,8 +1,8 @@
 var net = require('net');
 var request = require('./model/request_param');
 var util = require('util');
-
 var client = new net.Socket();
+
 exports.Request= request;
 
 exports.register_site = function(request,callback)
@@ -10,28 +10,34 @@ exports.register_site = function(request,callback)
   client = new net.Socket();
   var data = {};
   var param = {};
-  param.authorization_redirect_uri = request.authorization_redirect_uri;
-  param.scope = request.scope;
-  param.application_type = request.application_type;
-  param.response_types = request.response_types;
-  param.client_id = request.client_id;
-  param.client_secret = request.client_secret;
-  param.post_logout_redirect_uri = request.post_logout_redirect_uri;
-  param.application_type = request.application_type;
-  param.redirect_uris = request.redirect_uris;
-  param.acr_values = request.acr_values;
-  param.client_sector_identifier_uri = request.client_sector_identifier_uri;
-  param.ui_locales = request.ui_locales;
-  param.claims_locales = request.claims_locales;
-  param.grant_types = request.grant_types;
-  param.client_jwks_uri = request.client_jwks_uri;
-  param.client_token_endpoint_auth_method = request.client_token_endpoint_auth_method;
-  param.client_request_uris = request.client_request_uris;
-  param.client_logout_uris = request.client_logout_uris;
-  param.contacts = request.contacts;
-  //param.client_secret_expires_at = request.client_secret_expires_at;
 
-  client.connect(8099, 'localhost', function() {
+  param.op_host  = request.op_host;
+  param.authorization_redirect_uri = request.authorization_redirect_uri;
+  param.scope =request.scope;
+  param.contacts =request.contacts;
+  param.application_type =request.application_type;
+  param.post_logout_redirect_uri =request.post_logout_redirect_uri;
+  param.redirect_uris =request.redirect_uris;
+  param.response_types =request.response_types;
+  param.client_id =request.client_id;
+  param.client_secret =request.client_secret;
+  param.client_jwks_uri =request.client_jwks_uri;
+  param.client_token_endpoint_auth_method =request.client_token_endpoint_auth_method;
+  param.client_request_uris =request.client_request_uris;
+  param.client_logout_uris =request.client_logout_uris;
+  param.client_sector_identifier_uri =request.client_sector_identifier_uri;
+  param.ui_locales =request.ui_locales;
+  param.claims_locales =request.claims_locales;
+  param.acr_values =request.acr_values;
+  param.grant_types =request.grant_types;
+
+    if(request.port== null || request.port == "")
+    {
+      console.log('Please configure port in request_param.js file');
+      return;
+    }
+
+    client.connect(request.port, 'localhost', function() {
     data.command = "register_site";
     data.params = param;
     var string = JSON.stringify(data);
@@ -50,6 +56,7 @@ exports.register_site = function(request,callback)
          console.log("send data error:" + err);
     }
   });
+
   client.on('data', function(req) {
     var data = req.toString();
     console.log("response : " + data);
@@ -68,34 +75,33 @@ exports.register_site = function(request,callback)
 
 }
 
+
 exports.update_site_registration = function(request,callback)
 {
   client = new net.Socket();
   var data = {};
   var param = {};
+
   param.oxd_id = request.oxd_id;
   param.authorization_redirect_uri = request.authorization_redirect_uri;
-  param.scope = request.scope;
-  param.application_type = request.application_type;
-  param.response_types = request.response_types;
-  param.client_id = request.client_id;
-  param.client_secret = request.client_secret;
   param.post_logout_redirect_uri = request.post_logout_redirect_uri;
+  param.client_logout_uris = request.client_logout_uris;
   param.application_type = request.application_type;
+  param.grant_types = request.grant_types;
   param.redirect_uris = request.redirect_uris;
   param.acr_values = request.acr_values;
-  param.client_sector_identifier_uri = request.client_sector_identifier_uri;
-  param.ui_locales = request.ui_locales;
-  param.claims_locales = request.claims_locales;
-  param.grant_types = request.grant_types;
   param.client_jwks_uri = request.client_jwks_uri;
   param.client_token_endpoint_auth_method = request.client_token_endpoint_auth_method;
   param.client_request_uris = request.client_request_uris;
-  param.client_logout_uris = request.client_logout_uris;
   param.contacts = request.contacts;
-  param.client_secret_expires_at = request.client_secret_expires_at;
 
-  client.connect(8099, 'localhost', function() {
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in request_param.js file');
+    return;
+  }
+
+  client.connect(request.port, 'localhost', function() {
     data.command = "update_site_registration";
     data.params = param;
     var string = JSON.stringify(data);
@@ -140,7 +146,13 @@ exports.get_authorization_url = function(request,callback)
   param.oxd_id = request.oxd_id;
   param.acr_values = request.acr_values;
 
-  client.connect(8099, 'localhost', function() {
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in request_param.js file');
+    return;
+  }
+
+  client.connect(request.port, 'localhost', function() {
     data.command = "get_authorization_url";
     data.params = param;
     var string = JSON.stringify(data);
@@ -188,7 +200,13 @@ exports.get_tokens_by_code = function(request,callback)
   param.state = request.state;
   param.scopes = request.scopes;
 
-  client.connect(8099, 'localhost', function() {
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in request_param.js file');
+    return;
+  }
+
+  client.connect(request.port, 'localhost', function() {
     data.command = "get_tokens_by_code";
     data.params = param;
     var string = JSON.stringify(data);
@@ -233,8 +251,13 @@ exports.get_user_info = function(request,callback)
   param.oxd_id = request.oxd_id;
   param.access_token = request.access_token;
 
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in request_param.js file');
+    return;
+  }
 
-  client.connect(8099, 'localhost', function() {
+  client.connect(request.port, 'localhost', function() {
     data.command = "get_user_info";
     data.params = param;
     var string = JSON.stringify(data);
@@ -268,7 +291,6 @@ exports.get_user_info = function(request,callback)
   client.on('close', function() {
   	console.log('Connection closed');
   });
-
 }
 
 exports.get_logout_uri = function(request,callback)
@@ -282,7 +304,13 @@ exports.get_logout_uri = function(request,callback)
   param.state = request.state;
   param.session_state = request.session_state;
 
-  client.connect(8099, 'localhost', function() {
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in  file - get_logout_uri');
+    return;
+  }
+
+  client.connect(request.port, 'localhost', function() {
     data.command = "get_logout_uri";
     data.params = param;
     var string = JSON.stringify(data);
@@ -301,6 +329,7 @@ exports.get_logout_uri = function(request,callback)
          console.log("send data error:" + err);
     }
   });
+
   client.on('data', function(req) {
     var data = req.toString();
     console.log("response : " + data);
@@ -316,5 +345,4 @@ exports.get_logout_uri = function(request,callback)
   client.on('close', function() {
   	console.log('Connection closed');
   });
-
 }

@@ -32,6 +32,7 @@ app.get('/', function (req, res) {
         if(req.query.code != null)
         {
           jsonfile.readFile(setting, function(err, obj) {
+              res.cookie('ss',req.query.session_state, { maxAge: 900000, httpOnly: false });
               oxd.Request.oxd_id = obj.oxd_id;
               oxd.Request.code = req.query.code;
               oxd.Request.scopes = req.query.scope.split(/[ ]+/);
@@ -40,6 +41,7 @@ app.get('/', function (req, res) {
                     var jsondata = JSON.parse(response);
                     var mysession = req.session;
                     mysession.access_token = jsondata.data.access_token;
+                    //res.cookie('id_token',jsondata.data.id_token, { maxAge: 900000, httpOnly: false });
                     if(jsondata.data.access_token != null && jsondata.status == "ok"){
                       res.redirect("get_user_info");
                     }
@@ -52,7 +54,6 @@ app.get('/', function (req, res) {
         else {
             res.render('login.ejs', { title: "Login", errorName: "" , errorMessage : "", errorVisibility: "none" });
         }
-
 });
 
 app.use('/',login);
@@ -62,7 +63,6 @@ var options = {
   key: fs.readFileSync(__dirname+'//key.pem'),
   cert: fs.readFileSync(__dirname+'//cert.pem')
 };
-// you have to add your ssl key and certificate here
 
 var a = https.createServer(options, app).listen(5053);
 module.exports = app;
