@@ -1,6 +1,5 @@
-exports.username= "";
-exports.password= "";
+exports.username = ""; //required
+exports.password = ""; //required
 
-/*****************EXAMPLE***********************/
-//exports.username= "test@admin.com";
-//exports.password="test@123";
+//host of your gluu server url
+exports.op_host = "";
