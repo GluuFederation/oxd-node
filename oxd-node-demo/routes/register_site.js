@@ -7,19 +7,25 @@ var path = require('path');
 
 var setting = path.join(__dirname, '/../settings.json');
 router.post('/register_site', function (req, res, next) {
+
+  console.log("------------------------------------------------------");
+  console.log("-------register_site-----------------------------------");
+  console.log("------------------------------------------------------");
+
+  console.log(JSON.stringify(req.body));
+
        if (req.body.email == null || req.body.email == "") {
            res.send(400, { error: "Please provide email" });
            return;
        }
        //Define scopes
        var scopes = [];
-       scopes.push("openid");
 
-       console.log(req.body.scope_profile);
-       if(req.body.scope_profile == 1 )
-           scopes.push("profile");
-       if(req.body.scope_email == 1 )
-           scopes.push("email");
+       //by default added this scopes due to data display
+       scopes.push("openid");
+       scopes.push("profile");
+       scopes.push("email");
+
        if(req.body.scope_address == 1 )
            scopes.push("address");
        if(req.body.scope_clientinfo == 1 )
@@ -91,7 +97,9 @@ router.post('/register_site', function (req, res, next) {
                     obj.oxd_id = responsedata.data.oxd_id;
                     jsonfile.writeFile(setting, obj, function (err) {
                     });
-                    console.log("update succeess");
+                    console.log("------------------------------------------------------");
+                    console.log("-------Update Successfully-----------------------------------");
+                    console.log("------------------------------------------------------");
                     res.render('success.ejs', { oxd_id: responsedata.data.oxd_id });
                   }
                   else{
@@ -172,7 +180,8 @@ router.get('/get_user_info', function (req, res, next) {
                 var claims = jsondata.data.claims;
                 if(Object.keys(claims).length > 0){
                   //res.render("user.ejs", {name : jsondata.data.claims.name[0],email : jsondata.data.claims.email[0], given_name : jsondata.data.claims.given_name[0], family_name : jsondata.data.claims.family_name[0], preferred_username : jsondata.data.claims.preferred_username[0]})
-                  res.render("user.ejs", {name : jsondata.data.claims.name[0], given_name : jsondata.data.claims.given_name[0], family_name : jsondata.data.claims.family_name[0], preferred_username : jsondata.data.claims.preferred_username[0]})
+                  //res.render("user.ejs", {name : jsondata.data.claims.name[0], given_name : jsondata.data.claims.given_name[0], family_name : jsondata.data.claims.family_name[0], preferred_username : jsondata.data.claims.preferred_username[0]})
+                  res.render("user.ejs", {email : jsondata.data.claims.email[0]})
                 }
                 else{
                     res.redirect("logout");

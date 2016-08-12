@@ -4,6 +4,7 @@ var jsonfile = require('jsonfile');
 var path = require('path');
 var setting = path.join(__dirname, '/../settings.json');
 var oxd = require("oxd-node");
+var properties = require('../properties');
 
 router.post('/authenticate', function (req, res, next) {
        //TODO validate req.body.username and req.body.password
@@ -16,7 +17,7 @@ router.post('/authenticate', function (req, res, next) {
            res.send(400, { error: "Please provide password" });
            return;
        }
-       if(req.body.email == "test@admin.com" && req.body.password == "test@123")
+       if(req.body.email == properties.username && req.body.password == properties.password)
        {
          jsonfile.readFile(setting, function(err, obj) {
              if(obj.oxd_id == null || obj.oxd_id == "")
