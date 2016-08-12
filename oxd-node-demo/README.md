@@ -1,6 +1,6 @@
 # oxd-node-demo
 
-oxd-node-demo is demo application which communication protocol of oxD server. This can be used to access the OpenID connect & UMA Authorization end points of the Gluu Server via the oxD. This library provides the function calls required by a website to access user information from a OpenID Connect Provider by using the OxD.
+oxd-node-demo is demo application which communication protocol of oxD server. This can be used to access the OpenID connect & UMA Authorization end points of the Gluu Server via the oxD. This library provides the function calls required by a website to access user information from a OpenID Connect Provider by the OxD.
 
 ###Attention
 Application will not be working if your host does not have https://.
