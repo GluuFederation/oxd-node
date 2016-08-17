@@ -1,26 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <% include ./head %>
+        <style type="text/css">
+            .setsocialicon a { float: left;  margin: 0 5px; }
+            .setsocialicon { width: 100%;}
+        </style>
 </head>
+
 <body class="container" style="top:5%">
     <main>
-      <div class="jumbotron container">
-        <div class="form-group col-md-12 btn-info">
-        <h2 class="text-left col-md-8 m-y-15 p-l-0">Welcome Admin</h2>
-        <a class="btn btn-warning pull-right col-md-offset-3 col-md-1 btn-logout" href="/logoutadmin">Logout</a>
-        </div>
-      	<div class="form-group col-md-12">
-      				<h2>Your are registered with OXD.</h2>
-      	</div>
+        <div class="jumbotron container">
+            <div class="form-group col-md-12 btn-info">
+                <h2 class="text-left col-md-8 m-y-15 p-l-0">Welcome Admin</h2>
+            </div>
+            <div class="form-group col-md-12">
+                <h2>Your are registered with OXD.</h2>
+            </div>
             <form id="signinform" role="form" action="/updateSite" method="post" class="form-signin">
-                <div class="form-group col-md-9 col-sm-12 col-xs-12">
+                <div class="form-group col-md-9 col-sm-12 col-xs-12" style="display:none">
                     <label class="inline-label col-md-2 col-sm-12 col-xs-12">Oxd Site ID : </label>
                     <input type="text" name="oxd_id" value='<%= oxd_id %>' id="txtId" class="form-control inline-control col-sm-12 col-xs-12" autofocus="" required="" disabled />
                 </div>
-        				<div class="form-group col-md-4 col-md-offset-1">
-        					<button type="submit" class="btn btn-lg btn-primary btn-block m-l-3-8" id="btnSignin">Reset Detail</button>
-        				</div>
+
+                <div id="divJsonResponse" class="form-group col-md-9 col-sm-12 col-xs-12" style='display:<%= display_user_data %>'>
+                    <div class="row">
+                        <div class="col-md-12 mess_red">
+                            <table border="1" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><span id="lblEmail"><%= email %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td><span id="lblName"><%= name %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td><span id="lblGender"><%= gender %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Birth Date</td>
+                                        <td><span id="lblBirthDate"><%= birthdate %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Profile</td>
+                                        <td><span id="lblProfile"><%= profile %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Website</td>
+                                        <td><span id="lblWebsite"><%= website %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zone Info</td>
+                                        <td><span id="lblZoneinfo"><%= zoneinfo %></span></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block m-l-3-8" id="btnSignin">Reset Detail</button>
+                </div>
+                <div class="form-group col-md-4 setsocialicon" style='display : <%= acr_connect %>'>
+                    <p>Connect with:</p>
+                    <a id="lnkBasic" alt="Basic" style='display : <%= acr_basic %>' href="javascript:;"><img src="images/basic.png" alt="" class="lazy-login-image" /></a>
+                    <a id="lnkGplus" alt="Gplus" style='display : <%= acr_gplus %>' href="javascript:;"><img src="images/google.png" alt="" class="lazy-login-image" /></a>
+                    <a id="lnkDuo" alt="Duo" style='display : <%= acr_duo %>' href="javascript:;"><img src="images/duo.png" alt="" class="lazy-login-image" /></a>
+                    <a id="lnkU2f" alt="U2f" style='display : <%= acr_u2f %>' href="javascript:;"><img src="images/U2F.png" alt="" class="lazy-login-image" /></a>
+                </div>
             </form>
         </div>
     </main>
@@ -30,4 +88,69 @@
     </footer>
 
 </body>
+<script type="text/javascript">
+    $("#lnkBasic").click(function() {
+        $.post("/get_url_basic", function(response) {
+            var jsondata = JSON.parse(response);
+            var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
+            var state = getParameterByName("state", jsondata.data.authorization_url);
+            setCookie("client_id", client_id, 1);
+            setCookie("state", state, 1);
+            console.log(jsondata.data.authorization_url);
+            window.location.assign(jsondata.data.authorization_url);
+
+        });
+    });
+    $("#lnkGplus").click(function() {
+        $.post("/get_url_gplus", function(response) {
+            var jsondata = JSON.parse(response);
+            var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
+            var state = getParameterByName("state", jsondata.data.authorization_url);
+            setCookie("client_id", client_id, 1);
+            setCookie("state", state, 1);
+            console.log(jsondata.data.authorization_url);
+            window.location.assign(jsondata.data.authorization_url);
+        });
+    });
+    $("#lnkDuo").click(function() {
+        $.post("/get_url_duo", function(response) {
+          var jsondata = JSON.parse(response);
+          var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
+          var state = getParameterByName("state", jsondata.data.authorization_url);
+          setCookie("client_id", client_id, 1);
+          setCookie("state", state, 1);
+          console.log(jsondata.data.authorization_url);
+          window.location.assign(jsondata.data.authorization_url);
+        });
+    });
+    $("#lnkU2f").click(function() {
+        $.post("/get_url_u2f", function(response) {
+          var jsondata = JSON.parse(response);
+          var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
+          var state = getParameterByName("state", jsondata.data.authorization_url);
+          setCookie("client_id", client_id, 1);
+          setCookie("state", state, 1);
+          console.log(jsondata.data.authorization_url);
+          window.location.assign(jsondata.data.authorization_url);
+        });
+    });
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+</script>
+
 </html>
