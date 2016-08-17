@@ -4,7 +4,8 @@ module.exports = function(grunt) {
             all: {
                 script: 'index.js',
                 options: {
-                    watchedExtensions: ['js']
+                    watchedExtensions: ['js'],
+                    ignore: ['json'],
                 }
             }
         },

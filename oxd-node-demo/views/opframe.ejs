@@ -1,45 +1,48 @@
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>OpenID Connect Sandbox</title>
-        <script src="https://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/sha256.js"></script>
-        <script>
-            window.addEventListener("message", receiveMessage, false);
 
-            function receiveMessage(e) {
-                var message = e.data;
-                var client_id = message.split(' ')[0];
-                var session_state = message.split(' ')[1];
+<head>
+    <meta charset="utf-8">
+    <title>OpenID Connect Sandbox</title>
+    <script src="https://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/sha256.js"></script>
+    <script>
+        window.addEventListener("message", receiveMessage, false);
 
-                var salt = session_state.split('.')[1];
-                var op_browser_state = getCookie("session_state");
-                console.log("opbs : "+op_browser_state);
-                var ss = CryptoJS.SHA256(client_id + ' ' + e.origin + ' ' + op_browser_state + ' ' + salt) + "." + salt;
-                console.log("ss : "+ss);
-                if (session_state == ss) {
-                    stat = "unchanged";
-                } else {
-                    stat = "changed";
-                }
+        function receiveMessage(e) {
+            var message = e.data;
+            var client_id = message.split(' ')[0];
+            var session_state = message.split(' ')[1];
 
-                e.source.postMessage(stat, e.origin);
+            var salt = session_state.split('.')[1];
+            var op_browser_state = getCookie("session_state");
+            console.log("opbs : " + op_browser_state);
+            var ss = CryptoJS.SHA256(client_id + ' ' + e.origin + ' ' + op_browser_state + ' ' + salt) + "." + salt;
+            console.log("ss : " + ss);
+            if (session_state == ss) {
+                stat = "unchanged";
+            } else {
+                stat = "changed";
             }
 
-            function getCookie(cookieName) {
-                var x, y, cookies = document.cookie.split(";");
-                for (var i = 0; i < cookies.length; i++) {
-                    x = cookies[i].substr(0, cookies[i].indexOf("="));
-                    y = cookies[i].substr(cookies[i].indexOf("=") + 1);
-                    x = x.replace(/^\s+|\s+$/g, "");
-                    if (x == cookieName) {
-                        return decodeURI(y);
-                    }
+            e.source.postMessage(stat, e.origin);
+        }
+
+        function getCookie(cookieName) {
+            var x, y, cookies = document.cookie.split(";");
+            for (var i = 0; i < cookies.length; i++) {
+                x = cookies[i].substr(0, cookies[i].indexOf("="));
+                y = cookies[i].substr(cookies[i].indexOf("=") + 1);
+                x = x.replace(/^\s+|\s+$/g, "");
+                if (x == cookieName) {
+                    return decodeURI(y);
                 }
             }
-        </script>
+        }
+    </script>
 
-    </head>
-    <body>
+</head>
+
+<body>
     This is OpenID Connect Session Management op_iframe URL.
-    </body>
+</body>
+
 </html>

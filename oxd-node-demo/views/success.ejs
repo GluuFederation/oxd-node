@@ -4,8 +4,14 @@
 <head>
     <% include ./head %>
         <style type="text/css">
-            .setsocialicon a { float: left;  margin: 0 5px; }
-            .setsocialicon { width: 100%;}
+            .setsocialicon a {
+                float: left;
+                margin: 0 5px;
+            }
+
+            .setsocialicon {
+                width: 100%;
+            }
         </style>
 </head>
 
@@ -114,24 +120,24 @@
     });
     $("#lnkDuo").click(function() {
         $.post("/get_url_duo", function(response) {
-          var jsondata = JSON.parse(response);
-          var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
-          var state = getParameterByName("state", jsondata.data.authorization_url);
-          setCookie("client_id", client_id, 1);
-          setCookie("state", state, 1);
-          console.log(jsondata.data.authorization_url);
-          window.location.assign(jsondata.data.authorization_url);
+            var jsondata = JSON.parse(response);
+            var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
+            var state = getParameterByName("state", jsondata.data.authorization_url);
+            setCookie("client_id", client_id, 1);
+            setCookie("state", state, 1);
+            console.log(jsondata.data.authorization_url);
+            window.location.assign(jsondata.data.authorization_url);
         });
     });
     $("#lnkU2f").click(function() {
         $.post("/get_url_u2f", function(response) {
-          var jsondata = JSON.parse(response);
-          var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
-          var state = getParameterByName("state", jsondata.data.authorization_url);
-          setCookie("client_id", client_id, 1);
-          setCookie("state", state, 1);
-          console.log(jsondata.data.authorization_url);
-          window.location.assign(jsondata.data.authorization_url);
+            var jsondata = JSON.parse(response);
+            var client_id = getParameterByName("client_id", jsondata.data.authorization_url);
+            var state = getParameterByName("state", jsondata.data.authorization_url);
+            setCookie("client_id", client_id, 1);
+            setCookie("state", state, 1);
+            console.log(jsondata.data.authorization_url);
+            window.location.assign(jsondata.data.authorization_url);
         });
     });
 
