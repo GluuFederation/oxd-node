@@ -16,5 +16,5 @@ Application will not be working if your host does not have https://.
 6. Register your website with oxd, fill the site registration form and submit it.
 7. Now your site user can login using oxd-server
 
-Note : You can have a look into this demo video to getting idea of demo application usages and flow.
+Note : Have a look into this demo video, a screen recording of this demo website’s features.
 [Demo Link](http://screencast.com/t/cvilckj0S3Ye)
