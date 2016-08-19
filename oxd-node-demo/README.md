@@ -17,4 +17,4 @@ Application will not be working if your host does not have https://.
 7. Now your site user can login using oxd-server
 
 Note : Have a look into this demo video, a screen recording of this demo website’s features.
-[Demo Link](http://screencast.com/t/cvilckj0S3Ye)
+[Screen Recording](http://screencast.com/t/cvilckj0S3Ye)
