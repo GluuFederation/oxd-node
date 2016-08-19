@@ -15,3 +15,6 @@ Application will not be working if your host does not have https://.
 5. Go to web browser and access demo application with this url `https://localhost.com:{port}` (you can use any other port incase if 5053 port is busy in any other process)
 6. Register your website with oxd, fill the site registration form and submit it.
 7. Now your site user can login using oxd-server
+
+Note : You can have a look into this demo video to getting idea of demo application usages and flow.
+[Demo Link](http://screencast.com/t/cvilckj0S3Ye)
