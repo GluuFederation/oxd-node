@@ -28,7 +28,7 @@ Go to model/request_param.js,
 find exports.port=null and enter port no inplace of "null" which ever is free on your server.
 ```
 
-**Note:** The website is registered with the OP and its ID is stored in this config file, also are the other peristant information about the website. So the config file needs to be _writable_ for the server. The [request_param.js](https://github.com/GluuFederation/oxd-node) file contains complete documentation about itself.
+**Note:** The website is registered with the OP and its ID is stored in this config file, also are the other peristant information about the website. So the config file needs to be _writable_ for the server. The [oxd-node](https://github.com/GluuFederation/oxd-node) contains complete documentation about itself.
 
 ## How to use:
 
