@@ -34,5 +34,5 @@ Gluu server and oxd-server need to running in your machine
 
 ```
 Have a look into this demo video, a screen recording of this demo website’s features.
-[Screen Recording](http://screencast.com/t/cvilckj0S3Ye)
 ```
+[Screen Recording](http://screencast.com/t/cvilckj0S3Ye)
