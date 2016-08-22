@@ -6,6 +6,15 @@ oxd-node-demo is demo application which communication protocol of oxD server. Th
 
 Application will not be working if your host does not have https://.
 
+### Configure Demo application Port
+
+Once the library is installed, create a copy of the sample configuration file for your website in a server _writable_ location and edit the configuration. For example
+
+```
+Go to properties.js,
+find exports.port=null and enter port no inplace of "null" which ever is free on your server.
+```
+
 ## Application Setup
 
 1. Prerequisite : Gluu server and oxd-server need to running in your machine
