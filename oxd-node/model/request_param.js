@@ -4,7 +4,6 @@ exports.op_host= null;
 exports.authorization_redirect_uri=null;
 exports.post_logout_redirect_uri=null;
 exports.application_type= null;
-exports.redirect_uris= null;
 exports.response_types=null;
 exports.client_id=null;
 exports.client_secret=null;

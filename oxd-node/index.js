@@ -18,7 +18,6 @@ exports.register_site = function(request, callback) {
     param.contacts = request.contacts;
     param.application_type = request.application_type;
     param.post_logout_redirect_uri = request.post_logout_redirect_uri;
-    param.redirect_uris = request.redirect_uris;
     param.response_types = request.response_types;
     param.client_id = request.client_id;
     param.client_secret = request.client_secret;
@@ -44,7 +43,6 @@ exports.register_site = function(request, callback) {
         console.log('------------------');
         console.log('Connected');
         console.log('------------------');
-        //console.log("Send Data : " + ("0" + string.length + string));
         try {
             if (string.length > 0 && string.length < 100) {
                 console.log('------------------');
@@ -102,7 +100,6 @@ exports.update_site_registration = function(request, callback) {
     param.client_logout_uris = request.client_logout_uris;
     param.application_type = request.application_type;
     param.grant_types = request.grant_types;
-    param.redirect_uris = request.redirect_uris;
     param.acr_values = request.acr_values;
     param.scope = request.scope;
     param.client_jwks_uri = request.client_jwks_uri;
@@ -122,7 +119,6 @@ exports.update_site_registration = function(request, callback) {
         console.log('------------------');
         console.log('Connected');
         console.log('------------------');
-        //console.log("Send Data : " + ("0" + string.length + string));
         try {
             if (string.length > 0 && string.length < 100) {
                 console.log('------------------');
@@ -175,6 +171,7 @@ exports.get_authorization_url = function(request, callback) {
     var param = {};
     param.oxd_id = request.oxd_id;
     param.acr_values = request.acr_values;
+    param.prompt = 'login';
 
     if (request.port == null || request.port == "") {
         console.log('Please configure port in request_param.js file - get_authorization_url');
@@ -188,7 +185,6 @@ exports.get_authorization_url = function(request, callback) {
         console.log('------------------');
         console.log('Connected');
         console.log('------------------');
-        //console.log("Send Data : " + ("0" + string.length + string));
         try {
             if (string.length > 0 && string.length < 100) {
                 console.log('------------------');
@@ -256,7 +252,6 @@ exports.get_tokens_by_code = function(request, callback) {
         console.log('------------------');
         console.log('Connected');
         console.log('------------------');
-        //console.log("Send Data : " + ("0" + string.length + string));
         try {
             if (string.length > 0 && string.length < 100) {
                 console.log('------------------');
@@ -322,7 +317,6 @@ exports.get_user_info = function(request, callback) {
         console.log('------------------');
         console.log('Connected');
         console.log('------------------');
-        //console.log("Send Data : " + ("0" + string.length + string));
         try {
             if (string.length > 0 && string.length < 100) {
                 console.log('------------------');
@@ -388,7 +382,6 @@ exports.get_logout_uri = function(request, callback) {
         console.log('------------------');
         console.log('Connected');
         console.log('------------------');
-        //console.log("Send Data : " + ("0" + string.length + string));
         try {
             if (string.length > 0 && string.length < 100) {
                 console.log('------------------');

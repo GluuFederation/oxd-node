@@ -28,6 +28,7 @@ find exports.port=null and enter port no inplace of "null" which ever is free on
 ### 1) register_site
 
 #### Request:
+
 ```javascript
 var oxd = require("oxd-node");
 oxd.Request.authorization_redirect_uri= "https://rp.example.com/callback";  //REQUIRED
@@ -37,6 +38,7 @@ oxd.register_site(oxd.Request,function(response){
 ```
 
 #### Response:
+
 ```javascript
 {
     "status":"ok",
@@ -49,6 +51,7 @@ oxd.register_site(oxd.Request,function(response){
 ### 2) update_site_registration
 
 #### Request:
+
 ```javascript
 var oxd = require("oxd-node");
 oxd.Request.oxd_id = "your site id";                                       //REQUIRED
@@ -58,6 +61,7 @@ oxd.update_site_registration(oxd.Request,function(response){
 ```
 
 #### Response:
+
 ```javascript
 {
     "status":"ok"
@@ -67,15 +71,18 @@ oxd.update_site_registration(oxd.Request,function(response){
 ### 3) get_authorization_url
 
 #### Request:
+
 ```javascript
 var oxd = require("oxd-node");
 oxd.Request.oxd_id = "your site id";                                  //REQUIRED
 oxd.Request.acr_values = ["basic"];                                   //OPTIONAL
+oxd.Request.prompt = "login";                                         //OPTIONAL
 oxd.get_authorization_url(oxd.Request,function(response){
 });
 ```
 
 #### Response:
+
 ```javascript
 {
     "status":"ok",
@@ -95,6 +102,7 @@ Location: https://client.example.org/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifj
 ### 4) get_tokens_by_code
 
 #### Request:
+
 ```javascript
 var oxd = require("oxd-node");                                       
 oxd.Request.oxd_id = "your site id";                                 //REQUIRED
@@ -105,6 +113,7 @@ oxd.get_tokens_by_code(oxd.Request,function(response){
 ```
 
 #### Response:
+
 ```javascript
 {
     "status":"ok",
@@ -129,6 +138,7 @@ oxd.get_tokens_by_code(oxd.Request,function(response){
 ### 5) get_user_info
 
 #### Request:
+
 ```javascript
 var oxd = require("oxd-node");                             
 oxd.Request.oxd_id = "your site id";                                 //REQUIRED
@@ -138,6 +148,7 @@ oxd.get_user_info(oxd.Request,function(response){
 ```
 
 #### Response:
+
 ```javascript
 {
     "status":"ok",
@@ -158,6 +169,7 @@ oxd.get_user_info(oxd.Request,function(response){
 ### 6) get_logout_uri
 
 #### Request:
+
 ```javascript
 var oxd = require("oxd-node");
 oxd.Request.oxd_id = "your site id";                                 //REQUIRED
@@ -166,6 +178,7 @@ oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
 ```
 
 #### Response:
+
 ```javascript
 {
     "status":"ok",

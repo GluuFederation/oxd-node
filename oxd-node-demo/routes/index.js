@@ -243,7 +243,6 @@ router.post('/register_site', function(req, res, next) {
 
     oxd.Request.authorization_redirect_uri = "https://" + req.get('host');
     oxd.Request.post_logout_redirect_uri = "https://" + req.get('host');
-    oxd.Request.redirect_uris = ["https://" + req.get('host')];
     oxd.Request.client_id = null;
     oxd.Request.client_secret = null;
     oxd.Request.client_jwks_uri = null;
