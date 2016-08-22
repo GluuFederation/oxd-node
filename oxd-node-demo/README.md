@@ -3,8 +3,9 @@
 oxd-node-demo is demo application which communication protocol of oxD server. This can be used to access the OpenID connect & UMA Authorization end points of the Gluu Server via the oxD. This library provides the function calls required by a website to access user information from a OpenID Connect Provider by the OxD.
 
 ### Attention
-
+```
 Application will not be working if your host does not have https://.
+```
 
 ### Configure Demo application Port
 
@@ -16,8 +17,9 @@ find exports.port=null and enter port no inplace of "null" which ever is free on
 ```
 
 ### Prerequisite
-
+```
 Gluu server and oxd-server need to running in your machine
+```
 
 ## How to use:
 
@@ -30,5 +32,7 @@ Gluu server and oxd-server need to running in your machine
 
 ## Demo Screen Recording:
 
+```
 Have a look into this demo video, a screen recording of this demo website’s features.
 [Screen Recording](http://screencast.com/t/cvilckj0S3Ye)
+```
