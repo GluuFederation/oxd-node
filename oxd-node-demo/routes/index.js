@@ -4,6 +4,7 @@ var jsonfile = require('jsonfile');
 var path = require('path');
 var setting = path.join(__dirname, '/../settings.json');
 var data = path.join(__dirname, '/../data.json');
+var loginstatus = path.join(__dirname, '/../loginstatus.json');
 var acrgroup = path.join(__dirname, '/../acr.json');
 var oxd = require("oxd-node");
 var properties = require('../properties');
@@ -43,6 +44,16 @@ router.get('/authenticate', function(req, res, next) {
     var acr_duo = "none";
     var acr_u2f = "none";
     var acr_connect = "none";
+    var auth_logout = "none";
+
+    jsonfile.readFile(loginstatus, function(err, obj) {
+        var result = isEmpty(obj);
+        if (result == false) {
+            if (obj.login == "true") {
+                auth_logout = "block";
+            }
+        }
+    });
 
     jsonfile.readFile(acrgroup, function(err, obj) {
         var acrresult = isEmpty(obj);
@@ -94,7 +105,8 @@ router.get('/authenticate', function(req, res, next) {
                         acr_gplus: acr_gplus,
                         acr_duo: acr_duo,
                         acr_u2f: acr_u2f,
-                        acr_connect: acr_connect
+                        acr_connect: acr_connect,
+                        auth_logout: auth_logout
                     });
                 else {
                     var email = "NA";
@@ -148,7 +160,8 @@ router.get('/authenticate', function(req, res, next) {
                         acr_gplus: acr_gplus,
                         acr_duo: acr_duo,
                         acr_u2f: acr_u2f,
-                        acr_connect: acr_connect
+                        acr_connect: acr_connect,
+                        auth_logout: auth_logout
                     });
                 }
 
@@ -223,6 +236,10 @@ router.post('/register_site', function(req, res, next) {
     }
 
     jsonfile.writeFile(acrgroup, acr_value_array, function(err) {});
+    jsonfile.writeFile(data, {});
+    jsonfile.writeFile(loginstatus, {
+        login: "false"
+    });
 
     oxd.Request.authorization_redirect_uri = "https://" + req.get('host');
     oxd.Request.post_logout_redirect_uri = "https://" + req.get('host');
@@ -360,6 +377,10 @@ router.get('/get_user_info', function(req, res, next) {
                         var claims = jsondata.data.claims;
                         if (Object.keys(claims).length > 0) {
                             jsonfile.writeFile(data, jsondata.data.claims);
+                            jsonfile.writeFile(loginstatus, {
+                                login: "true"
+                            });
+
                             res.redirect("authenticate");
                         } else {
                             res.redirect("authenticate");
@@ -393,6 +414,9 @@ router.post('/logoutuser', function(req, res, next) {
         oxd.Request.state = cookies.state;
         oxd.get_logout_uri(oxd.Request, function(response) {
             if (response.length > 0) {
+                jsonfile.writeFile(loginstatus, {
+                    login: "false"
+                });
                 res.status(200).send(response);
                 return;
             }

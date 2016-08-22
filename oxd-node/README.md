@@ -28,18 +28,29 @@ in model/request_param.js, find exports.port=null and enter port no inplace of "
 
 ```javascript
 var oxd = require("oxd-node");
-oxd.request.op_host = "public address of the site";
-oxd.Request.authorization_redirect_uri= "public address of the site";
+oxd.Request.authorization_redirect_uri= "public address of the site";  //REQUIRED
+oxd.request.op_host = "public address of the site";                    //OPTIONAL (But if missing, must be present in defaults)
 oxd.register_site(oxd.Request,function(response){
 });
+```
+
+## Response
+
+```javascript
+{
+    "status":"ok",
+    "data":{
+        "oxd_id":"6F9619FF-8B86-D011-B42D-00CF4FC964FF"
+    }
+}
 ```
 
 ### 2) update_site_registration
 
 ```javascript
 var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";
-oxd.Request.authorization_redirect_uri= "public address of the site";
+oxd.Request.oxd_id = "your site id";                                  //REQUIRED
+oxd.Request.authorization_redirect_uri= "public address of the site"; //OPTIONAL
 oxd.update_site_registration(oxd.Request,function(response){
 });
 ```
@@ -48,8 +59,8 @@ oxd.update_site_registration(oxd.Request,function(response){
 
 ```javascript
 var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";
-oxd.Request.acr_values = ["basic"]; //optional, may be skipped (default: basic)
+oxd.Request.oxd_id = "your site id";                                  //REQUIRED
+oxd.Request.acr_values = ["basic"];                                   //OPTIONAL
 oxd.get_authorization_url(oxd.Request,function(response){
 });
 ```
@@ -57,10 +68,10 @@ oxd.get_authorization_url(oxd.Request,function(response){
 ### 4) get_tokens_by_code
 
 ```javascript
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";
-oxd.Request.code = "code from OP redirect url";
-oxd.request.scopes=[""];
+var oxd = require("oxd-node");                                       
+oxd.Request.oxd_id = "your site id";                                 //REQUIRED
+oxd.Request.code = "code from OP redirect url";                      //OPTIONAL
+oxd.request.scopes=[""];                                             //REQUIRED
 oxd.get_tokens_by_code(oxd.Request,function(response){
 });
 ```
@@ -68,9 +79,9 @@ oxd.get_tokens_by_code(oxd.Request,function(response){
 ### 5) get_user_info
 
 ```javascript
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";
-oxd.Request.access_token = "access_token from OP redirect url";
+var oxd = require("oxd-node");                             
+oxd.Request.oxd_id = "your site id";                                 //REQUIRED
+oxd.Request.access_token = "access_token from OP redirect url";      //REQUIRED
 oxd.get_user_info(oxd.Request,function(response){
 });
 ```
@@ -79,8 +90,8 @@ oxd.get_user_info(oxd.Request,function(response){
 
 ```javascript
 var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";
-oxd.get_logout_uri(oxd.Request,function(response){
+oxd.Request.oxd_id = "your site id";                                 //REQUIRED
+oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED 
 });
 ```
 
