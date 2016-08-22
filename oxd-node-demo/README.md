@@ -19,7 +19,7 @@ find exports.port=null and enter port no inplace of "null" which ever is free on
 
 Gluu server and oxd-server need to running in your machine
 
-## Application Setup
+## How to use:
 
 1. Download source code for demo client application [oxd-node-demo]
 2. Configure your port in `properties.js` file in root directory
