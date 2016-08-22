@@ -28,5 +28,7 @@ Gluu server and oxd-server need to running in your machine
 5. Register your website with oxd, fill the site registration form and submit it.
 6. Now your site user can login using oxd-server
 
-Note : Have a look into this demo video, a screen recording of this demo website’s features.
+## Demo Screen Recording:
+
+Have a look into this demo video, a screen recording of this demo website’s features.
 [Screen Recording](http://screencast.com/t/cvilckj0S3Ye)
