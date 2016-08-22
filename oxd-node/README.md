@@ -12,7 +12,10 @@ You can install oxd-node using following command:
 $ npm install oxd-node
 ```
 
-### Configure OXD PORT
+## Attention
+Application will not be working if your host does not have https://.
+
+### Configure OXD Port
 
 Once the library is installed, create a copy of the sample configuration file for your website in a server _writable_ location and edit the configuration. For example
 
