@@ -2,7 +2,7 @@
 
 oxd-node is oxD Server client implemented in node.js, using it you can integrate oxD server in your application.
 
-## Installation
+## Installation:
 
 ### Note : you have to install gluu server and oxd-server in your hosting server to use oxd-node library with your application.
 
@@ -12,10 +12,10 @@ You can install oxd-node using following command:
 $ npm install oxd-node
 ```
 
-## Attention
+## Attention:
 Application will not be working if your host does not have https://.
 
-### Configure OXD Port
+### Configure OXD Port:
 
 Once the library is installed, create a copy of the sample configuration file for your website in a server _writable_ location and edit the configuration. For example
 
