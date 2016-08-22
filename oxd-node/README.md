@@ -34,7 +34,7 @@ oxd.register_site(oxd.Request,function(response){
 });
 ```
 
-## Response
+#### Response
 
 ```javascript
 {
@@ -91,7 +91,7 @@ oxd.get_user_info(oxd.Request,function(response){
 ```javascript
 var oxd = require("oxd-node");
 oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED 
+oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
 });
 ```
 
