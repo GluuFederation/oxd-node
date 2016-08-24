@@ -10,7 +10,7 @@ You can install oxd-node using following command:
 $ npm install oxd-node
 ```
 
-Prerequisite:
+**Prerequisite**
 
 ```
 You have to install gluu server and oxd-server in your hosting server to use oxd-node library with your application.
