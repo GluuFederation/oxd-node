@@ -1,27 +1,27 @@
 # oxd-node
 
-oxd-node is oxD Server client implemented in node.js, using it you can integrate oxD server in your application.
+oxD node is a client library for the Gluu oxD Server. For information about oxD, visit <http://oxd.gluu.org>
 
-### Prerequisite:
-```
-You have to install gluu server and oxd-server in your hosting server to use oxd-node library with your application.
-```
+# Installation:
 
-## Installation:
 You can install oxd-node using following command:
 
 ```sh
 $ npm install oxd-node
 ```
 
-## Attention:
+## Prerequisite:
+
 ```
-Application will not be working if your host does not have https://.
+You have to install **gluu server** and **oxd-server** in your hosting server to use oxd-node library with your application.
+Application will not be working if your host does not have **https://**.
 ```
 
-### Configure OXD Port:
+## Configuration
 
 Once the library is installed, create a copy of the sample configuration file for your website in a server _writable_ location and edit the configuration. For example
+
+### Configure Oxd Port
 
 ```
 Go to model/request_param.js,
@@ -30,21 +30,25 @@ find exports.port=null and enter port no inplace of "null" which ever is free on
 
 **Note:** The website is registered with the OP and its ID is stored in this config file, also are the other peristant information about the website. So the config file needs to be _writable_ for the server. The [oxd-node](https://github.com/GluuFederation/oxd-node) contains complete documentation about itself.
 
-## How to use:
+# Sample Code:
 
-### 1) register_site
+## 1) register_site
 
-#### Request:
+### Request:
 
 ```javascript
+try {
 var oxd = require("oxd-node");
-oxd.Request.authorization_redirect_uri= "https://rp.example.com/callback";  //REQUIRED
-oxd.request.op_host = "public address of the site";                         //OPTIONAL (But if missing, must be present in defaults)
+oxd.Request.authorization_redirect_uri= "https://rp.example.com/callback";  **//REQUIRED**
+oxd.request.op_host = "public address of the site";                         **//OPTIONAL (But if missing, must be present in defaults)**
 oxd.register_site(oxd.Request,function(response){
 });
+} catch (err) {
+    console.log("error:" + err);
+}
 ```
 
-#### Response:
+### Response:
 
 ```javascript
 {
@@ -55,19 +59,23 @@ oxd.register_site(oxd.Request,function(response){
 }
 ```
 
-### 2) update_site_registration
+## 2) update_site_registration
 
-#### Request:
+### Request:
 
 ```javascript
+try {
 var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                       //REQUIRED
-oxd.Request.authorization_redirect_uri= "https://rp.example.com/callback"; //OPTIONAL
+oxd.Request.oxd_id = "your site id";                                       **//REQUIRED**
+oxd.Request.authorization_redirect_uri= "https://rp.example.com/callback"; **//OPTIONAL**
 oxd.update_site_registration(oxd.Request,function(response){
 });
+} catch (err) {
+    console.log("error:" + err);
+}
 ```
 
-#### Response:
+### Response:
 
 ```javascript
 {
@@ -75,20 +83,24 @@ oxd.update_site_registration(oxd.Request,function(response){
 }
 ```
 
-### 3) get_authorization_url
+## 3) get_authorization_url
 
-#### Request:
+### Request:
 
 ```javascript
+try {
 var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                  //REQUIRED
-oxd.Request.acr_values = ["basic"];                                   //OPTIONAL
-oxd.Request.prompt = "login";                                         //OPTIONAL
+oxd.Request.oxd_id = "your site id";                                  **//REQUIRED**
+oxd.Request.acr_values = ["basic"];                                   **//OPTIONAL**
+oxd.Request.prompt = "login";                                         **//OPTIONAL**
 oxd.get_authorization_url(oxd.Request,function(response){
 });
+} catch (err) {
+    console.log("error:" + err);
+}
 ```
 
-#### Response:
+### Response:
 
 ```javascript
 {
@@ -106,20 +118,24 @@ HTTP/1.1 302 Found
 Location: https://client.example.org/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifjsldkj&scopes=openid%20profile
 ```
 
-### 4) get_tokens_by_code
+## 4) get_tokens_by_code
 
-#### Request:
+### Request:
 
 ```javascript
+try {
 var oxd = require("oxd-node");                                       
-oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.Request.code = "code from OP redirect url";                      //OPTIONAL
-oxd.request.scopes=[""];                                             //REQUIRED
+oxd.Request.oxd_id = "your site id";                                 **//REQUIRED**
+oxd.Request.code = "code from OP redirect url";                      **//OPTIONAL**
+oxd.request.scopes=[""];                                             **//REQUIRED**
 oxd.get_tokens_by_code(oxd.Request,function(response){
 });
+} catch (err) {
+    console.log("error:" + err);
+}
 ```
 
-#### Response:
+### Response:
 
 ```javascript
 {
@@ -142,19 +158,23 @@ oxd.get_tokens_by_code(oxd.Request,function(response){
 }
 ```
 
-### 5) get_user_info
+## 5) get_user_info
 
-#### Request:
+### Request:
 
 ```javascript
+try {
 var oxd = require("oxd-node");                             
-oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.Request.access_token = "access_token from OP redirect url";      //REQUIRED
+oxd.Request.oxd_id = "your site id";                                 **//REQUIRED**
+oxd.Request.access_token = "access_token from OP redirect url";      **//REQUIRED**
 oxd.get_user_info(oxd.Request,function(response){
 });
+} catch (err) {
+    console.log("error:" + err);
+}
 ```
 
-#### Response:
+### Response:
 
 ```javascript
 {
@@ -173,18 +193,22 @@ oxd.get_user_info(oxd.Request,function(response){
 }
 ```
 
-### 6) get_logout_uri
+## 6) get_logout_uri
 
-#### Request:
+### Request:
 
 ```javascript
+try {
 var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
+oxd.Request.oxd_id = "your site id";                                 **//REQUIRED**
+oxd.get_logout_uri(oxd.Request,function(response){                   **//REQUIRED**
 });
+} catch (err) {
+    console.log("error:" + err);
+}
 ```
 
-#### Response:
+### Response:
 
 ```javascript
 {
@@ -195,7 +219,7 @@ oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
 }
 ```
 
-## License
+# License
 
 (MIT License)
 
