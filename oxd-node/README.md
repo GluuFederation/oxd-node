@@ -13,8 +13,9 @@ $ npm install oxd-node
 **Prerequisite**
 
 ```
-You have to install gluu server and oxd-server in your hosting server to use oxd-node library with your application.
-Application will not be working if your host does not have https://.
+1) You have to install gluu server and oxd-server in your hosting server to use oxd-node
+   library with your application.
+2) Application will not be working if your host does not have https://.
 ```
 
 # Configuration:
