@@ -8,15 +8,12 @@ Install oxd-node using following command:
 ```sh
 $ npm install oxd-node
 ```
-Install gluu server using following details:
-```sh
+Install gluu server:
 <https://www.gluu.org/docs/deployment/ubuntu/>
-```
 
-Install oxd server using following details:
-```sh
+Install oxd server:
 <https://oxd.gluu.org/docs/install/>
-```
+
 
 **Prerequisite**
 
