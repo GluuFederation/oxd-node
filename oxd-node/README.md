@@ -9,9 +9,9 @@ Install oxd-node using following command:
 ```sh
 $ npm install oxd-node
 ```
-**gluu server installation:** (https://www.gluu.org/docs/deployment/ubuntu/)
+**gluu server installation:** https://www.gluu.org/docs/deployment/ubuntu/
 
-**oxd-server installation:**  (https://oxd.gluu.org/docs/install/)
+**oxd-server installation:** https://oxd.gluu.org/docs/install/
 
 **Prerequisite**
 
@@ -26,7 +26,7 @@ $ npm install oxd-node
 
 Once the library is installed, create a copy of the sample configuration file for your website in a server _writable_ location and edit the configuration. For example
 
-**Configure Oxd Port**
+**Configure oxd port**
 
 ```
 Go to model/request_param.js,
