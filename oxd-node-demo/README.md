@@ -8,11 +8,6 @@ oxd-node-demo is demo application which communication protocol of oxD server. Th
 * [Gluu Server](https://www.gluu.org/docs/deployment/ubuntu/)
 * [Oxd Server](https://oxd.gluu.org/docs/install/)
 
-Install oxd-node using following command:
-```sh
-$ npm install oxd-node
-```
-
 **Attention:**
 ```
 Application will not be working if your host does not have https://.
