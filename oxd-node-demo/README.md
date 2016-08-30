@@ -13,7 +13,7 @@ Once the library is installed, create a copy of the sample configuration file fo
 
 ```
 Go to properties.js,
-find exports.port=null and enter port no inplace of "null" which ever is free on your server.
+find exports.app_port=null and enter port no inplace of "null" which ever is free on your server.
 ```
 
 ### Prerequisite:

@@ -31,12 +31,12 @@ exports.register_site = function(request, callback) {
     param.acr_values = request.acr_values;
     param.grant_types = request.grant_types;
 
-    if (request.port == null || request.port == "") {
+    if (request.oxd_port == null || request.oxd_port == "") {
         console.log('Please configure port in request_param.js file - register_site');
         return;
     }
 
-    client.connect(request.port, 'localhost', function() {
+    client.connect(request.oxd_port, 'localhost', function() {
         data.command = "register_site";
         data.params = param;
         var string = JSON.stringify(data);
@@ -107,12 +107,12 @@ exports.update_site_registration = function(request, callback) {
     param.client_request_uris = request.client_request_uris;
     param.contacts = request.contacts;
 
-    if (request.port == null || request.port == "") {
+    if (request.oxd_port == null || request.oxd_port == "") {
         console.log('Please configure port in request_param.js file - update_site_registration');
         return;
     }
 
-    client.connect(request.port, 'localhost', function() {
+    client.connect(request.oxd_port, 'localhost', function() {
         data.command = "update_site_registration";
         data.params = param;
         var string = JSON.stringify(data);
@@ -173,12 +173,12 @@ exports.get_authorization_url = function(request, callback) {
     param.acr_values = request.acr_values;
     param.prompt = 'login';
 
-    if (request.port == null || request.port == "") {
+    if (request.oxd_port == null || request.oxd_port == "") {
         console.log('Please configure port in request_param.js file - get_authorization_url');
         return;
     }
 
-    client.connect(request.port, 'localhost', function() {
+    client.connect(request.oxd_port, 'localhost', function() {
         data.command = "get_authorization_url";
         data.params = param;
         var string = JSON.stringify(data);
@@ -240,12 +240,12 @@ exports.get_tokens_by_code = function(request, callback) {
     param.state = request.state;
     param.scopes = request.scope;
 
-    if (request.port == null || request.port == "") {
+    if (request.oxd_port == null || request.oxd_port == "") {
         console.log('Please configure port in request_param.js file - get_tokens_by_code');
         return;
     }
 
-    client.connect(request.port, 'localhost', function() {
+    client.connect(request.oxd_port, 'localhost', function() {
         data.command = "get_tokens_by_code";
         data.params = param;
         var string = JSON.stringify(data);
@@ -305,12 +305,12 @@ exports.get_user_info = function(request, callback) {
     param.oxd_id = request.oxd_id;
     param.access_token = request.access_token;
 
-    if (request.port == null || request.port == "") {
+    if (request.oxd_port == null || request.oxd_port == "") {
         console.log('Please configure port in request_param.js file - get_user_info');
         return;
     }
 
-    client.connect(request.port, 'localhost', function() {
+    client.connect(request.oxd_port, 'localhost', function() {
         data.command = "get_user_info";
         data.params = param;
         var string = JSON.stringify(data);
@@ -370,12 +370,12 @@ exports.get_logout_uri = function(request, callback) {
     param.state = request.state;
     param.session_state = request.session_state;
 
-    if (request.port == null || request.port == "") {
+    if (request.oxd_port == null || request.oxd_port == "") {
         console.log('Please configure port in request_param.js file - get_logout_uri');
         return;
     }
 
-    client.connect(request.port, 'localhost', function() {
+    client.connect(request.oxd_port, 'localhost', function() {
         data.command = "get_logout_uri";
         data.params = param;
         var string = JSON.stringify(data);

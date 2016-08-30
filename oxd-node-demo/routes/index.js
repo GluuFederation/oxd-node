@@ -422,7 +422,7 @@ router.post('/logoutuser', function(req, res, next) {
         });
     });
 });
-router.get('/logout', function(req, res, next) {
+/*router.get('/logout', function(req, res, next) {
     var mysession = req.session;
     mysession.access_token = null;
     res.clearCookie('client_id');
@@ -436,7 +436,7 @@ router.get('/logout', function(req, res, next) {
         errorMessage: "",
         errorVisibility: "none"
     });
-});
+});*/
 
 router.get('/callrp', function(req, res, next) {
     res.render('rpframe.ejs');

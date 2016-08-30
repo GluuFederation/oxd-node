@@ -43,5 +43,5 @@ var options = {
     cert: fs.readFileSync(__dirname + '//cert.pem')
 };
 
-var a = https.createServer(options, app).listen(properties.port);
+var a = https.createServer(options, app).listen(properties.app_port);
 module.exports = app;
