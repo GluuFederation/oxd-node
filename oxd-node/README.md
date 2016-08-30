@@ -2,7 +2,7 @@
 
 oxD node is a client library for the Gluu oxD Server. For information about oxD, visit <http://oxd.gluu.org>
 
-# Installation:
+## Installation
 
 * [Github sources](https://github.com/GluuFederation/oxd-node)
 * [Gluu Server](https://www.gluu.org/docs/deployment/ubuntu/)
@@ -22,7 +22,7 @@ $ npm install oxd-node
 
 ```
 
-# Configuration:
+## Configuration
 
 Once the library is installed, create a copy of the sample configuration file for your website in a server _writable_ location and edit the configuration. For example
 
@@ -35,11 +35,11 @@ find exports.oxd_port=null and enter oxd port no inplace of "null" which ever is
 
 **Note:** The website is registered with the OP and its ID is stored in this config file, also are the other peristant information about the website. So the config file needs to be _writable_ for the server. The [oxd-node](https://github.com/GluuFederation/oxd-node) contains complete documentation about itself.
 
-# Sample Code:
+## Sample Code
 
 ### 1) register_site
 
-###### Request:
+**Request:**
 
 ```javascript
 try {
@@ -52,7 +52,7 @@ oxd.register_site(oxd.Request,function(response){
 }
 ```
 
-###### Response:
+**Response:**
 
 ```javascript
 {
@@ -65,7 +65,7 @@ oxd.register_site(oxd.Request,function(response){
 
 ### 2) update_site_registration
 
-###### Request:
+**Request:**
 
 ```javascript
 try {
@@ -79,7 +79,7 @@ oxd.update_site_registration(oxd.Request,function(response){
 }
 ```
 
-###### Response:
+**Response:**
 
 ```javascript
 {
@@ -89,7 +89,7 @@ oxd.update_site_registration(oxd.Request,function(response){
 
 ### 3) get_authorization_url
 
-###### Request:
+**Request:**
 
 ```javascript
 try {
@@ -103,7 +103,7 @@ oxd.get_authorization_url(oxd.Request,function(response){
 }
 ```
 
-###### Response:
+**Response:**
 
 ```javascript
 {
@@ -123,7 +123,7 @@ Location: https://client.example.org/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifj
 
 ### 4) get_tokens_by_code
 
-###### Request:
+**Request:**
 
 ```javascript
 try {
@@ -139,7 +139,7 @@ oxd.get_tokens_by_code(oxd.Request,function(response){
 }
 ```
 
-###### Response:
+**Response:**
 
 ```javascript
 {
@@ -164,7 +164,7 @@ oxd.get_tokens_by_code(oxd.Request,function(response){
 
 ### 5) get_user_info
 
-###### Request:
+**Request:**
 
 ```javascript
 try {
@@ -178,7 +178,7 @@ oxd.get_user_info(oxd.Request,function(response){
 }
 ```
 
-###### Response:
+**Response:**
 
 ```javascript
 {
@@ -199,7 +199,7 @@ oxd.get_user_info(oxd.Request,function(response){
 
 ### 6) get_logout_uri
 
-###### Request:
+**Request:**
 
 ```javascript
 try {
@@ -212,7 +212,7 @@ oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
 }
 ```
 
-###### Response:
+**Response:**
 
 ```javascript
 {
