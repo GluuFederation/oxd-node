@@ -4,10 +4,9 @@ oxd-node-demo is demo application which communication protocol of oxD server. Th
 
 # Installation:
 
-* [Github Source Code](https://github.com/GluuFederation/oxd-node/tree/master/oxd-node)
-* [Demo Application Source Code](https://github.com/GluuFederation/oxd-node/tree/master/oxd-node-demo)
+* [Github sources](https://github.com/GluuFederation/oxd-node)
 * [Gluu Server](https://www.gluu.org/docs/deployment/ubuntu/)
-* [oxd server](https://oxd.gluu.org/docs/install/)
+* [Oxd Server](https://oxd.gluu.org/docs/install/)
 
 Install oxd-node using following command:
 ```sh
@@ -21,7 +20,7 @@ Application will not be working if your host does not have https://.
 
 **Prerequisite**
 ```
-You have to install gluu server and oxd-server in your hosting server to use oxd-node library with your application.
+You have to install gluu server and oxd-server in your hosting server to use oxd-node library with your oxd-node-demo application.
 ```
 
 # Configuration:
