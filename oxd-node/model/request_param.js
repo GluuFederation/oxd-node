@@ -1,3 +1,4 @@
+exports.oxd_port=8099;
 exports.contacts=null;
 exports.op_host= null;
 exports.authorization_redirect_uri=null;
@@ -22,4 +23,3 @@ exports.scopes= ["openid"];
 exports.access_token=null;
 exports.id_token_hint=null;
 exports.session_state=null;
-exports.oxd_port=8099;
