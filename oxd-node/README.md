@@ -221,9 +221,3 @@ oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
     }
 }
 ```
-
-# License
-
-(MIT License)
-
-Copyright (c) 2016 Gluu

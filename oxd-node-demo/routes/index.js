@@ -20,7 +20,6 @@ router.get('/', function(req, res) {
             });
             oxd.Request.oxd_id = obj.oxd_id;
             oxd.Request.code = req.query.code;
-            oxd.Request.scopes = req.query.scope.split(/[ ]+/);
             oxd.Request.state = req.query.state;
             oxd.get_tokens_by_code(oxd.Request, function(response) {
                 var jsondata = JSON.parse(response);
