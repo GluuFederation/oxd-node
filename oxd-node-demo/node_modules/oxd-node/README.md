@@ -129,8 +129,7 @@ Location: https://client.example.org/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifj
 try {
 var oxd = require("oxd-node");                                       
 oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.Request.code = "code from OP redirect url";                      //OPTIONAL
-oxd.request.scopes=[""];                                             //REQUIRED
+oxd.Request.code = "code from OP redirect url";                      //REQUIRED, code from OP redirect url (see example above)
 oxd.request.state="state from OP redirect url";                      //REQUIRED
 oxd.get_tokens_by_code(oxd.Request,function(response){
 });
