@@ -131,6 +131,7 @@ var oxd = require("oxd-node");
 oxd.Request.oxd_id = "your site id";                                 //REQUIRED
 oxd.Request.code = "code from OP redirect url";                      //REQUIRED, code from OP redirect url (see example above)
 oxd.request.state="state from OP redirect url";                      //REQUIRED
+oxd.request.nonce="nonce from OP redirect url";                      //OPTIONAL
 oxd.get_tokens_by_code(oxd.Request,function(response){
 });
 } catch (err) {
@@ -221,3 +222,9 @@ oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
     }
 }
 ```
+
+# License
+
+(MIT License)
+
+Copyright (c) 2016 Gluu

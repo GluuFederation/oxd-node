@@ -238,6 +238,7 @@ exports.get_tokens_by_code = function(request, callback) {
     param.oxd_id = request.oxd_id;
     param.code = request.code;
     param.state = request.state;
+    param.nonce = request.nonce;
 
     if (request.oxd_port == null || request.oxd_port == "") {
         console.log('Please configure port in request_param.js file - get_tokens_by_code');
