@@ -80,6 +80,7 @@ router.get('/authenticate', function(req, res, next) {
         }
     })
     jsonfile.readFile(setting, function(err, objoxd) {
+
         if (objoxd.oxd_id == null || objoxd.oxd_id == "")
             res.render('home.ejs', {
                 errorName: "",
@@ -198,6 +199,9 @@ router.post('/register_site', function(req, res, next) {
         scopes.push("mobile_phone");
     if (req.body.scope_phone == 1)
         scopes.push("phone");
+
+    scopes.push("uma_protection")
+    scopes.push("uma_authorization");
 
     if (scopes.length > 0)
         oxd.Request.scope = scopes;
@@ -330,7 +334,7 @@ router.post('/get_url_basic', function(req, res, next) {
         oxd.Request.acr_values = ["basic"];
         oxd.get_authorization_url(oxd.Request, function(response) {
             if (response.length > 0) {
-                return res.status(200).send(response);
+                res.status(200).send(response);
                 res.end();
             }
         });
@@ -445,6 +449,160 @@ router.get('/callrp', function(req, res, next) {
 router.get('/callop', function(req, res, next) {
     res.render('opframe.ejs');
 });
+
+router.post('/fullumatest', function(req, res, next) {
+
+    // Protect Resources
+    jsonfile.readFile(setting, function(err, obj) {
+
+        var requestuma_rs_protect = {};
+        requestuma_rs_protect = {
+            "resources": [{
+                "path": "/scim",
+                "conditions": [{
+                    "httpMethods": ["GET"],
+                    "scopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"],
+                    "ticketScopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"]
+                }]
+            }]
+        };
+
+        requestuma_rs_protect.oxd_id = obj.oxd_id;
+        oxd.uma_rs_protect(requestuma_rs_protect, function(data) {
+            if (data.length > 0) {
+
+                //2. Check Access with empty RPT. Expect access denied and a valid ticket    
+                var checkresourceRequest = {};
+                checkresourceRequest.oxd_id = obj.oxd_id;
+                checkresourceRequest.rpt = "";
+                checkresourceRequest.http_method = "GET";
+                checkresourceRequest.path = "/scim";
+
+                oxd.uma_rs_check_access(checkresourceRequest, function(response) {
+
+                    console.log(response);
+
+                    var jsondata = JSON.parse(response);
+
+                    if (jsondata.status == "ok") {
+                        if (jsondata.data.access.toLowerCase() == "denied") {
+                            if (jsondata.data.ticket == null) {
+                                console.log("Expected valid ticket as part of check access. But Null or Empty returned.");
+                            } else {
+
+                                //3. Obtain RPT. Expect a valid RPT is returned.
+                                var checkRptRequest = {};
+                                checkRptRequest.oxd_id = obj.oxd_id;
+                                oxd.uma_rp_get_rpt(checkRptRequest, function(rptResponse) {
+
+                                    var rptJsonData = JSON.parse(rptResponse);
+
+                                    if (rptJsonData.status == "ok") {
+                                        if (rptJsonData.data.rpt == null) {
+                                            console.log("Tryting to obtain RPT. But Null or Empty returned.");
+                                            res.status(500).send({ error: 'Tryting to obtain RPT. But Null or Empty returned.' })
+                                        } else {
+
+                                            //4. Check Access again with valid RPT. Still the access should be granted. Expect access denied    
+                                            var checkValidRptRequest = {};
+                                            checkValidRptRequest.oxd_id = obj.oxd_id;
+                                            checkValidRptRequest.rpt = rptJsonData.data.rpt;
+                                            checkValidRptRequest.http_method = "GET";
+                                            checkValidRptRequest.path = "/scim";
+
+                                            oxd.uma_rs_check_access(checkValidRptRequest, function(validRptResponse) {
+
+                                                var validRptJsonData = JSON.parse(validRptResponse);
+
+                                                if (validRptJsonData.status == "ok") {
+                                                    if (validRptJsonData.data.access.toLowerCase() == "denied") {
+
+                                                        //5. Authorize RPT. Expect status should be ok    
+                                                        var authorizeRpt = {};
+                                                        authorizeRpt.oxd_id = obj.oxd_id;
+                                                        authorizeRpt.rpt = rptJsonData.data.rpt;
+                                                        authorizeRpt.ticket = validRptJsonData.data.ticket;
+
+                                                        oxd.uma_rp_authorize_rpt(authorizeRpt, function(authorizeRptResponse) {
+                                                            var authorizeRptResponseJsonData = JSON.parse(authorizeRptResponse);
+                                                            if (authorizeRptResponseJsonData.status == "ok") {
+                                                                
+                                                                //6. Authorized RPT. Check Access again. Expect access granted.    
+                                                                var checkValidRptGrantedRequest = {};
+                                                                checkValidRptGrantedRequest.oxd_id = obj.oxd_id;
+                                                                checkValidRptGrantedRequest.rpt = rptJsonData.data.rpt;
+                                                                checkValidRptGrantedRequest.http_method = "GET";
+                                                                checkValidRptGrantedRequest.path = "/scim";
+
+                                                                oxd.uma_rs_check_access(checkValidRptGrantedRequest, function(validRptGrantedResponse) {
+                                                                    var validRptGrantedResponseJsonData = JSON.parse(validRptGrantedResponse);
+
+                                                                    if(validRptGrantedResponseJsonData.status == "ok")
+                                                                    {
+                                                                            if (validRptGrantedResponseJsonData.data.access.toLowerCase() == "granted") {
+                                                                                console.log("Test successfully done");
+                                                                                res.status(200).send({ success: 'Test successfully done' })
+
+                                                                            }
+                                                                            else{
+                                                                                console.log("Test Failure");
+                                                                                res.status(500).send({ error: 'Tryting to obtain RPT. But Null or Empty returned.' })
+                                                                            }
+                                                                    }
+
+                                                                    console.log(validRptGrantedResponse);
+                                                                });
+
+                                                            } else {
+                                                                console.log("Error : " + authorizeRptResponse);
+                                                                res.status(500).send({ error: authorizeRptResponse })
+                                                            }
+
+                                                        });
+
+
+                                                    } else {
+                                                        console.log("Access Denied expected. But something else is coming." + validRptResponse);
+                                                        res.status(500).send({ error: 'Access Denied expected. But something else is coming.' })
+                                                    }
+
+                                                }
+
+                                            });
+                                        }
+                                    } else {
+                                        console.log("Error : " + rptResponse);
+                                        res.status(500).send({ error: rptResponse })
+                                    }
+
+                                });
+                            }
+                        } else {
+                            console.log("Access Denied expected. But something else is coming = " + response);
+                            res.status(500).send({ error: 'Access Denied expected. But something else is coming' });
+                        }
+
+                    } else {
+                        console.log("Error : " + response);
+                        res.status(500).send({ error: response });
+                    }
+
+
+
+
+                    // res.status(200).json(response);
+                });
+            }
+
+        });
+
+    });
+
+
+
+
+});
+
 
 function parseCookies(request) {
     var list = {},
