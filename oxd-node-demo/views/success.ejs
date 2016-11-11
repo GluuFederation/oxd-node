@@ -13,6 +13,24 @@
                 width: 100%;
             }
         </style>
+        <script type="text/javascript">
+        function checkFullUmaTest(){
+                $.ajax({
+                    type: 'POST',
+                    cache: false,
+                    contentType: 'application/json',
+                    datatype: "json",
+                    url: '/fullumatest',
+                    success: function(response){
+                     alert(response.success)
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                            alert(thrownError);
+                    }
+                });
+            }
+        </script>
+        
 </head>
 
 <body class="container" style="top:5%">
@@ -79,6 +97,7 @@
                 <div class="form-group col-md-6 col-md-offset-1">
                     <button type="submit" class="btn btn-lg btn-primary btn-block m-l-3-8" id="btnSignin">Reset Detail</button>
                 </div>
+                
                 <div class="form-group col-md-4 setsocialicon" style='display : <%= acr_connect %>'>
                     <p>Connect with:</p>
                     <a id="lnkBasic" alt="Basic" style='display : <%= acr_basic %>' href="javascript:;"><img src="images/basic.png" alt="" class="lazy-login-image" /></a>
@@ -87,6 +106,10 @@
                     <a id="lnkU2f" alt="U2f" style='display : <%= acr_u2f %>' href="javascript:;"><img src="images/U2F.png" alt="" class="lazy-login-image" /></a>
                 </div>
             </form>
+
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <button type="button" onclick="checkFullUmaTest();" class="btn btn-lg btn-primary btn-block m-l-3-8" id="btnfullumatest">Full UMA Test</button>
+                </div>
         </div>
     </main>
 
