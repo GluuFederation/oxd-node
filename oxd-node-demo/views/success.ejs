@@ -12,9 +12,11 @@
             .setsocialicon {
                 width: 100%;
             }
+            button.full-uma-btn { display: inline-block; width: 49%;}
         </style>
         <script type="text/javascript">
         function checkFullUmaTest(){
+        $("#imgLoader").show();
                 $.ajax({
                     type: 'POST',
                     cache: false,
@@ -22,13 +24,16 @@
                     datatype: "json",
                     url: '/fullumatest',
                     success: function(response){
+                    $("#imgLoader").hide();
                      alert(response.success)
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
+                    $("#imgLoader").hide();
                             alert(thrownError);
                     }
                 });
             }
+            $("#imgLoader").hide();
         </script>
         
 </head>
@@ -107,8 +112,9 @@
                 </div>
             </form>
 
-                <div class="form-group col-md-6 col-md-offset-1">
-                    <button type="button" onclick="checkFullUmaTest();" class="btn btn-lg btn-primary btn-block m-l-3-8" id="btnfullumatest">Full UMA Test</button>
+                <div class="form-group col-md-12 col-md-offset-1">
+                    <button type="button" onclick="checkFullUmaTest();" class="btn btn-lg btn-primary btn-block m-l-3-8 full-uma-btn" id="btnfullumatest">Full UMA Test</button>
+                    <img title="Processing..." src="images/processing.gif" style="display:none" alt="Processing..." id="imgLoader"/>
                 </div>
         </div>
     </main>
