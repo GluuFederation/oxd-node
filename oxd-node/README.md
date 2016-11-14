@@ -29,8 +29,8 @@ Once the library is installed, create a copy of the sample configuration file fo
 **Configure oxd port**
 
 ```
-Go to model/request_param.js,
-find exports.oxd_port=null and enter oxd port no inplace of "null" which ever is free on your server.
+If your oxd server is running on different port other than 8099 then Go to model/request_param.js,
+find exports.oxd_port="8099" and replace 8099 with your port 
 ```
 
 **Note:** The website is registered with the OP and its ID is stored in this config file, also are the other peristant information about the website. So the config file needs to be _writable_ for the server. The [oxd-node](https://github.com/GluuFederation/oxd-node) contains complete documentation about itself.
@@ -220,6 +220,204 @@ oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
     "data":{
         "uri":"https://<server>/end_session?id_token_hint=<id token>&state=<state>&post_logout_redirect_uri=<...>"
     }
+}
+```
+
+### 7) uma_rs_protect
+
+**Request:**
+
+```javascript
+try {   
+var oxd = require("oxd-node");
+oxd.Request.oxd_id = "your site id";    //REQUIRED
+oxd.Request.requestuma_rs_protect = {}; //REQUIRED
+        requestuma_rs_protect = {
+            "resources": [{
+                "path": "/scim",
+                "conditions": [{
+                    "httpMethods": ["GET"],
+                    "scopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"],
+                    "ticketScopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"]
+                }]
+            }]
+        };
+
+oxd.uma_rs_protect(oxd.Request,function(response){               
+});
+} catch (err) {
+    console.log("error:" + err);
+}
+```
+
+**Response:**
+
+```javascript
+{
+    "status":"ok",
+    "data":{
+        "oxd_id":"6F9619FF-8B86-D011-B42D-00CF4FC964FF"
+    }
+}
+```
+
+### 8) uma_rs_check_access
+
+**Request:**
+
+```javascript
+try {   
+var oxd = require("oxd-node");
+oxd.Request.oxd_id = "your site id";            //REQUIRED
+oxd.Request.rpt = "";
+oxd.Request.http_method = "GET";                //REQUIRED
+oxd.Request.path = "/scim";                     //REQUIRED
+
+oxd.uma_rs_check_access(oxd.Request,function(response){               
+});
+} catch (err) {
+    console.log("error:" + err);
+}
+```
+
+**Response:**
+
+```javascript
+{
+    "status":"ok",
+    "data":{
+            "access":"denied",
+            "ticket":"b8ada41c-d455-4e9d-9ec0-79019486e276",
+            "www-authenticate_header":"UMA realm=\"rs\",
+            "as_uri"=\"https://ce-dev.gluu.org\",
+            "error"=\"insufficient_scope\",
+            "ticket"=\"b8ada41c-d455-4e9d-9ec0-79019486e276\""}
+}
+```
+
+### 9) uma_rp_get_rpt
+
+**Request:**
+
+```javascript
+try {   
+var oxd = require("oxd-node");
+oxd.Request.oxd_id = "your site id";    //REQUIRED
+
+oxd.Request.uma_rp_get_rpt(oxd.Request,function(response){               
+});
+} catch (err) {
+    console.log("error:" + err);
+}
+```
+
+**Response:**
+
+```javascript
+{
+    "status":"ok",
+    "data":{
+        "rpt":"9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED"
+        }
+}
+```
+
+
+### 10) uma_rs_check_access
+
+**Request:**
+
+```javascript
+try {   
+var oxd = require("oxd-node");
+oxd.Request.oxd_id = "your site id";                                                                //REQUIRED
+oxd.Request.rpt = "9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED";   //REQUIRED
+oxd.Request.http_method = "GET";                                                                    //REQUIRED
+oxd.Request.path = "/scim";                                                                         //REQUIRED
+
+oxd.uma_rs_check_access(oxd.Request,function(response){               
+});
+} catch (err) {
+    console.log("error:" + err);
+}
+```
+
+**Response:**
+
+```javascript
+{
+   "status":"ok",
+   "data":{
+       "access":"denied",
+       "ticket":"929e30da-23e8-45e4-a614-1957bdea8e54",
+       "www-authenticate_header":"UMA realm=\"rs\",
+       "as_uri"="https://ce-dev.gluu.org\",
+       "error"="insufficient_scope\",
+       "ticket"="929e30da-23e8-45e4-a614-1957bdea8e54\""
+       }
+}
+```
+
+### 11) uma_rp_authorize_rpt
+
+**Request:**
+
+```javascript
+try {   
+var oxd = require("oxd-node");
+oxd.Request.oxd_id = "your site id";                                                                //REQUIRED
+oxd.Request.rpt = "9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED";   //REQUIRED
+oxd.Request.ticket = "929e30da-23e8-45e4-a614-1957bdea8e54";                                                                         //REQUIRED
+
+
+oxd.uma_rp_authorize_rpt(oxd.Request,function(response){               
+});
+} catch (err) {
+    console.log("error:" + err);
+}
+```
+
+**Response:**
+
+```javascript
+{
+   "status":"ok",
+   "data":{
+       "oxd_id":"07ba1fe6-c5bb-4193-9061-67472787b1ba"
+       }
+}
+```
+
+
+### 12) uma_rs_check_access
+
+**Request:**
+
+```javascript
+try {   
+var oxd = require("oxd-node");
+oxd.Request.oxd_id = "your site id";                                                                //REQUIRED
+oxd.Request.rpt = "9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED";   //REQUIRED
+oxd.Request.http_method = "GET";
+oxd.Request.path = "/scim";
+
+
+oxd.uma_rs_check_access(oxd.Request,function(response){               
+});
+} catch (err) {
+    console.log("error:" + err);
+}
+```
+
+**Response:**
+
+```javascript
+{
+   "status":"ok",
+   "data":
+   {
+       "access":"granted","ticket":null,"www-authenticate_header":null
+  }
 }
 ```
 
