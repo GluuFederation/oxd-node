@@ -29,7 +29,7 @@ Once the library is installed, create a copy of the sample configuration file fo
 **Configure oxd port**
 
 ```
-If your oxd server is running on different port other than 8099 then Go to model/request_param.js,
+If your oxd server is running on different port other than 8099 then Go to configuration.js,
 find exports.oxd_port="8099" and replace 8099 with your port 
 ```
 
