@@ -3,6 +3,7 @@ var router = express.Router();
 var jsonfile = require('jsonfile');
 var path = require('path');
 var setting = path.join(__dirname, '/../settings.json');
+var parameters = path.join(__dirname, '/../parameters.json');
 var data = path.join(__dirname, '/../data.json');
 var loginstatus = path.join(__dirname, '/../loginstatus.json');
 var acrgroup = path.join(__dirname, '/../acr.json');
@@ -12,185 +13,14 @@ var url = require('url');
 var properties = require('../properties');
 
 router.get('/', function(req, res) {
-    if (req.query.code != null) {
-        jsonfile.readFile(setting, function(err, obj) {
-            res.cookie('ss', req.query.session_state, {
-                maxAge: 900000,
-                httpOnly: false
-            });
-            oxd.Request.oxd_id = obj.oxd_id;
-            oxd.Request.code = req.query.code;
-            oxd.Request.state = req.query.state;
-            oxd.Request.nonce = req.query.nonce;
-            oxd.get_tokens_by_code(oxd.Request, function(response) {
-                var jsondata = JSON.parse(response);
-                var mysession = req.session;
-                mysession.access_token = jsondata.data.access_token;
-                if (jsondata.data.access_token != null && jsondata.status == "ok") {
-                    res.redirect("get_user_info");
-                } else {
-                    res.redirect("authenticate");
-                }
-            });
-        });
-    } else {
-        res.redirect("authenticate");
-    }
+    res.render('index.ejs');
 });
 
-router.get('/authenticate', function(req, res, next) {
-    var acr_basic = "none";
-    var acr_gplus = "none";
-    var acr_duo = "none";
-    var acr_u2f = "none";
-    var acr_connect = "none";
-    var auth_logout = "none";
-
-    jsonfile.readFile(loginstatus, function(err, obj) {
-        var result = isEmpty(obj);
-        if (result == false) {
-            if (obj.login == "true") {
-                auth_logout = "block";
-            }
-        }
-    });
-
-    jsonfile.readFile(acrgroup, function(err, obj) {
-        var acrresult = isEmpty(obj);
-        if (acrresult == false) {
-            if (obj.basic != undefined) {
-                acr_basic = "block";
-                acr_connect = "block";
-            }
-
-            if (obj.gplus != undefined) {
-                acr_gplus = "block";
-                acr_connect = "block";
-            }
-
-            if (obj.duo != undefined) {
-                acr_duo = "block";
-                acr_connect = "block";
-            }
-
-            if (obj.u2f != undefined) {
-                acr_u2f = "block";
-                acr_connect = "block";
-            }
-        }
-    })
-    jsonfile.readFile(setting, function(err, objoxd) {
-
-        if (objoxd.oxd_id == null || objoxd.oxd_id == "")
-            res.render('home.ejs', {
-                errorName: "",
-                errorMessage: "",
-                errorVisibility: "none"
-            });
-        else
-            jsonfile.readFile(data, function(err, obj) {
-
-                var result = isEmpty(obj);
-                if (result == true)
-                    res.render('success.ejs', {
-                        oxd_id: objoxd.oxd_id,
-                        display_user_data: 'none',
-                        name: 'NA',
-                        email: 'NA',
-                        gender: 'NA',
-                        birthdate: 'NA',
-                        profile: 'NA',
-                        website: 'NA',
-                        zoneinfo: 'NA',
-                        acr_basic: acr_basic,
-                        acr_gplus: acr_gplus,
-                        acr_duo: acr_duo,
-                        acr_u2f: acr_u2f,
-                        acr_connect: acr_connect,
-                        auth_logout: auth_logout
-                    });
-                else {
-                    var email = "NA";
-                    var name = "NA";
-                    var gender = "NA";
-                    var birthdate = "NA";
-                    var profile = "NA";
-                    var website = "NA";
-                    var zoneinfo = "NA";
-
-                    if (obj.email != undefined) {
-                        email = obj.email;
-                    }
-
-                    if (obj.name != undefined) {
-                        name = obj.name;
-                    }
-
-                    if (obj.gender != undefined) {
-                        gender = obj.gender;
-                    }
-
-                    if (obj.birthdate != undefined) {
-                        birthdate = obj.birthdate;
-                    }
-
-                    if (obj.profile != undefined) {
-                        profile = obj.profile;
-                    }
-
-                    if (obj.website != undefined) {
-                        website = obj.website;
-                    }
-
-
-                    if (obj.zoneinfo != undefined) {
-                        zoneinfo = obj.zoneinfo;
-                    }
-
-                    res.render('success.ejs', {
-                        oxd_id: objoxd.oxd_id,
-                        display_user_data: 'block',
-                        name: name,
-                        email: email,
-                        gender: gender,
-                        birthdate: birthdate,
-                        profile: profile,
-                        website: website,
-                        zoneinfo: zoneinfo,
-                        acr_basic: acr_basic,
-                        acr_gplus: acr_gplus,
-                        acr_duo: acr_duo,
-                        acr_u2f: acr_u2f,
-                        acr_connect: acr_connect,
-                        auth_logout: auth_logout
-                    });
-                }
-
-            });
-    });
-});
-router.post('/register_site', function(req, res, next) {
-    if (!req.secure) {
-        res.send(400, {
-            error: "This connection is untrusted, your host should be with https"
-        });
-        return;
-    }
-    if (req.body.email == null || req.body.email == "") {
-        res.send(400, {
-            error: "Please provide email"
-        });
-        return;
-    }
-
-    //Define scopes
+router.post('/Register', function(req, res){
     var scopes = [];
     scopes.push("openid");
-
-    if (req.body.scope_profile == 1)
-        scopes.push("profile");
-    if (req.body.scope_email == 1)
-        scopes.push("email");
+    scopes.push("profile");
+    scopes.push("email");
     if (req.body.scope_address == 1)
         scopes.push("address");
     if (req.body.scope_clientinfo == 1)
@@ -202,6 +32,8 @@ router.post('/register_site', function(req, res, next) {
 
     scopes.push("uma_protection")
     scopes.push("uma_authorization");
+
+
 
     if (scopes.length > 0)
         oxd.Request.scope = scopes;
@@ -244,15 +76,12 @@ router.post('/register_site', function(req, res, next) {
     jsonfile.writeFile(loginstatus, {
         login: "false"
     });
-
-    oxd.Request.authorization_redirect_uri = "https://" + req.get('host');
-    oxd.Request.post_logout_redirect_uri = "https://" + req.get('host');
     oxd.Request.client_id = null;
     oxd.Request.client_secret = null;
     oxd.Request.client_jwks_uri = null;
     oxd.Request.client_token_endpoint_auth_method = null;
     oxd.Request.client_request_uris = null;
-    oxd.Request.client_logout_uris = ["https://" + req.get('host') + "/logout"];
+    oxd.Request.client_logout_uris = [""];
     oxd.Request.client_sector_identifier_uri = null;
     oxd.Request.ui_locales = null;
     oxd.Request.claims_locales = null;
@@ -262,365 +91,170 @@ router.post('/register_site', function(req, res, next) {
         oxd.Request.acr_values = acr_value;
 
     var contacts = [];
-    contacts.push(req.body.email);
     oxd.Request.contacts = contacts;
-
     jsonfile.readFile(setting, function(err, obj) {
-        if (obj.oxd_id == null || obj.oxd_id == "") {
+        oxd.Request.authorization_redirect_uri = req.body.redirectUrl;
+        if(obj.oxd_id == ""){
             oxd.register_site(oxd.Request, function(response) {
                 var responsedata = JSON.parse(response);
                 if (responsedata.status == "ok") {
                     obj.oxd_id = responsedata.data.oxd_id;
-                    jsonfile.writeFile(setting, obj, function(err) {});
-                    res.redirect("authenticate");
-                } else {
-                    res.render('home.ejs', {
-                        errorName: "Error : ",
-                        errorMessage: JSON.stringify(responsedata),
-                        errorVisibility: "block"
-                    });
-                }
-            });
-        } else {
-            oxd.Request.oxd_id = obj.oxd_id;
-            oxd.Request.scope = scopes;
-            oxd.update_site_registration(oxd.Request, function(response) {
-                var responsedata = JSON.parse(response);
-                if (responsedata.status == "ok") {
-                    obj.oxd_id = responsedata.data.oxd_id;
-                    jsonfile.writeFile(setting, obj, function(err) {});
-                    res.redirect("authenticate");
-                } else {
-                    res.render('home.ejs', {
-                        errorName: "Error : ",
-                        errorMessage: JSON.stringify(responsedata),
-                        errorVisibility: "block"
-                    });
-                }
-            });
-        }
-    });
-});
-
-router.post('/updateSite', function(req, res, next) {
-    res.render('home.ejs', {
-        errorName: "",
-        errorMessage: "",
-        errorVisibility: "none"
-    });
-});
-
-router.post('/get_url_gplus', function(req, res, next) {
-    jsonfile.readFile(setting, function(err, obj) {
-        oxd.Request.oxd_id = obj.oxd_id;
-        oxd.Request.acr_values = ["gplus"];
-        oxd.get_authorization_url(oxd.Request, function(response) {
-            if (response.length > 0) {
-                res.status(200).send(response);
-                return;
-            }
-        });
-    });
-});
-
-router.post('/get_url_basic', function(req, res, next) {
-    jsonfile.readFile(setting, function(err, obj) {
-        if (err) {
-            return {
-                "error": "error"
-            }
-        };
-        oxd.Request.oxd_id = obj.oxd_id;
-        oxd.Request.acr_values = ["basic"];
-        oxd.get_authorization_url(oxd.Request, function(response) {
-            if (response.length > 0) {
-                res.status(200).send(response);
-                res.end();
-            }
-        });
-    });
-});
-
-router.post('/get_url_duo', function(req, res, next) {
-    jsonfile.readFile(setting, function(err, obj) {
-        oxd.Request.oxd_id = obj.oxd_id;
-        oxd.Request.acr_values = ["duo"];
-        oxd.get_authorization_url(oxd.Request, function(response) {
-            if (response.length > 0) {
-                res.status(200).send(response);
-                return;
-            }
-        });
-    });
-});
-
-router.post('/get_url_u2f', function(req, res, next) {
-    jsonfile.readFile(setting, function(err, obj) {
-        oxd.Request.oxd_id = obj.oxd_id;
-        oxd.Request.acr_values = ["u2f"];
-        oxd.get_authorization_url(oxd.Request, function(response) {
-            if (response.length > 0) {
-                res.status(200).send(response);
-                return;
-            }
-        });
-    });
-});
-
-router.get('/get_user_info', function(req, res, next) {
-    jsonfile.readFile(setting, function(err, obj) {
-        var mysession = req.session;
-        if (mysession.access_token != null) {
-            oxd.Request.oxd_id = obj.oxd_id;
-            oxd.Request.access_token = mysession.access_token;
-            oxd.get_user_info(oxd.Request, function(response) {
-                if (response.length > 0) {
-                    var jsondata = JSON.parse(response);
-                    if (jsondata.status == "ok") {
-                        var claims = jsondata.data.claims;
-                        if (Object.keys(claims).length > 0) {
-                            jsonfile.writeFile(data, jsondata.data.claims);
-                            jsonfile.writeFile(loginstatus, {
-                                login: "true"
+                    jsonfile.writeFile(setting, obj, function(err) {
+                        jsonfile.readFile(parameters, function(err,parametersData) {
+                            oxd.Request.authorization_redirect_uri = req.body.redirectUrl;
+                            jsonfile.writeFile(parameters,oxd.Request, function(err) {
+                                responsedata["redirectUrl"] = req.body.redirectUrl;
+                                res.json(responsedata);
                             });
-
-                            res.redirect("authenticate");
-                        } else {
-                            res.redirect("authenticate");
-                        }
-                    } else {
-                        res.redirect("authenticate");
-                    }
+                        });
+                    });
+                }
+                else{
+                    var data = {"error":responsedata.data.error}
+                     res.json(data);
                 }
             });
-        } else {
-            res.redirect("authenticate");
+        }
+        else{
+            var data = {};
+            data["status"] = "done";
+            jsonfile.readFile(parameters, function(err, obj) {
+                data["redirectUrl"] = obj.authorization_redirect_uri;
+                res.json(data); 
+            });
         }
     });
-
 });
 
-router.get('/logoutadmin', function(req, res, next) {
-    res.render('login.ejs', {
-        title: "Login",
-        errorName: "",
-        errorMessage: "",
-        errorVisibility: "none"
-    });
-});
-router.post('/logoutuser', function(req, res, next) {
+router.post('/Update', function(req, res){
+    
+    var contacts = [];
+    contacts.push(req.body.oxdEmail);
+    oxd.Request.contacts = contacts;
     jsonfile.readFile(setting, function(err, obj) {
-        oxd.Request.oxd_id = obj.oxd_id;
-        var cookies = parseCookies(req);
-        oxd.Request.post_logout_redirect_uri = "https://" + req.get('host');
-        oxd.Request.session_state = cookies.ss;
-        oxd.Request.state = cookies.state;
-        oxd.get_logout_uri(oxd.Request, function(response) {
-            if (response.length > 0) {
-                jsonfile.writeFile(loginstatus, {
-                    login: "false"
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                parametersData.contacts = contacts;
+                oxd.Request.oxd_id = obj.oxd_id;
+                oxd.Request.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.update_site_registration(oxd.Request, function(response) {
+                        res.json(response); 
+                    });
+                
                 });
-                res.status(200).send(response);
-                return;
-            }
-        });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
     });
 });
-/*router.get('/logout', function(req, res, next) {
-    var mysession = req.session;
-    mysession.access_token = null;
-    res.clearCookie('client_id');
-    res.clearCookie('ss');
-    res.clearCookie('session_state');
-    res.clearCookie('id_token');
-    res.clearCookie('state');
-    res.render('login.ejs', {
-        title: "Login",
-        errorName: "",
-        errorMessage: "",
-        errorVisibility: "none"
-    });
-});*/
 
-router.get('/callrp', function(req, res, next) {
-    res.render('rpframe.ejs');
-});
-
-router.get('/callop', function(req, res, next) {
-    res.render('opframe.ejs');
-});
-
-router.post('/fullumatest', function(req, res, next) {
-
-    // Protect Resources
+router.post('/GetAuthorizationUrl', function(req, res){
+    
     jsonfile.readFile(setting, function(err, obj) {
-
-        var requestuma_rs_protect = {};
-        requestuma_rs_protect = {
-            "resources": [{
-                "path": "/scim",
-                "conditions": [{
-                    "httpMethods": ["GET"],
-                    "scopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"],
-                    "ticketScopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"]
-                }]
-            }]
-        };
-
-        requestuma_rs_protect.oxd_id = obj.oxd_id;
-        oxd.uma_rs_protect(requestuma_rs_protect, function(data) {
-            if (data.length > 0) {
-
-                //2. Check Access with empty RPT. Expect access denied and a valid ticket    
-                var checkresourceRequest = {};
-                checkresourceRequest.oxd_id = obj.oxd_id;
-                checkresourceRequest.rpt = "";
-                checkresourceRequest.http_method = "GET";
-                checkresourceRequest.path = "/scim";
-
-                oxd.uma_rs_check_access(checkresourceRequest, function(response) {
-
-                    console.log(response);
-
-                    var jsondata = JSON.parse(response);
-
-                    if (jsondata.status == "ok") {
-                        if (jsondata.data.access.toLowerCase() == "denied") {
-                            if (jsondata.data.ticket == null) {
-                                console.log("Expected valid ticket as part of check access. But Null or Empty returned.");
-                            } else {
-
-                                //3. Obtain RPT. Expect a valid RPT is returned.
-                                var checkRptRequest = {};
-                                checkRptRequest.oxd_id = obj.oxd_id;
-                                oxd.uma_rp_get_rpt(checkRptRequest, function(rptResponse) {
-
-                                    var rptJsonData = JSON.parse(rptResponse);
-
-                                    if (rptJsonData.status == "ok") {
-                                        if (rptJsonData.data.rpt == null) {
-                                            console.log("Tryting to obtain RPT. But Null or Empty returned.");
-                                            res.status(500).send({ error: 'Tryting to obtain RPT. But Null or Empty returned.' })
-                                        } else {
-
-                                            //4. Check Access again with valid RPT. Still the access should be granted. Expect access denied    
-                                            var checkValidRptRequest = {};
-                                            checkValidRptRequest.oxd_id = obj.oxd_id;
-                                            checkValidRptRequest.rpt = rptJsonData.data.rpt;
-                                            checkValidRptRequest.http_method = "GET";
-                                            checkValidRptRequest.path = "/scim";
-
-                                            oxd.uma_rs_check_access(checkValidRptRequest, function(validRptResponse) {
-
-                                                var validRptJsonData = JSON.parse(validRptResponse);
-
-                                                if (validRptJsonData.status == "ok") {
-                                                    if (validRptJsonData.data.access.toLowerCase() == "denied") {
-
-                                                        //5. Authorize RPT. Expect status should be ok    
-                                                        var authorizeRpt = {};
-                                                        authorizeRpt.oxd_id = obj.oxd_id;
-                                                        authorizeRpt.rpt = rptJsonData.data.rpt;
-                                                        authorizeRpt.ticket = validRptJsonData.data.ticket;
-
-                                                        oxd.uma_rp_authorize_rpt(authorizeRpt, function(authorizeRptResponse) {
-                                                            var authorizeRptResponseJsonData = JSON.parse(authorizeRptResponse);
-                                                            if (authorizeRptResponseJsonData.status == "ok") {
-                                                                
-                                                                //6. Authorized RPT. Check Access again. Expect access granted.    
-                                                                var checkValidRptGrantedRequest = {};
-                                                                checkValidRptGrantedRequest.oxd_id = obj.oxd_id;
-                                                                checkValidRptGrantedRequest.rpt = rptJsonData.data.rpt;
-                                                                checkValidRptGrantedRequest.http_method = "GET";
-                                                                checkValidRptGrantedRequest.path = "/scim";
-
-                                                                oxd.uma_rs_check_access(checkValidRptGrantedRequest, function(validRptGrantedResponse) {
-                                                                    var validRptGrantedResponseJsonData = JSON.parse(validRptGrantedResponse);
-
-                                                                    if(validRptGrantedResponseJsonData.status == "ok")
-                                                                    {
-                                                                            if (validRptGrantedResponseJsonData.data.access.toLowerCase() == "granted") {
-                                                                                console.log("Test successfully done");
-                                                                                res.status(200).send({ success: 'Test successfully done' })
-
-                                                                            }
-                                                                            else{
-                                                                                console.log("Test Failure");
-                                                                                res.status(500).send({ error: 'Tryting to obtain RPT. But Null or Empty returned.' })
-                                                                            }
-                                                                    }
-
-                                                                    console.log(validRptGrantedResponse);
-                                                                });
-
-                                                            } else {
-                                                                console.log("Error : " + authorizeRptResponse);
-                                                                res.status(500).send({ error: authorizeRptResponse })
-                                                            }
-
-                                                        });
-
-
-                                                    } else {
-                                                        console.log("Access Denied expected. But something else is coming." + validRptResponse);
-                                                        res.status(500).send({ error: 'Access Denied expected. But something else is coming.' })
-                                                    }
-
-                                                }
-
-                                            });
-                                        }
-                                    } else {
-                                        console.log("Error : " + rptResponse);
-                                        res.status(500).send({ error: rptResponse })
-                                    }
-
-                                });
-                            }
-                        } else {
-                            console.log("Access Denied expected. But something else is coming = " + response);
-                            res.status(500).send({ error: 'Access Denied expected. But something else is coming' });
-                        }
-
-                    } else {
-                        console.log("Error : " + response);
-                        res.status(500).send({ error: response });
-                    }
-
-
-
-
-                    // res.status(200).json(response);
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                parametersData.contacts = req.body.oxdEmail;
+                oxd.Request.oxd_id = obj.oxd_id;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.get_authorization_url(oxd.Request, function(response) {
+                        response = JSON.parse(response);
+                        var data = {};
+                        data['authorizationUrl'] = response.data.authorization_url;
+                        res.json(data);
+                    });
+                
                 });
-            }
-
-        });
-
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
     });
-
-
-
-
 });
 
-
-function parseCookies(request) {
-    var list = {},
-        rc = request.headers.cookie;
-
-    rc && rc.split(';').forEach(function(cookie) {
-        var parts = cookie.split('=');
-        list[parts.shift().trim()] = decodeURI(parts.join('='));
+router.post('/GetTokens', function(req, res){
+    
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.code = oxd.Request.code = req.body.authCode;
+                parametersData.state = oxd.Request.state = req.body.authState;
+                oxd.Request.oxd_id = obj.oxd_id;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.get_tokens_by_code(oxd.Request, function(response) {
+                        response = JSON.parse(response);
+                        console.log(response);
+                        var data = {};
+                        data['accessToken'] = response.data.access_token;
+                        data['refreshToken'] = response.data.refresh_token;
+                        res.json(data);
+                    });
+                
+                });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
     });
+});
 
-    return list;
-}
+router.post('/GetUserInfo', function(req, res){
+    
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            oxd.Request.oxd_id = obj.oxd_id;
+            oxd.Request.access_token = req.body.accessToken;
+            oxd.get_user_info(oxd.Request, function(response) {
+                console.log(response);
+                response = JSON.parse(response);
+                var data = {};
+                data['userName'] = response.data.claims.name[0];
+                data['userEmail'] = response.data.claims.email[0];
+                res.json(data);
+            });          
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
 
-function isEmpty(obj) {
-    for (var prop in obj) {
-        return false;
-    }
-    return true;
-}
+router.post('/GetLogoutUri', function(req, res){
+    
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            oxd.Request.oxd_id = obj.oxd_id;
+            oxd.get_logout_uri(oxd.Request, function(response) {
+                console.log(response);
+                response = JSON.parse(response);
+                var data = {};
+                data['logoutUri'] = response.data.uri;
+                console.log("response");
+                console.log(data);
+                res.json(data);
+            });          
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+
 
 module.exports = router;

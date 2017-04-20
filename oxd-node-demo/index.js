@@ -11,6 +11,7 @@ var jsonfile = require('jsonfile');
 var path = require('path');
 var setting = path.join(__dirname, '//settings.json');
 var properties = require('./properties');
+var vhost = require('vhost');
 
 app.use(session({
     secret: 'asdfg1234',
@@ -42,6 +43,8 @@ var options = {
     key: fs.readFileSync(__dirname + '//key.pem'),
     cert: fs.readFileSync(__dirname + '//cert.pem')
 };
+
+app.use(vhost('client.example.com', app)); // Serves top level domain via Main server app
 
 var a = https.createServer(options, app).listen(properties.app_port);
 module.exports = app;
