@@ -125,6 +125,19 @@
                 function (data) {
                     jQuery("#accessToken").val(data.accessToken);
                     jQuery("#refreshToken").val(data.refreshToken);
+                    var html = "<li class=\"list-group-item\" style=\"overflow:auto;\">idToken : "+data.idToken+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">at_hash : "+data.idTokenClaims.at_hash[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">aud : "+data.idTokenClaims.aud[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">sub : "+data.idTokenClaims.sub[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">auth_time : "+data.idTokenClaims.auth_time[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">iss : "+data.idTokenClaims.iss[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">exp : "+data.idTokenClaims.exp[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">iat : "+data.idTokenClaims.iat[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">nonce : "+data.idTokenClaims.nonce[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">oxValidationURI : "+data.idTokenClaims.oxValidationURI[0]+"</li>";
+                    html += "<li class=\"list-group-item\" style=\"overflow:auto;\">oxOpenIDConnectVersion : "+data.idTokenClaims.oxOpenIDConnectVersion[0]+"</li>";
+                    jQuery("#tokens").html(html);
+                    
                     notify("Token retrival is successful.", "success");
 
                     jQuery("#btnUser").prop("disabled", false);

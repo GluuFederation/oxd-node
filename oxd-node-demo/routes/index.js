@@ -92,10 +92,15 @@ router.post('/Register', function(req, res){
 
     var contacts = [];
     oxd.Request.contacts = contacts;
+    //must declare url
+    //for socket request keep the url blank
+    // var url = "";
+    var url = oxd.Request.httpBaseUrl+"/register-site";
     jsonfile.readFile(setting, function(err, obj) {
         oxd.Request.authorization_redirect_uri = req.body.redirectUrl;
         if(obj.oxd_id == ""){
-            oxd.register_site(oxd.Request, function(response) {
+            oxd.register_site(oxd.Request, url, function(response) {
+                console.log(response);
                 var responsedata = JSON.parse(response);
                 if (responsedata.status == "ok") {
                     obj.oxd_id = responsedata.data.oxd_id;
@@ -131,6 +136,10 @@ router.post('/Update', function(req, res){
     var contacts = [];
     contacts.push(req.body.oxdEmail);
     oxd.Request.contacts = contacts;
+    //must declare url
+    //for socket request keep the url blank
+    // var url = "";
+    var url = oxd.Request.httpBaseUrl+"/update-site";
     jsonfile.readFile(setting, function(err, obj) {
         if(obj.oxd_id != ""){
             jsonfile.readFile(parameters, function(err, parametersData){
@@ -139,7 +148,7 @@ router.post('/Update', function(req, res){
                 oxd.Request.oxd_id = obj.oxd_id;
                 oxd.Request.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
                 jsonfile.writeFile(parameters,parametersData,function(err){
-                    oxd.update_site_registration(oxd.Request, function(response) {
+                    oxd.update_site_registration(oxd.Request, url, function(response) {
                         res.json(response); 
                     });
                 
@@ -156,6 +165,10 @@ router.post('/Update', function(req, res){
 
 router.post('/GetAuthorizationUrl', function(req, res){
     
+    //must declare url
+    //for socket request keep the url blank
+    // var url = "";
+    var url = oxd.Request.httpBaseUrl+"/get-authorization-url";
     jsonfile.readFile(setting, function(err, obj) {
         if(obj.oxd_id != ""){
             jsonfile.readFile(parameters, function(err, parametersData){
@@ -163,7 +176,7 @@ router.post('/GetAuthorizationUrl', function(req, res){
                 parametersData.contacts = req.body.oxdEmail;
                 oxd.Request.oxd_id = obj.oxd_id;
                 jsonfile.writeFile(parameters,parametersData,function(err){
-                    oxd.get_authorization_url(oxd.Request, function(response) {
+                    oxd.get_authorization_url(oxd.Request, url, function(response) {
                         response = JSON.parse(response);
                         var data = {};
                         data['authorizationUrl'] = response.data.authorization_url;
@@ -183,6 +196,10 @@ router.post('/GetAuthorizationUrl', function(req, res){
 
 router.post('/GetTokens', function(req, res){
     
+    //must declare url
+    //for socket request keep the url blank
+    // var url = "";
+    var url = oxd.Request.httpBaseUrl+"/get-tokens-by-code";
     jsonfile.readFile(setting, function(err, obj) {
         if(obj.oxd_id != ""){
             jsonfile.readFile(parameters, function(err, parametersData){
@@ -190,12 +207,14 @@ router.post('/GetTokens', function(req, res){
                 parametersData.state = oxd.Request.state = req.body.authState;
                 oxd.Request.oxd_id = obj.oxd_id;
                 jsonfile.writeFile(parameters,parametersData,function(err){
-                    oxd.get_tokens_by_code(oxd.Request, function(response) {
+                    oxd.get_tokens_by_code(oxd.Request, url, function(response) {
                         response = JSON.parse(response);
                         console.log(response);
                         var data = {};
                         data['accessToken'] = response.data.access_token;
                         data['refreshToken'] = response.data.refresh_token;
+                        data['idToken'] = response.data.id_token;
+                        data['idTokenClaims'] = response.data.id_token_claims;
                         res.json(data);
                     });
                 
@@ -212,11 +231,15 @@ router.post('/GetTokens', function(req, res){
 
 router.post('/GetUserInfo', function(req, res){
     
+    //must declare url
+    //for socket request keep the url blank
+    // var url = "";
+    var url = oxd.Request.httpBaseUrl+"/get-user-info";
     jsonfile.readFile(setting, function(err, obj) {
         if(obj.oxd_id != ""){
             oxd.Request.oxd_id = obj.oxd_id;
             oxd.Request.access_token = req.body.accessToken;
-            oxd.get_user_info(oxd.Request, function(response) {
+            oxd.get_user_info(oxd.Request, url, function(response) {
                 console.log(response);
                 response = JSON.parse(response);
                 var data = {};
@@ -235,10 +258,14 @@ router.post('/GetUserInfo', function(req, res){
 
 router.post('/GetLogoutUri', function(req, res){
     
+    //must declare url
+    //for socket request keep the url blank
+    // var url = "";
+    var url = oxd.Request.httpBaseUrl+"/logout";
     jsonfile.readFile(setting, function(err, obj) {
         if(obj.oxd_id != ""){
             oxd.Request.oxd_id = obj.oxd_id;
-            oxd.get_logout_uri(oxd.Request, function(response) {
+            oxd.get_logout_uri(oxd.Request, url, function(response) {
                 console.log(response);
                 response = JSON.parse(response);
                 var data = {};

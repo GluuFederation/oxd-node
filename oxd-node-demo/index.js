@@ -40,8 +40,8 @@ app.set('view engine', 'ejs');
 app.use('/', index);
 
 var options = {
-    key: fs.readFileSync(__dirname + '//key.pem'),
-    cert: fs.readFileSync(__dirname + '//cert.pem')
+    key: fs.readFileSync(__dirname + '/hostkey.pem'),
+    cert: fs.readFileSync(__dirname + '/hostcert.pem')
 };
 
 app.use(vhost('client.example.com', app)); // Serves top level domain via Main server app
