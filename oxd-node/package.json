@@ -1,15 +1,15 @@
 {
   "name": "oxd-node",
-  "version": "2.4.4",
-  "description": "node lib for oxd",
+  "version": "3.0.1",
+  "description": "node lib for oxd and oxd-to-http",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/GluuFederation/oxd-node"
+    "url": "git://github.com/GluuFederation/oxd-node.git"
   },
-  "author": "meghna joshi",
+  "author": "Sampad",
   "license": "MIT"
 }

@@ -1,428 +1,708 @@
-# oxd-node
+# oxd-node-library
 
-oxD node is a client library for the Gluu oxD Server. For information about oxD, visit <http://oxd.gluu.org>
+oxd-php-library is a client library for the Gluu oxd Server. For information about oxd, visit [http://oxd.gluu.org](http://oxd.gluu.org) 
+
+## Pre Requisite
+
+#### Mandatory
+
+- [GLUU Server](https://www.gluu.org/)
+- [OXD Server](https://gluu.org/docs/oxd)
+
+#### Optional
+OXD-TO-HTTP Server is required if you want to access OXD server over HTTP.
+- [OXD-TO-HTTP Server](https://github.com/GluuFederation/oxd-to-http)
 
 ## Installation
 
-* [Github sources](https://github.com/GluuFederation/oxd-node)
-* [Gluu Server](https://www.gluu.org/docs/deployment/ubuntu/)
-* [oxd server](https://oxd.gluu.org/docs/install/)
+### Source
 
-Install oxd-node using following command:
-```sh
 $ npm install oxd-node
+
+**Note**: OpenID Connect requires *https.* This library will not 
+work if your website uses *http* only.
+
+## Configuration 
+
+The oxd-node-library configuration file is located in 
+'node_modules/oxd-node/model/request_param.js'. The values here are used during 
+registration. For a full list of supported
+oxd configuration parameters, see the 
+[oxd documentation](https://oxd.gluu.org/docs/protocol/)
+Below is a typical configuration data set for registration:
+
+``` {.code }
+exports.scope= [""];
+exports.contacts=null;
+exports.op_host= "<GLUU Server URL>";
+exports.authorization_redirect_uri=null;
+exports.post_logout_redirect_uri=null;
+exports.application_type= null;
+exports.redirect_uris= null;
+exports.response_types=null;
+exports.client_id=null;
+exports.client_secret=null;
+exports.client_jwks_uri=null;
+exports.client_token_endpoint_auth_method=null;
+exports.client_request_uris=null;
+exports.client_logout_uris=[""];
+exports.client_sector_identifier_uri=null;
+exports.ui_locales=null;
+exports.claims_locales=null;
+exports.acr_values=null;
+exports.grant_types=null;
+exports.oxd_id=null;
+exports.code=null;
+exports.state=null;
+exports.scopes= [""];
+exports.access_token=null;
+exports.id_token_hint=null;
+exports.session_state=null;
+exports.port=8099;
+exports.host="<OXD Server host ip>";
+exports.httpBaseUrl="<OXD-TO-HTTP Server host ip>";
+                        
 ```
 
-**Prerequisite**
 
-```
-1) You have to install gluu server and oxd-server in your hosting server to use oxd-node
-   library with your application.
-2) Application will not be working if your host does not have https://.
+## Sample code
 
-```
 
-## Configuration
+### register_site (OXD-TO-HTTP)
 
-Once the library is installed, create a copy of the sample configuration file for your website in a server _writable_ location and edit the configuration. For example
+- [Register_site protocol description](https://gluu.org/docs/oxd/protocol/#register-site).
 
-**Configure oxd port**
+**Example**
 
-```
-If your oxd server is running on different port other than 8099 then Go to configuration.js,
-find exports.oxd_port="8099" and replace 8099 with your port 
-```
-
-**Note:** The website is registered with the OP and its ID is stored in this config file, also are the other peristant information about the website. So the config file needs to be _writable_ for the server. The [oxd-node](https://github.com/GluuFederation/oxd-node) contains complete documentation about itself.
-
-## Sample Code
-
-### 1) register_site
-
-**Request:**
-
-```javascript
-try {
+``` {.code}
+	var express = require('express');
+var router = express.Router();
+var jsonfile = require('jsonfile');
+var path = require('path');
+var setting = path.join(__dirname, '/../settings.json');
+var parameters = path.join(__dirname, '/../parameters.json');
+var data = path.join(__dirname, '/../data.json');
+var loginstatus = path.join(__dirname, '/../loginstatus.json');
+var acrgroup = path.join(__dirname, '/../acr.json');
 var oxd = require("oxd-node");
-oxd.Request.authorization_redirect_uri= "https://rp.example.com/callback";  //REQUIRED
-oxd.register_site(oxd.Request,function(response){
+var properties = require('../properties');
+var url = require('url');
+var properties = require('../properties');
+
+router.get('/', function(req, res) {
+    res.render('index.ejs');
 });
-} catch (err) {
-    console.log("error:" + err);
-}
-```
 
-**Response:**
+router.post('/Register', function(req, res){
+    var scopes = [];
+    scopes.push("openid");
+    scopes.push("profile");
+    scopes.push("email");
+    if (req.body.scope_address == 1)
+        scopes.push("address");
+    if (req.body.scope_clientinfo == 1)
+        scopes.push("clientinfo");
+    if (req.body.scope_mobile == 1)
+        scopes.push("mobile_phone");
+    if (req.body.scope_phone == 1)
+        scopes.push("phone");
 
-```javascript
-{
-    "status":"ok",
-    "data":{
-        "oxd_id":"6F9619FF-8B86-D011-B42D-00CF4FC964FF"
+    scopes.push("uma_protection")
+    scopes.push("uma_authorization");
+
+
+
+    if (scopes.length > 0)
+        oxd.Request.scope = scopes;
+
+    //Define acr_values
+    var acr_value = [];
+    var acr_value_array = {};
+    var acr_basic = "none";
+    var acr_gplus = "none";
+    var acr_duo = "none";
+    var acr_u2f = "none";
+    var acr_connect = "none";
+    if (req.body.oxd_openid_gplus_enable == 1) {
+        acr_value.push("gplus");
+        acr_value_array.gplus = "gplus";
+        acr_connect = "block";
+        acr_gplus = "block";
     }
-}
-```
-
-### 2) update_site_registration
-
-**Request:**
-
-```javascript
-try {
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                       //REQUIRED
-oxd.Request.authorization_redirect_uri= "https://rp.example.com/callback"; //OPTIONAL
-oxd.update_site_registration(oxd.Request,function(response){
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok"
-}
-```
-
-### 3) get_authorization_url
-
-**Request:**
-
-```javascript
-try {
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                  //REQUIRED
-oxd.Request.acr_values = ["basic"];                                   //OPTIONAL
-oxd.get_authorization_url(oxd.Request,function(response){
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok",
-    "data":{
-        "authorization_url":"https://server.example.com/authorize?response_type=code&client_id=s6BhdRkqt3&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&scope=openid%20profile&acr_values=duo&state=af0ifjsldkj&nonce=n-0S6_WzA2Mj"
+    if (req.body.oxd_openid_basic_enable == 1) {
+        acr_value.push("basic");
+        acr_value_array.basic = "basic";
+        acr_connect = "block";
+        acr_basic = "block";
     }
-}
-```
+    if (req.body.oxd_openid_duo_enable == 1) {
+        acr_value.push("duo");
+        acr_value_array.duo = "duo";
+        acr_connect = "block";
+        acr_duo = "block";
+    }
+    if (req.body.oxd_openid_u2f_enable == 1) {
+        acr_value.push("u2f");
+        acr_value_array.u2f = "u2f";
+        acr_connect = "block";
+        acr_u2f = "block";
+    }
 
-**Note:** After redirecting to the above URL, the OpenID Provider will return a response that looks like this to the URL your application registered as the redirect URI (parse out the code and state):
+    jsonfile.writeFile(acrgroup, acr_value_array, function(err) {});
+    jsonfile.writeFile(data, {});
+    jsonfile.writeFile(loginstatus, {
+        login: "false"
+    });
+    oxd.Request.client_id = null;
+    oxd.Request.client_secret = null;
+    oxd.Request.client_jwks_uri = null;
+    oxd.Request.client_token_endpoint_auth_method = null;
+    oxd.Request.client_request_uris = null;
+    oxd.Request.client_logout_uris = [""];
+    oxd.Request.client_sector_identifier_uri = null;
+    oxd.Request.ui_locales = null;
+    oxd.Request.claims_locales = null;
+    oxd.Request.grant_types = ["authorization_code"];
 
-```
-HTTP/1.1 302 Found
-Location: https://client.example.org/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifjsldkj&scopes=openid%20profile
-```
+    if (acr_value.length > 0)
+        oxd.Request.acr_values = acr_value;
 
-### 4) get_tokens_by_code
-
-**Request:**
-
-```javascript
-try {
-var oxd = require("oxd-node");                                       
-oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.Request.code = "code from OP redirect url";                      //REQUIRED, code from OP redirect url (see example above)
-oxd.request.state="state from OP redirect url";                      //REQUIRED
-oxd.request.nonce="nonce from OP redirect url";                      //OPTIONAL
-oxd.get_tokens_by_code(oxd.Request,function(response){
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok",
-    "data":{
-        "access_token":"SlAV32hkKG",
-        "expires_in":3600,
-        "refresh_token":"aaAV32hkKG1"
-        "id_token":"eyJ0 ... NiJ9.eyJ1c ... I6IjIifX0.DeWt4Qu ... ZXso",
-        "id_token_claims": {
-             "iss": "https://server.example.com",
-             "sub": "24400320",
-             "aud": "s6BhdRkqt3",
-             "nonce": "n-0S6_WzA2Mj",
-             "exp": 1311281970,
-             "iat": 1311280970,
-             "at_hash": "MTIzNDU2Nzg5MDEyMzQ1Ng"
+    var contacts = [];
+    oxd.Request.contacts = contacts;
+    var url = oxd.Request.httpBaseUrl+"/register-site";
+    jsonfile.readFile(setting, function(err, obj) {
+        oxd.Request.authorization_redirect_uri = req.body.redirectUrl;
+        if(obj.oxd_id == ""){
+            oxd.register_site(oxd.Request, url, function(response) {
+                console.log(response);
+                var responsedata = JSON.parse(response);
+                if (responsedata.status == "ok") {
+                    obj.oxd_id = responsedata.data.oxd_id;
+                    jsonfile.writeFile(setting, obj, function(err) {
+                        jsonfile.readFile(parameters, function(err,parametersData) {
+                            oxd.Request.authorization_redirect_uri = req.body.redirectUrl;
+                            jsonfile.writeFile(parameters,oxd.Request, function(err) {
+                                responsedata["redirectUrl"] = req.body.redirectUrl;
+                                res.json(responsedata);
+                            });
+                        });
+                    });
+                }
+                else{
+                    var data = {"error":responsedata.data.error}
+                     res.json(data);
+                }
+            });
         }
-    }
-}
-```
-
-### 5) get_user_info
-
-**Request:**
-
-```javascript
-try {
-var oxd = require("oxd-node");                             
-oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.Request.access_token = "access_token from OP redirect url";      //REQUIRED
-oxd.get_user_info(oxd.Request,function(response){
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok",
-    "data":{
-        "claims":{
-            "sub": ["248289761001"],
-            "name": ["Jane Doe"],
-            "given_name": ["Jane"],
-            "family_name": ["Doe"],
-            "preferred_username": ["j.doe"],
-            "email": ["janedoe@example.com"],
-            "picture": ["http://example.com/janedoe/me.jpg"]
+        else{
+            var data = {};
+            data["status"] = "done";
+            jsonfile.readFile(parameters, function(err, obj) {
+                data["redirectUrl"] = obj.authorization_redirect_uri;
+                res.json(data); 
+            });
         }
+    });
+});
+
+                        
+```
+
+### register_site (SOCKET)
+
+- [Register_site protocol description](https://gluu.org/docs/oxd/protocol/#register-site).
+
+**Example**
+
+``` {.code}
+	var express = require('express');
+var router = express.Router();
+var jsonfile = require('jsonfile');
+var path = require('path');
+var setting = path.join(__dirname, '/../settings.json');
+var parameters = path.join(__dirname, '/../parameters.json');
+var data = path.join(__dirname, '/../data.json');
+var loginstatus = path.join(__dirname, '/../loginstatus.json');
+var acrgroup = path.join(__dirname, '/../acr.json');
+var oxd = require("oxd-node");
+var properties = require('../properties');
+var url = require('url');
+var properties = require('../properties');
+
+router.get('/', function(req, res) {
+    res.render('index.ejs');
+});
+
+router.post('/Register', function(req, res){
+    var scopes = [];
+    scopes.push("openid");
+    scopes.push("profile");
+    scopes.push("email");
+    if (req.body.scope_address == 1)
+        scopes.push("address");
+    if (req.body.scope_clientinfo == 1)
+        scopes.push("clientinfo");
+    if (req.body.scope_mobile == 1)
+        scopes.push("mobile_phone");
+    if (req.body.scope_phone == 1)
+        scopes.push("phone");
+
+    scopes.push("uma_protection")
+    scopes.push("uma_authorization");
+
+
+
+    if (scopes.length > 0)
+        oxd.Request.scope = scopes;
+
+    //Define acr_values
+    var acr_value = [];
+    var acr_value_array = {};
+    var acr_basic = "none";
+    var acr_gplus = "none";
+    var acr_duo = "none";
+    var acr_u2f = "none";
+    var acr_connect = "none";
+    if (req.body.oxd_openid_gplus_enable == 1) {
+        acr_value.push("gplus");
+        acr_value_array.gplus = "gplus";
+        acr_connect = "block";
+        acr_gplus = "block";
     }
-}
-```
-
-### 6) get_logout_uri
-
-**Request:**
-
-```javascript
-try {
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                 //REQUIRED
-oxd.get_logout_uri(oxd.Request,function(response){                   //REQUIRED
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok",
-    "data":{
-        "uri":"https://<server>/end_session?id_token_hint=<id token>&state=<state>&post_logout_redirect_uri=<...>"
+    if (req.body.oxd_openid_basic_enable == 1) {
+        acr_value.push("basic");
+        acr_value_array.basic = "basic";
+        acr_connect = "block";
+        acr_basic = "block";
     }
-}
-```
-
-### 7) uma_rs_protect
-
-**Request:**
-
-```javascript
-try {   
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";    //REQUIRED
-oxd.Request.requestuma_rs_protect = {}; //REQUIRED
-        requestuma_rs_protect = {
-            "resources": [{
-                "path": "/scim",
-                "conditions": [{
-                    "httpMethods": ["GET"],
-                    "scopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"],
-                    "ticketScopes": ["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"]
-                }]
-            }]
-        };
-
-oxd.uma_rs_protect(oxd.Request,function(response){               
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok",
-    "data":{
-        "oxd_id":"6F9619FF-8B86-D011-B42D-00CF4FC964FF"
+    if (req.body.oxd_openid_duo_enable == 1) {
+        acr_value.push("duo");
+        acr_value_array.duo = "duo";
+        acr_connect = "block";
+        acr_duo = "block";
     }
-}
-```
+    if (req.body.oxd_openid_u2f_enable == 1) {
+        acr_value.push("u2f");
+        acr_value_array.u2f = "u2f";
+        acr_connect = "block";
+        acr_u2f = "block";
+    }
 
-### 8) uma_rs_check_access
+    jsonfile.writeFile(acrgroup, acr_value_array, function(err) {});
+    jsonfile.writeFile(data, {});
+    jsonfile.writeFile(loginstatus, {
+        login: "false"
+    });
+    oxd.Request.client_id = null;
+    oxd.Request.client_secret = null;
+    oxd.Request.client_jwks_uri = null;
+    oxd.Request.client_token_endpoint_auth_method = null;
+    oxd.Request.client_request_uris = null;
+    oxd.Request.client_logout_uris = [""];
+    oxd.Request.client_sector_identifier_uri = null;
+    oxd.Request.ui_locales = null;
+    oxd.Request.claims_locales = null;
+    oxd.Request.grant_types = ["authorization_code"];
 
-**Request:**
+    if (acr_value.length > 0)
+        oxd.Request.acr_values = acr_value;
 
-```javascript
-try {   
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";            //REQUIRED
-oxd.Request.rpt = "";
-oxd.Request.http_method = "GET";                //REQUIRED
-oxd.Request.path = "/scim";                     //REQUIRED
-
-oxd.uma_rs_check_access(oxd.Request,function(response){               
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok",
-    "data":{
-            "access":"denied",
-            "ticket":"b8ada41c-d455-4e9d-9ec0-79019486e276",
-            "www-authenticate_header":"UMA realm=\"rs\",
-            "as_uri"=\"https://ce-dev.gluu.org\",
-            "error"=\"insufficient_scope\",
-            "ticket"=\"b8ada41c-d455-4e9d-9ec0-79019486e276\""}
-}
-```
-
-### 9) uma_rp_get_rpt
-
-**Request:**
-
-```javascript
-try {   
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";    //REQUIRED
-
-oxd.Request.uma_rp_get_rpt(oxd.Request,function(response){               
-});
-} catch (err) {
-    console.log("error:" + err);
-}
-```
-
-**Response:**
-
-```javascript
-{
-    "status":"ok",
-    "data":{
-        "rpt":"9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED"
+    var contacts = [];
+    oxd.Request.contacts = contacts;
+    var url = "";
+    jsonfile.readFile(setting, function(err, obj) {
+        oxd.Request.authorization_redirect_uri = req.body.redirectUrl;
+        if(obj.oxd_id == ""){
+            oxd.register_site(oxd.Request, url, function(response) {
+                console.log(response);
+                var responsedata = JSON.parse(response);
+                if (responsedata.status == "ok") {
+                    obj.oxd_id = responsedata.data.oxd_id;
+                    jsonfile.writeFile(setting, obj, function(err) {
+                        jsonfile.readFile(parameters, function(err,parametersData) {
+                            oxd.Request.authorization_redirect_uri = req.body.redirectUrl;
+                            jsonfile.writeFile(parameters,oxd.Request, function(err) {
+                                responsedata["redirectUrl"] = req.body.redirectUrl;
+                                res.json(responsedata);
+                            });
+                        });
+                    });
+                }
+                else{
+                    var data = {"error":responsedata.data.error}
+                     res.json(data);
+                }
+            });
         }
-}
-```
-
-
-### 10) uma_rs_check_access
-
-**Request:**
-
-```javascript
-try {   
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                                                //REQUIRED
-oxd.Request.rpt = "9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED";   //REQUIRED
-oxd.Request.http_method = "GET";                                                                    //REQUIRED
-oxd.Request.path = "/scim";                                                                         //REQUIRED
-
-oxd.uma_rs_check_access(oxd.Request,function(response){               
+        else{
+            var data = {};
+            data["status"] = "done";
+            jsonfile.readFile(parameters, function(err, obj) {
+                data["redirectUrl"] = obj.authorization_redirect_uri;
+                res.json(data); 
+            });
+        }
+    });
 });
-} catch (err) {
-    console.log("error:" + err);
-}
+
+                        
 ```
 
-**Response:**
 
-```javascript
-{
-   "status":"ok",
-   "data":{
-       "access":"denied",
-       "ticket":"929e30da-23e8-45e4-a614-1957bdea8e54",
-       "www-authenticate_header":"UMA realm=\"rs\",
-       "as_uri"="https://ce-dev.gluu.org\",
-       "error"="insufficient_scope\",
-       "ticket"="929e30da-23e8-45e4-a614-1957bdea8e54\""
-       }
-}
-```
+### update_site_registration (OXD-TO-HTTP)
 
-### 11) uma_rp_authorize_rpt
+- [Update_site_registration protocol description](https://gluu.org/docs/oxd/protocol/#update-site-registration).
 
-**Request:**
+**Example**
 
-```javascript
-try {   
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                                                //REQUIRED
-oxd.Request.rpt = "9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED";   //REQUIRED
-oxd.Request.ticket = "929e30da-23e8-45e4-a614-1957bdea8e54";                                                                         //REQUIRED
-
-
-oxd.uma_rp_authorize_rpt(oxd.Request,function(response){               
+``` {.code}
+	router.post('/Update', function(req, res){
+    
+    var contacts = [];
+    contacts.push(req.body.oxdEmail);
+    oxd.Request.contacts = contacts;
+    var url = oxd.Request.httpBaseUrl+"/update-site";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                parametersData.contacts = contacts;
+                oxd.Request.oxd_id = obj.oxd_id;
+                oxd.Request.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.update_site_registration(oxd.Request, url, function(response) {
+                        res.json(response); 
+                    });
+                
+                });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
 });
-} catch (err) {
-    console.log("error:" + err);
-}
+
+                        
 ```
 
-**Response:**
+### update_site_registration (SOCKET)
 
-```javascript
-{
-   "status":"ok",
-   "data":{
-       "oxd_id":"07ba1fe6-c5bb-4193-9061-67472787b1ba"
-       }
-}
-```
+- [Update_site_registration protocol description](https://gluu.org/docs/oxd/protocol/#update-site-registration).
 
+**Example**
 
-### 12) uma_rs_check_access
-
-**Request:**
-
-```javascript
-try {   
-var oxd = require("oxd-node");
-oxd.Request.oxd_id = "your site id";                                                                //REQUIRED
-oxd.Request.rpt = "9eb28ed9-5a0f-403c-9700-aa5db6ed61f8/40E2.256F.AF50.F70B.9205.066F.B227.36ED";   //REQUIRED
-oxd.Request.http_method = "GET";
-oxd.Request.path = "/scim";
-
-
-oxd.uma_rs_check_access(oxd.Request,function(response){               
+``` {.code}
+	router.post('/Update', function(req, res){
+    
+    var contacts = [];
+    contacts.push(req.body.oxdEmail);
+    oxd.Request.contacts = contacts;
+    var url = "";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                parametersData.contacts = contacts;
+                oxd.Request.oxd_id = obj.oxd_id;
+                oxd.Request.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.update_site_registration(oxd.Request, url, function(response) {
+                        res.json(response); 
+                    });
+                
+                });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
 });
-} catch (err) {
-    console.log("error:" + err);
-}
+
+                        
 ```
 
-**Response:**
+### get_authorization_url (OXD-TO-HTTP)
 
-```javascript
-{
-   "status":"ok",
-   "data":
-   {
-       "access":"granted","ticket":null,"www-authenticate_header":null
-  }
-}
+- [Get_authorization_url protocol description](https://gluu.org/docs/oxd/protocol/#get-authorization-url).
+
+**Example**
+
+``` {.code}
+	router.post('/GetAuthorizationUrl', function(req, res){
+    var url = oxd.Request.httpBaseUrl+"/get-authorization-url";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                parametersData.contacts = req.body.oxdEmail;
+                oxd.Request.oxd_id = obj.oxd_id;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.get_authorization_url(oxd.Request, url, function(response) {
+                        response = JSON.parse(response);
+                        var data = {};
+                        data['authorizationUrl'] = response.data.authorization_url;
+                        res.json(data);
+                    });
+                
+                });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+                        
 ```
 
-# License
+### get_authorization_url (SOCKET)
 
-(MIT License)
+- [Get_authorization_url protocol description](https://gluu.org/docs/oxd/protocol/#get-authorization-url).
 
-Copyright (c) 2016 Gluu
+**Example**
+
+``` {.code}
+	router.post('/GetAuthorizationUrl', function(req, res){
+    var url = "";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
+                parametersData.contacts = req.body.oxdEmail;
+                oxd.Request.oxd_id = obj.oxd_id;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.get_authorization_url(oxd.Request, url, function(response) {
+                        response = JSON.parse(response);
+                        var data = {};
+                        data['authorizationUrl'] = response.data.authorization_url;
+                        res.json(data);
+                    });
+                
+                });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+                        
+```
+
+### get_tokens_by_code (OXD-TO-HTTP)
+
+- [Get_tokens_by_code protocol description](https://gluu.org/docs/oxd/protocol/#get-tokens-id-access-by-code).
+
+**Example**
+
+``` {.code}
+	router.post('/GetTokens', function(req, res){
+    var url = oxd.Request.httpBaseUrl+"/get-tokens-by-code";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.code = oxd.Request.code = req.body.authCode;
+                parametersData.state = oxd.Request.state = req.body.authState;
+                oxd.Request.oxd_id = obj.oxd_id;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.get_tokens_by_code(oxd.Request, url, function(response) {
+                        response = JSON.parse(response);
+                        console.log(response);
+                        var data = {};
+                        data['accessToken'] = response.data.access_token;
+                        data['refreshToken'] = response.data.refresh_token;
+                        data['idToken'] = response.data.id_token;
+                        data['idTokenClaims'] = response.data.id_token_claims;
+                        res.json(data);
+                    });
+                
+                });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+
+```
+
+### get_tokens_by_code (SOCKET)
+
+- [Get_tokens_by_code protocol description](https://gluu.org/docs/oxd/protocol/#get-tokens-id-access-by-code).
+
+**Example**
+
+``` {.code}
+	router.post('/GetTokens', function(req, res){
+    var url = "";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            jsonfile.readFile(parameters, function(err, parametersData){
+                parametersData.code = oxd.Request.code = req.body.authCode;
+                parametersData.state = oxd.Request.state = req.body.authState;
+                oxd.Request.oxd_id = obj.oxd_id;
+                jsonfile.writeFile(parameters,parametersData,function(err){
+                    oxd.get_tokens_by_code(oxd.Request, url, function(response) {
+                        response = JSON.parse(response);
+                        console.log(response);
+                        var data = {};
+                        data['accessToken'] = response.data.access_token;
+                        data['refreshToken'] = response.data.refresh_token;
+                        data['idToken'] = response.data.id_token;
+                        data['idTokenClaims'] = response.data.id_token_claims;
+                        res.json(data);
+                    });
+                
+                });
+            });            
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+```
+
+### get_user_info (OXD-TO-HTTP)
+
+- [Get_user_info protocol description](https://gluu.org/docs/oxd/protocol/#get-user-info).
+
+**Example**
+
+``` {.code}
+	router.post('/GetUserInfo', function(req, res){
+    var url = oxd.Request.httpBaseUrl+"/get-user-info";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            oxd.Request.oxd_id = obj.oxd_id;
+            oxd.Request.access_token = req.body.accessToken;
+            oxd.get_user_info(oxd.Request, url, function(response) {
+                console.log(response);
+                response = JSON.parse(response);
+                var data = {};
+                data['userName'] = response.data.claims.name[0];
+                data['userEmail'] = response.data.claims.email[0];
+                res.json(data);
+            });          
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+                        
+```
+
+### get_user_info (SOCKET)
+
+- [Get_user_info protocol description](https://gluu.org/docs/oxd/protocol/#get-user-info).
+
+**Example**
+
+``` {.code}
+	router.post('/GetUserInfo', function(req, res){
+    var url = "";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            oxd.Request.oxd_id = obj.oxd_id;
+            oxd.Request.access_token = req.body.accessToken;
+            oxd.get_user_info(oxd.Request, url, function(response) {
+                console.log(response);
+                response = JSON.parse(response);
+                var data = {};
+                data['userName'] = response.data.claims.name[0];
+                data['userEmail'] = response.data.claims.email[0];
+                res.json(data);
+            });          
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+                        
+```
+
+### get_logout_uri (OXD-TO-HTTP)
+
+- [Get_logout_uri protocol description](https://gluu.org/docs/oxd/protocol/#log-out-uri).
+
+**Example**
+
+``` {.code}
+	router.post('/GetLogoutUri', function(req, res){
+    var url = oxd.Request.httpBaseUrl+"/logout";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            oxd.Request.oxd_id = obj.oxd_id;
+            oxd.get_logout_uri(oxd.Request, url, function(response) {
+                console.log(response);
+                response = JSON.parse(response);
+                var data = {};
+                data['logoutUri'] = response.data.uri;
+                console.log("response");
+                console.log(data);
+                res.json(data);
+            });          
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+                        
+```
+
+### get_logout_uri (SOCKET)
+
+- [Get_logout_uri protocol description](https://gluu.org/docs/oxd/protocol/#log-out-uri).
+
+**Example**
+
+``` {.code}
+	router.post('/GetLogoutUri', function(req, res){
+    var url = "";
+    jsonfile.readFile(setting, function(err, obj) {
+        if(obj.oxd_id != ""){
+            oxd.Request.oxd_id = obj.oxd_id;
+            oxd.get_logout_uri(oxd.Request, url, function(response) {
+                console.log(response);
+                response = JSON.parse(response);
+                var data = {};
+                data['logoutUri'] = response.data.uri;
+                console.log("response");
+                console.log(data);
+                res.json(data);
+            });          
+            
+        }
+        else{
+            var data = {"error":"please register first."};
+            res.json(data);
+        }
+    });
+});
+                        
+```
+
