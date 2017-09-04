@@ -52,6 +52,80 @@ exports.register_site = function(request,url,callback)
 
     }
 
+exports.setup_client = function(request,url,callback)
+{
+  var data = {};
+  var param = {};
+
+  param.op_host  = request.op_host;
+  param.authorization_redirect_uri = request.authorization_redirect_uri;
+  param.scope =request.scope;
+  param.contacts =request.contacts;
+  param.application_type =request.application_type;
+  param.post_logout_redirect_uri =request.post_logout_redirect_uri;
+  param.redirect_uris =request.redirect_uris;
+  param.response_types =request.response_types;
+  param.client_id =request.client_id;
+  param.client_secret =request.client_secret;
+  param.client_jwks_uri =request.client_jwks_uri;
+  param.client_token_endpoint_auth_method =request.client_token_endpoint_auth_method;
+  param.client_request_uris =request.client_request_uris;
+  param.client_logout_uris =request.client_logout_uris;
+  param.client_sector_identifier_uri =request.client_sector_identifier_uri;
+  param.ui_locales =request.ui_locales;
+  param.claims_locales =request.claims_locales;
+  param.acr_values =request.acr_values;
+  param.grant_types =request.grant_types;
+    if(request.port== null || request.port == "")
+    {
+      console.log('Please configure port in request_param.js file');
+      return;
+    }
+    console.log(request.port);
+    if(url == "")
+    {
+        console.log(JSON.stringify(param));
+        utilities.oxdSocketRequest(request.port,request.host,param,"setup_client",function(response){
+            callback(response);
+        });
+    }
+    else{
+            console.log(JSON.stringify(param));
+            utilities.oxdHttpRequest(url,param,function(response){
+                callback(response);
+            })
+        }
+
+    }
+
+exports.get_client_access_token = function(request,url,callback)
+{
+    var param = {};
+    param.op_host  = request.op_host;
+    param.client_id = request.client_id;
+    param.client_secret = request.client_secret;
+    param.oxd_id = request.oxd_id;
+
+    if(request.port== null || request.port == "")
+    {
+      console.log('Please configure port in request_param.js file');
+      return;
+    }
+    if(url == "")
+    {
+      console.log(JSON.stringify(param));
+      utilities.oxdSocketRequest(request.port,request.host,param,"get_client_token",function(response){
+          callback(response);
+      });
+    }
+    else{
+      console.log(JSON.stringify(param));
+      utilities.oxdHttpRequest(url,param,function(response){
+          callback(response);
+      });
+    }
+
+}
 
 exports.update_site_registration = function(request,url,callback)
 {
@@ -70,6 +144,7 @@ exports.update_site_registration = function(request,url,callback)
   param.client_token_endpoint_auth_method = request.client_token_endpoint_auth_method;
   param.client_request_uris = request.client_request_uris;
   param.contacts = request.contacts;
+  param.protection_access_token = request.protection_access_token;
   console.log(request);
 
   if(request.port== null || request.port == "")
@@ -98,7 +173,10 @@ exports.get_authorization_url = function(request,url,callback)
   var data = {};
   var param = {};
   param.oxd_id = request.oxd_id;
+  param.scope = request.scope;
   param.acr_values = request.acr_values;
+  param.access_token = request.access_token;
+  param.protection_access_token = request.protection_access_token;
 
   if(request.port== null || request.port == "")
   {
@@ -129,6 +207,7 @@ exports.get_tokens_by_code = function(request,url,callback)
   param.code = request.code;
   param.state = request.state;
   param.scopes = request.scopes;
+  param.protection_access_token = request.protection_access_token;
 
   if(request.port== null || request.port == "")
   {
@@ -151,66 +230,74 @@ exports.get_tokens_by_code = function(request,url,callback)
   }
 
 }
-exports.uma_rs_protect = function(request,callback)
-{
-    client = new net.Socket();
+
+exports.get_access_token_by_refresh_token = function(request,url,callback){
+  var data = {};
+  var param = {};
+  param.oxd_id = request.oxd_id;
+  param.refresh_token = request.refresh_token;
+  param.scope = request.scope;
+  param.protection_access_token = request.protection_access_token;
+
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in request_param.js file');
+    return;
+  }
+
+  if(url == "")
+  {
+    console.log(JSON.stringify(param));
+    utilities.oxdSocketRequest(request.port,request.host,param,"get_access_token_by_refresh_token",function(response){
+        callback(response);
+    });
+  }
+  else{
+    console.log(JSON.stringify(param));
+    utilities.oxdHttpRequest(url,param,function(response){
+        callback(response);
+    });
+  }
+
+}
+
+exports.uma_rs_protect = function(request,url,callback){
     var data = {};
     var param = {};
     param.oxd_id = request.oxd_id;
     param.resources = request.resources;
+    param.protection_access_token = request.protection_access_token;
     if(request.port== null || request.port == "")
     {
       console.log('Please configure port in request_param.js file');
       return;
     }
 
-    client.connect(request.port, 'localhost', function() {
-       data.command = "uma_rs_protect";
-       data.params = param;
-       var string = JSON.stringify(data);
-       console.log('Connected2');
-       //console.log("Send Data : " + ("0" + string.length + string));
-       try {
-         if(string.length > 0 && string.length < 100){
-           console.log("Send Data protect: " + ("00" + string.length + string));
-           client.write(("00" + string.length + string));
-         }
-         else if(string.length > 100 && string.length < 1000){
-             console.log("Send Data : " + ("0" + string.length + string));
-             client.write(("0" + string.length + string));
-         }
-       } catch (err) {
-            console.log("send data error:" + err);
-       }
-   });
-   
-   client.on('data', function(req) {
-    var data = req.toString();
-    console.log("response : " + data);
-    callback(data.substring(4,data.length));
-  	client.end(); // kill client after server's response
-  });
-
-  client.on('error', function(err) {
-  	console.log('error: ' + err);
-  	client.end(); // kill client after server's response
-  });
-
-  client.on('close', function() {
-  	console.log('Connection closed');
-  });
+    if(url == "")
+    {
+      console.log(JSON.stringify(param));
+      utilities.oxdSocketRequest(request.port,request.host,param,"uma_rs_protect",function(response){
+          callback(response);
+      });
+    }
+    else{
+      console.log(JSON.stringify(param));
+      utilities.oxdHttpRequest(url,param,function(response){
+          callback(response);
+      });
+    }
 }
 
-exports.uma_rs_check_access = function(request,callback)
+exports.uma_rs_check_access = function(request,url,callback)
 {
-    client = new net.Socket();
     var data = {};
     var param = {};
     param.oxd_id = request.oxd_id;
-    param.rpt = "";
-    param.http_method = "GET";
-    param.path = "/scim";
+    param.rpt = request.rpt;
+    param.http_method = request.http_method;
+    param.path = request.path;
     param.port = 8099;
+    param.protection_access_token = request.protection_access_token;
 
     if(request.port== null || request.port == "")
     {
@@ -218,41 +305,19 @@ exports.uma_rs_check_access = function(request,callback)
       return;
     }
 
-    client.connect(request.port, 'localhost', function() {
-       data.command = "uma_rs_check_access";
-       data.params = param;
-       var string = JSON.stringify(data);
-       console.log('Connected3');
-       //console.log("Send Data : " + ("0" + string.length + string));
-       try {
-         if(string.length > 0 && string.length < 100){
-           console.log("Send Data1 : " + ("00" + string.length + string));
-           client.write(("00" + string.length + string));
-         }
-         else if(string.length > 100 && string.length < 1000){
-             console.log("Send Data2 : " + ("0" + string.length + string));
-             client.write(("0" + string.length + string));
-         }
-       } catch (err) {
-            console.log("send data3 error:" + err);
-       }
-   });
-   
-   client.on('data', function(req) {
-    var data = req.toString();
-    console.log("response : " + data);
-    callback(data.substring(4,data.length));
-  	client.end(); // kill client after server's response
-  });
-  
-  client.on('error', function(err) {
-  	console.log('error: ' + err);
-  	client.end(); // kill client after server's response
-  });
-
-  client.on('close', function() {
-  	console.log('Connection closed');
-  });
+    if(url == "")
+    {
+      console.log(JSON.stringify(param));
+      utilities.oxdSocketRequest(request.port,request.host,param,"uma_rs_check_access",function(response){
+          callback(response);
+      });
+    }
+    else{
+      console.log(JSON.stringify(param));
+      utilities.oxdHttpRequest(url,param,function(response){
+          callback(response);
+      });
+    }
 }
 
 exports.get_user_info = function(request,url,callback)
@@ -261,6 +326,7 @@ exports.get_user_info = function(request,url,callback)
   var param = {};
   param.oxd_id = request.oxd_id;
   param.access_token = request.access_token;
+  param.protection_access_token = request.protection_access_token;
 
   if(request.port== null || request.port == "")
   {
@@ -291,6 +357,7 @@ exports.get_logout_uri = function(request,url,callback)
   param.post_logout_redirect_uri = request.post_logout_redirect_uri;
   param.state = request.state;
   param.session_state = request.session_state;
+  param.protection_access_token = request.access_token;
 
   if(request.port== null || request.port == "")
   {
@@ -301,6 +368,98 @@ exports.get_logout_uri = function(request,url,callback)
   {
     console.log(JSON.stringify(param));
     utilities.oxdSocketRequest(request.port,request.host,param,"get_logout_uri",function(response){
+        callback(response);
+    });
+  }
+  else{
+    console.log(JSON.stringify(param));
+    utilities.oxdHttpRequest(url,param,function(response){
+        callback(response);
+    });
+  }
+}
+
+exports.uma_rp_get_rpt = function(request,url,callback)
+{
+  var data = {};
+  var param = {};
+  param.oxd_id = request.oxd_id;
+  param.ticket = request.ticket;
+  param.claim_token = request.claim_token;
+  param.claim_token_format = request.claim_token_format;
+  param.pct = request.pct;
+  param.rpt = request.rpt;
+  param.scope = request.scope;
+  param.state = request.state;
+  param.protection_access_token = request.protection_access_token;
+
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in  file - uma_rp_get_rpt');
+    return;
+  }
+  if(url == "")
+  {
+    console.log(JSON.stringify(param));
+    utilities.oxdSocketRequest(request.port,request.host,param,"uma_rp_get_rpt",function(response){
+        callback(response);
+    });
+  }
+  else{
+    console.log(JSON.stringify(param));
+    utilities.oxdHttpRequest(url,param,function(response){
+        callback(response);
+    });
+  }
+}
+
+exports.uma_rp_get_claims_gathering_url = function(request,url,callback)
+{
+  var data = {};
+  var param = {};
+  param.oxd_id = request.oxd_id;
+  param.ticket = request.ticket;
+  param.claims_redirect_uri = request.claims_redirect_uri;
+  param.protection_access_token = request.protection_access_token;
+
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in  file - uma_rp_get_claims_gathering_url');
+    return;
+  }
+  if(url == "")
+  {
+    console.log(JSON.stringify(param));
+    utilities.oxdSocketRequest(request.port,request.host,param,"uma_rp_get_claims_gathering_url",function(response){
+        callback(response);
+    });
+  }
+  else{
+    console.log(JSON.stringify(param));
+    utilities.oxdHttpRequest(url,param,function(response){
+        callback(response);
+    });
+  }
+}
+
+exports.get_access_token_by_refresh_token = function(request,url,callback)
+{
+  var data = {};
+  var param = {};
+  param.oxd_id = request.oxd_id;
+  param.refresh_token = request.refresh_token;
+  param.scope = request.scope;
+  param.protection_access_token = request.protection_access_token;
+
+  if(request.port== null || request.port == "")
+  {
+    console.log('Please configure port in  file - get_access_token_by_refresh_token');
+    return;
+  }
+  if(url == "")
+  {
+    console.log(JSON.stringify(param));
+    utilities.oxdSocketRequest(request.port,request.host,param,"get_access_token_by_refresh_token",function(response){
         callback(response);
     });
   }

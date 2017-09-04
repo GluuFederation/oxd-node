@@ -49,12 +49,18 @@ exports.oxdHttpRequest = function(url,param,callback) {
     // param = JSON.stringify(param);
     console.log(param);
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";//this line is to over come self signed certificate request issue, in real time this should be removed
-    httpRequest.post({
+    var options = {
             url:url,
             body:param,
-            json:true
-        },
-        function (error, response, body) {
+            json:true};
+        
+        if(param.protection_access_token != null){
+            options['headers'] = {
+                Authorization : "Bearer "+param.protection_access_token
+            };
+        }
+        console.log(options);
+    httpRequest.post(options ,function (error, response, body) {
             console.log(error);
             console.log(body);
             console.log(url);

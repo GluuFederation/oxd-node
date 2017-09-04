@@ -40,11 +40,10 @@ app.set('view engine', 'ejs');
 app.use('/', index);
 
 var options = {
-    key: fs.readFileSync(__dirname + '/hostkey.pem'),
-    cert: fs.readFileSync(__dirname + '/hostcert.pem')
+    key: fs.readFileSync(__dirname + '<path to host key file>'),
+    cert: fs.readFileSync(__dirname + '<path to host cert file>')
 };
 
 app.use(vhost('client.example.com', app)); // Serves top level domain via Main server app
-
 var a = https.createServer(options, app).listen(properties.app_port);
 module.exports = app;

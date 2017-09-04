@@ -1,0 +1,232 @@
+<html>
+    <head>
+        <title>oxd OpenID Connect</title>
+        <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheets/custom.css">
+        <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+        <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+</head>
+    <body class="container-fluid">
+        <div id="loadingDiv">
+            <div>
+                <h7>Please wait...</h7>
+            </div>
+        </div>
+        <div id='bod_div' class="col-md-12" >
+            <div class="col-md-8" >
+                <h3>Register</h3>
+                <hr class="hr_modified">
+                <form action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">URI of the OpenID Provider:</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="<%= oxdRpConfig.op_host %>" size="50" class="form-control ip_box" name="ophost" required <% if (oxdObject.oxd_id) {%> disabled<%}%>/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 ">Client Redirect URI</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="<%=  oxdRpConfig.authorization_redirect_uri; %>" size="50" class="form-control ip_box" name="redirect_uri" required <% if (oxdObject.oxd_id) {%>disabled<%}%>/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 ">Post logout URI</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="<%=  oxdRpConfig.post_logout_uri; %>" size="50" class="form-control ip_box" name="post_logout_uri" required <% if (oxdObject.oxd_id) {%>disabled<%}%>/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 ">oxd Connection Type:</label>
+                        <div class="ip_box col-sm-8" >
+                            <label class="radio-inline"> <input type="radio" name="conn_type_radio" value="local" checked <% if (oxdObject.oxd_id) {%>disabled<%}%>> local</label>
+                            <label class="radio-inline"> <input type="radio"  name="conn_type_radio" value="web" <% if (oxdObject.oxd_id) {%>disabled<%}%>> web</label>
+                        </div>
+                        <!-- for setting values-->
+                        <label class="control-label col-sm-4 " id="conn_label">oxd Port</label>
+                        <div class="col-sm-8" id="conn_ip">
+                            <input type="number" value="<%=  oxdRpConfig.oxd_host_port?oxdRpConfig.oxd_host_port:8099 %>"  id="oxdLocal" class="form-control ip_box" name="oxd_local_value" required <% if (oxdObject.oxd_id) {%>disabled<%} %> />
+                            <input type="text" value="<%=  oxdRpConfig.httpBaseUrl; %>" id="oxdWeb" class="form-control ip_box" name="oxd_web_name" required <% if (oxdObject.oxd_id) {%>disabled<%}%> />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" id="set_id_secret">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 ">Client Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="<%=  oxdObject.client_name; %>" size="50" class="form-control ip_box" name="client_name" required <% if (oxdObject.oxd_id) {%>disabled<%}%>/>
+                        </div>
+                    </div>
+                    <% if(!oxdObject.has_registration_endpoint || (oxdObject.client_id!="" & oxdObject.client_secret!="")){ %>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 ">Client Id</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="<%=  oxdObject.client_id; %>" size="50" class="form-control ip_box" name="client_id" required <% if (oxdObject.oxd_id) {%> disabled <%}%>/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 ">Client Secret</label>
+                        <div class="col-sm-8">
+                            <input type="text" value="<%=  oxdObject.client_secret; %>" size="50" class="form-control ip_box" name="client_secret" required <% if (oxdObject.oxd_id) {%>disabled<%}%>/>
+                        </div>
+                    </div>
+                    <% }%>
+                    <div class="row">
+                        <div class="col-md-6" id="buttons">
+                            <% if (oxdObject.oxd_id) { %>
+                                <input type="button" value="Update" class="btn btn-primary" id="update">
+                                <input type="button" value="Edit" class="btn btn-primary" id="edit">
+                                <input type="button" value="Delete" class="btn btn-primary" id="del">
+                                <input type="button" value="Login" class="btn btn-primary" id="login">
+                            <% }else{ %>
+                                <input type="button" value="Register" class="btn btn-primary" id="register">
+                            <% } %>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="form-group">
+                    <% if (oxdObject.oxd_id) { %>
+                        <label class="control-label col-sm-4 ">oxd id:</label>
+                        <div class="col-sm-8">
+                            <p><strong> <%=  oxdObject.oxd_id %> </strong></p>
+                        </div>
+                    <% } %>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <div id="msg_box" class="alert <%=  oxdObject.message == ""?"alert-warning":"alert-success" %> fade in">
+                            <strong><%=  oxdObject.message == ""?"Enter data to register":oxdObject.message %></strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#oxdWeb").hide();
+                $("#update").hide();
+                if( "<%=  oxdObject.conn_type %>" == "web"){
+                    $("#oxdLocal").removeAttr("required");
+                    $("#oxdLocal").hide();
+                    $("#oxdWeb").show();
+                    $("#conn_label").html("oxd Web address");
+                    $('input:radio[name="conn_type_radio"]').filter('[value="web"]').attr('checked', 'checked');
+                }
+                $('input:radio[name="conn_type_radio"]').change(function(){
+                    if($('input:radio[name="conn_type_radio"]:checked').val() == "web"){
+                        $("#oxdLocal").removeAttr("required");
+                        $("#oxdLocal").hide();
+                        $("#oxdWeb").attr('required');
+                        $("#oxdWeb").show();
+                        $('input:radio[name="conn_type_radio"]').filter('[value="web"]').attr('checked', 'checked');
+                        $("#conn_label").html("oxd Web address");
+                    }else{
+                        $("#oxdWeb").removeAttr("required");
+                        $("#oxdWeb").hide();
+                        $("#oxdLocal").attr('required');
+                        $("#oxdLocal").show();
+                        $('input:radio[name="conn_type_radio"]').filter('[value="web"]').attr('checked', 'checked');
+                        $("#conn_label").html("oxd Port");
+                    }
+                });
+                
+                function isJson(str) {
+                    try {
+                        JSON.parse(str);
+                    } catch (e) {
+                        return false;
+                    }
+                    return true;
+                }
+                
+                $("#register").click(function(){
+                    var request_data = {
+                            redirect_uri: $('input:text[name="redirect_uri"]').val(),
+                            op_host: $('input:text[name="ophost"]').val(),
+                            post_logout_uri: $('input:text[name="post_logout_uri"]').val(),
+                            conn_type: $('input:radio[name="conn_type_radio"]:checked').val(),
+                            oxd_local_value: $("#oxdLocal").val(),
+                            oxd_web_value: $('#oxdWeb').val(),
+                            client_name: $('input:text[name="client_name"]').val()
+                        };
+                    if(<%=  oxdObject.has_registration_endpoint?1:0 %> == "0"){
+                        request_data.client_id = $('input:text[name="client_id"]').val();
+                        request_data.client_secret = $('input:text[name="client_secret"]').val();
+                    }
+                    $("#loadingDiv").show();
+                    jQuery.post(
+                        "/SetupClient",
+                        request_data,
+                        function (data) {
+                            data = JSON.stringify(data);
+                            if(isJson(data)){
+                                location.reload();
+                            }else{
+                                $("#msg_box").html("<strong>"+data+"</strong>");
+                                $("#msg_box").removeClass("alert-warning");
+                                $("#msg_box").addClass("alert-danger");
+                            }
+                            $("#loadingDiv").hide();
+                        }
+                    );
+                });
+                
+                $("#edit").click(function(){
+                    $('input:text[name="redirect_uri"]').removeAttr("disabled");
+                    $('input:text[name="post_logout_uri"]').removeAttr("disabled");
+                    $("#oxdLocal").removeAttr("disabled");
+                    $('#oxdWeb').removeAttr("disabled");
+                    $('input:radio[name="conn_type_radio"]').removeAttr("disabled");
+                    $('input:text[name="client_name"]').removeAttr("disabled");
+                    $("#update").show();
+                    $("#edit").hide();
+                });
+                
+                $("#update").click(function(){
+                    $("#loadingDiv").show();
+                    jQuery.post(
+                        "/Update",
+                        { 
+                            redirect_uri: $('input:text[name="redirect_uri"]').val(),
+                            op_host: $('input:text[name="ophost"]').val(),
+                            post_logout_uri: $('input:text[name="post_logout_uri"]').val(),
+                            conn_type: $('input:radio[name="conn_type_radio"]:checked').val(),
+                            oxd_local_value: $("#oxdLocal").val(),
+                            oxd_web_value: $('#oxdWeb').val(),
+                            client_name: $('input:text[name="client_name"]').val()
+                        },
+                        function (data) {
+                            if(isJson(data)){
+                                location.reload();
+                            }else{
+                                $("#msg_box").html("<strong>"+data+"</strong>");
+                                $("#msg_box").removeClass("alert-warning");
+                                $("#msg_box").addClass("alert-danger");
+                            }
+                            $("#loadingDiv").hide();
+                        }
+                    );
+                    
+                });
+                
+                $("#del").click(function(){
+                    window.location = "/delete";
+                });
+                
+                $("#login").click(function(){
+                    window.location = "/login";
+                });
+            });
+        </script>
+    </body>
+</html>
