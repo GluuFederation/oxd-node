@@ -357,7 +357,7 @@ exports.get_logout_uri = function(request,url,callback)
   param.post_logout_redirect_uri = request.post_logout_redirect_uri;
   param.state = request.state;
   param.session_state = request.session_state;
-  param.protection_access_token = request.access_token;
+  param.protection_access_token = request.protection_access_token;
 
   if(request.port== null || request.port == "")
   {
