@@ -172,7 +172,8 @@ router.post('/SetupClient', function(req, res){
                                         oxd.Request.client_id = req.body.client_id;
                                         oxd.Request.client_secret = req.body.client_secret;
                                         oxd.Request.client_name = req.body.client_name;
-                                        oxd.setup_client(oxd.Request, url, function(response) {
+                                        oxd.Request.url = url;
+                                        oxd.setup_client(oxd.Request, function(response) {
                                             var responsedata = JSON.parse(response);
                                             if (responsedata.status == "ok") {
                                                 obj.oxd_id = responsedata.data.oxd_id;
@@ -208,7 +209,8 @@ router.post('/SetupClient', function(req, res){
                     oxd.Request.port = req.body.oxd_local_value;
                     oxd.Request.scopes = gluu_scopes;
                     oxd.Request.client_name = req.body.client_name;
-                    oxd.setup_client(oxd.Request, url, function(response) {
+                    oxd.Request.url = url;
+                    oxd.setup_client(oxd.Request, function(response) {
                         console.log(response);
                         var responsedata = JSON.parse(response);
                         if (responsedata.status == "ok") {
@@ -273,8 +275,10 @@ router.post('/Update', function(req, res){
                 parametersData.port = req.body.oxd_local_value;
                 parametersData.op_host = req.body.op_host;
                 parametersData.httpBaseUrl = req.body.oxd_web_value;
-                if(req.body.oxd_web_value != ""){
+                if(req.body.conn_type == "web"){
                     obj.conn_type = "web";
+                }else{
+                    obj.conn_type = "local";
                 }
                 obj.message = "Successfully Updated";
                 console.log(parametersData);
@@ -282,13 +286,14 @@ router.post('/Update', function(req, res){
                     jsonfile.writeFile(setting,obj,function(err){
                         if(obj.has_registration_endpoint){
                             oxd.Request.client_id = obj.client_id;
-                            oxd.Request.client_secret = obj.client_secret; 
+                            oxd.Request.client_secret = obj.client_secret;
                             if(req.body.conn_type == "local"){
                                 var url = "";
                             }else if(req.body.conn_type == "web"){
                                 var url = req.body.oxd_web_value+"/get-client-token";
                             }
-                            oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+                            oxd.Request.url = url;
+                            oxd.get_client_access_token(oxd.Request, function(access_token_response){
                                 var access_token_data = JSON.parse(access_token_response);
                                 oxd.Request.protection_access_token = access_token_data.data.access_token;
 
@@ -297,7 +302,8 @@ router.post('/Update', function(req, res){
                                 }else if(req.body.conn_type == "web"){
                                     var url = req.body.oxd_web_value+"/update-site";
                                 }
-                                oxd.update_site_registration(oxd.Request, url, function(response) {
+                                oxd.Request.url = url;
+                                oxd.update_site_registration(oxd.Request, function(response) {
                                     res.json(response); 
                                 });
 
@@ -322,7 +328,8 @@ router.get('/Authorization', function(req, res){
         if(obj.oxd_id != ""){
             jsonfile.readFile(parameters, function(err, parametersData){
                 parametersData.post_logout_redirect_uri = req.body.postLogoutRedirectUrl;
-                oxd.Request.oxd_id = obj.oxd_id;
+                oxd.Request.oxd_id = obj.oxd_id; 
+                oxd.Request.op_host = parametersData.op_host;
                 oxd.Request.scope=["openid","profile","email","uma_protection","uma_authorization"];
                 jsonfile.writeFile(parameters,parametersData,function(err){
                     if(obj.has_registration_endpoint){
@@ -331,9 +338,10 @@ router.get('/Authorization', function(req, res){
                         }else if(obj.conn_type == "web"){
                             var url = parametersData.httpBaseUrl+"/get-client-token";
                         }
+                        oxd.Request.url = url;
                         oxd.Request.client_id = obj.client_id;
                         oxd.Request.client_secret = obj.client_secret;
-                        oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+                        oxd.get_client_access_token(oxd.Request, function(access_token_response){
                             var access_token_data = JSON.parse(access_token_response);
                             oxd.Request.protection_access_token = access_token_data.data.access_token;
                             if(obj.conn_type == "local"){
@@ -341,7 +349,12 @@ router.get('/Authorization', function(req, res){
                             }else if(obj.conn_type == "web"){
                                 var url = parametersData.httpBaseUrl+"/get-authorization-url";
                             }
-                            oxd.get_authorization_url(oxd.Request, url, function(response) {
+                            oxd.Request.url = url;
+                            oxd.Request.custom_parameters = {
+                                param1 : "value1",
+                                param2 : "value2"
+                            };
+                            oxd.get_authorization_url(oxd.Request, function(response) {
                                 response = JSON.parse(response);
                                 console.log(response.data.authorization_url);
                                 console.log(res.redirect(response.data.authorization_url));
@@ -354,7 +367,8 @@ router.get('/Authorization', function(req, res){
                         }else if(obj.conn_type == "web"){
                             var url = parametersData.httpBaseUrl+"/get-authorization-url";
                         }
-                        oxd.get_authorization_url(oxd.Request, url, function(response) {
+                        oxd.Request.url = url;
+                        oxd.get_authorization_url(oxd.Request, function(response) {
                             response = JSON.parse(response);
                             console.log(response.data.authorization_url);
                             res.redirect(response.data.authorization_url);
@@ -378,13 +392,13 @@ router.get('/Login', function(req, res){
 router.get('/Login_redirect', function(req, res){
     var url = require('url');
     var url_parts = url.parse(req.url, true);
-    console.log(url_parts.query.code);
     jsonfile.readFile(setting, function(err, obj) {
         if(obj.oxd_id != ""){
             jsonfile.readFile(parameters, function(err, parametersData){
                 parametersData.code = oxd.Request.code = url_parts.query.code;
                 parametersData.state = oxd.Request.state = url_parts.query.state;
-                oxd.Request.oxd_id = obj.oxd_id;
+                oxd.Request.oxd_id = obj.oxd_id; 
+                oxd.Request.op_host = parametersData.op_host;
                 oxd.Request.scope=["openid","profile","email","uma_protection","uma_authorization"];
                 jsonfile.writeFile(parameters,parametersData,function(err){
                     if(obj.has_registration_endpoint){
@@ -395,7 +409,8 @@ router.get('/Login_redirect', function(req, res){
                         }else if(obj.conn_type == "web"){
                             var url = parametersData.httpBaseUrl+"/get-client-token";
                         }
-                        oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+                        oxd.Request.url = url;
+                        oxd.get_client_access_token(oxd.Request, function(access_token_response){
                             var access_token_data = JSON.parse(access_token_response);
                             oxd.Request.protection_access_token = access_token_data.data.access_token;
                             if(obj.conn_type == "local"){
@@ -403,7 +418,8 @@ router.get('/Login_redirect', function(req, res){
                             }else if(obj.conn_type == "web"){
                                 var url = parametersData.httpBaseUrl+"/get-tokens-by-code";
                             }
-                            oxd.get_tokens_by_code(oxd.Request, url, function(response) {
+                            oxd.Request.url = url;
+                            oxd.get_tokens_by_code(oxd.Request, function(response) {
                                 response = JSON.parse(response);
                                 console.log(response);
                                 var refresh_token = response.data.refresh_token;
@@ -417,7 +433,8 @@ router.get('/Login_redirect', function(req, res){
                                         }else if(obj.conn_type == "web"){
                                             var url = parametersData.httpBaseUrl+"/get-client-token";
                                         }
-                                        oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+                                        oxd.Request.url = url;
+                                        oxd.get_client_access_token(oxd.Request, function(access_token_response){
                                             var access_token_data = JSON.parse(access_token_response);
                                             oxd.Request.protection_access_token = access_token_data.data.access_token;
                                             oxd.Request.refresh_token = refresh_token;
@@ -427,7 +444,8 @@ router.get('/Login_redirect', function(req, res){
                                             }else if(obj.conn_type == "web"){
                                                 var url = parametersData.httpBaseUrl+"/get-access-token-by-refresh-token";
                                             }
-                                            oxd.get_access_token_by_refresh_token(oxd.Request, url, function(access_token){
+                                            oxd.Request.url = url;
+                                            oxd.get_access_token_by_refresh_token(oxd.Request, function(access_token){
                                                 oxd.Request.oxd_id = obj.oxd_id;
                                                 var access_token_data = JSON.parse(access_token);
                                                 oxd.Request.access_token = access_token_data.data.access_token;
@@ -436,7 +454,8 @@ router.get('/Login_redirect', function(req, res){
                                                 }else if(obj.conn_type == "web"){
                                                     var url = parametersData.httpBaseUrl+"/get-user-info";
                                                 }
-                                                oxd.get_user_info(oxd.Request, url, function(response) {
+                                                oxd.Request.url = url;
+                                                oxd.get_user_info(oxd.Request, function(response) {
                                                     console.log(response);
                                                     response = JSON.parse(response);
                                                     var data = {};
@@ -461,7 +480,8 @@ router.get('/Login_redirect', function(req, res){
                             var url = parametersData.httpBaseUrl+"/get-tokens-by-code";
                         }
                         oxd.Request.scope=["openid","profile","email"];
-                        oxd.get_tokens_by_code(oxd.Request, url, function(response) {
+                        oxd.Request.url = url;
+                        oxd.get_tokens_by_code(oxd.Request, function(response) {
                             response = JSON.parse(response);
                             oxd.Request.oxd_id = obj.oxd_id;
                             oxd.Request.access_token = response.data.access_token;
@@ -470,7 +490,7 @@ router.get('/Login_redirect', function(req, res){
                             }else if(obj.conn_type == "web"){
                                 var url = parametersData.httpBaseUrl+"/get-user-info";
                             }
-                            oxd.get_user_info(oxd.Request, url, function(response) {
+                            oxd.get_user_info(oxd.Request, function(response) {
                                 console.log(response);
                                 response = JSON.parse(response);
                                 var data = {};
@@ -499,14 +519,15 @@ router.get('/protect', function(req, res) {
     jsonfile.readFile(setting, function(err, obj) {
         oxd.Request.client_id = obj.client_id;
         oxd.Request.client_secret = obj.client_secret;
-        if(obj.conn_type == "local"){
-            var url = "";
-        }else if(obj.conn_type == "web"){
-            var url = parametersData.httpBaseUrl+"/get-client-token";
-        }
         jsonfile.readFile(parameters, function(err, parametersData) {
+            if(obj.conn_type == "local"){
+                var url = "";
+            }else if(obj.conn_type == "web"){
+                var url = parametersData.httpBaseUrl+"/get-client-token";
+            }
             oxd.Request.op_host = parametersData.op_host;
-            oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+            oxd.Request.url = url;
+            oxd.get_client_access_token(oxd.Request, function(access_token_response){
                 var access_token_data = JSON.parse(access_token_response);
                 oxd.Request.protection_access_token = access_token_data.data.access_token;
                 oxd.Request.oxd_id = obj.oxd_id;
@@ -528,7 +549,8 @@ router.get('/protect', function(req, res) {
                 }else if(obj.conn_type == "web"){
                     var url = parametersData.httpBaseUrl+"/uma-rs-protect";
                 }
-                oxd.uma_rs_protect(oxd.Request, url, function(response) {
+                oxd.Request.url = url;
+                oxd.uma_rs_protect(oxd.Request, function(response) {
                     res.render('uma_response',{data:response});
                 });    
             });
@@ -536,18 +558,19 @@ router.get('/protect', function(req, res) {
     });
 });
 
-router.get('/check_access', function(req, url, res) {
+router.get('/check_access', function(req, res) {
     jsonfile.readFile(setting, function(err, obj) {
         oxd.Request.client_id = obj.client_id;
         oxd.Request.client_secret = obj.client_secret;
-        if(obj.conn_type == "local"){
-            var url = "";
-        }else if(obj.conn_type == "web"){
-            var url = parametersData.httpBaseUrl+"/get-client-token";
-        }
         jsonfile.readFile(parameters, function(err, parametersData) {
+            if(obj.conn_type == "local"){
+                var url = "";
+            }else if(obj.conn_type == "web"){
+                var url = parametersData.httpBaseUrl+"/get-client-token";
+            }
+            oxd.Request.url = url;
             oxd.Request.op_host = parametersData.op_host;
-            oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+            oxd.get_client_access_token(oxd.Request, function(access_token_response){
                 var access_token_data = JSON.parse(access_token_response);
                 oxd.Request.protection_access_token = access_token_data.data.access_token;
                 oxd.Request.oxd_id = obj.oxd_id;
@@ -556,10 +579,11 @@ router.get('/check_access', function(req, url, res) {
                     }else if(obj.conn_type == "web"){
                         var url = parametersData.httpBaseUrl+"/uma-rs-check-access";
                     }
+                    oxd.Request.url = url;
                     oxd.Request.rpt = "";
                     oxd.Request.http_method = "GET";
                     oxd.Request.path = "/photo";
-                    oxd.uma_rs_check_access(oxd.Request, url, function(response) {
+                    oxd.uma_rs_check_access(oxd.Request, function(response) {
                         res.render('uma_response',{data:response});
                     }); 
             });
@@ -572,14 +596,15 @@ router.get('/get_rpt', function(req, res) {
     jsonfile.readFile(setting, function(err, obj) {
         oxd.Request.client_id = obj.client_id;
         oxd.Request.client_secret = obj.client_secret;
-        if(obj.conn_type == "local"){
-            var url = "";
-        }else if(obj.conn_type == "web"){
-            var url = parametersData.httpBaseUrl+"/get-client-token";
-        }
         jsonfile.readFile(parameters, function(err, parametersData) {
+            if(obj.conn_type == "local"){
+                var url = "";
+            }else if(obj.conn_type == "web"){
+                var url = parametersData.httpBaseUrl+"/get-client-token";
+            }
+            oxd.Request.url = url;
             oxd.Request.op_host = parametersData.op_host;
-            oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+            oxd.get_client_access_token(oxd.Request, function(access_token_response){
                 var access_token_data = JSON.parse(access_token_response);
                 oxd.Request.protection_access_token = access_token_data.data.access_token;
                 oxd.Request.oxd_id = obj.oxd_id;
@@ -588,8 +613,9 @@ router.get('/get_rpt', function(req, res) {
                 }else if(obj.conn_type == "web"){
                     var url = parametersData.httpBaseUrl+"/uma-rp-get-rpt";
                 }
-                oxd.Request.ticket = "3b7c76e2-0e10-4be2-b8e4-8a40b2b28315";
-                oxd.uma_rp_get_rpt(oxd.Request, url, function(response) {
+                oxd.Request.url = url;
+                oxd.Request.ticket = "09f32169-de52-42fe-9796-59ba21637a64";
+                oxd.uma_rp_get_rpt(oxd.Request, function(response) {
                     res.render('uma_response',{data:response});
                 });    
             });
@@ -601,25 +627,28 @@ router.get('/claims_gathering_url', function(req, res) {
     jsonfile.readFile(setting, function(err, obj) {
         oxd.Request.client_id = obj.client_id;
         oxd.Request.client_secret = obj.client_secret;
-        if(obj.conn_type == "local"){
-            var url = "";
-        }else if(obj.conn_type == "web"){
-            var url = parametersData.httpBaseUrl+"/get-client-token";
-        }
         jsonfile.readFile(parameters, function (err, parametersData) {
+            if(obj.conn_type == "local"){
+                var url = "";
+            }else if(obj.conn_type == "web"){
+                var url = parametersData.httpBaseUrl+"/get-client-token";
+            }
             oxd.Request.op_host = parametersData.op_host;
-            oxd.get_client_access_token(oxd.Request, url, function (access_token_response) {
+            oxd.Request.url = url;
+            oxd.get_client_access_token(oxd.Request, function (access_token_response) {
                 var access_token_data = JSON.parse(access_token_response);
                 oxd.Request.protection_access_token = access_token_data.data.access_token;
                 oxd.Request.oxd_id = obj.oxd_id;
                 if (obj.conn_type == "local") {
                     var url = "";
                 } else if (obj.conn_type == "web") {
-                    var url = parametersData.httpBaseUrl + "/uma_rp_get_claims_gathering_url";
+                    var url = parametersData.httpBaseUrl + "/uma-rp-get-claims-gathering-url";
                 }
-                oxd.Request.ticket = "3b7c76e2-0e10-4be2-b8e4-8a40b2b28315";
+                oxd.Request.ticket = "09f32169-de52-42fe-9796-59ba21637a64";
                 oxd.Request.claims_redirect_uri = "https://node.oxdexample.com:5053/settings";
-                oxd.uma_rs_check_access(oxd.Request, url, function (response) {
+                oxd.Request.url = url;
+                console.log(oxd.Request);
+                oxd.uma_rp_get_claims_gathering_url(oxd.Request, function (response) {
                     res.render('uma_response', {data: response});
                 });
             });
@@ -641,7 +670,8 @@ router.post('/GetLogoutUri', function(req, res){
                 }else if(obj.conn_type == "web"){
                     var url = parametersData.httpBaseUrl+"/get-client-token";
                 }
-                oxd.get_client_access_token(oxd.Request, url, function(access_token_response){
+                oxd.Request.url = url;
+                oxd.get_client_access_token(oxd.Request, function(access_token_response){
                     var access_token_data = JSON.parse(access_token_response);
                     console.log("access_token_response");
                     console.log(access_token_response);
@@ -652,7 +682,8 @@ router.post('/GetLogoutUri', function(req, res){
                     }else if(obj.conn_type == "web"){
                         var url = parametersData.httpBaseUrl+"/get-logout-uri";
                     }
-                    oxd.get_logout_uri(oxd.Request, url, function(response) {
+                    oxd.Request.url = url;
+                    oxd.get_logout_uri(oxd.Request, function(response) {
                         console.log(response);
                         response = JSON.parse(response);
                         var data = {};
@@ -674,7 +705,8 @@ router.post('/GetLogoutUri', function(req, res){
             }else if(obj.conn_type == "web"){
                 var url = parametersData.httpBaseUrl+"/get-logout-uri";
             }
-            oxd.get_logout_uri(oxd.Request, url, function(response) {
+            oxd.Request.url = url;
+            oxd.get_logout_uri(oxd.Request, function(response) {
                 console.log(response);
                 response = JSON.parse(response);
                 var data = {};

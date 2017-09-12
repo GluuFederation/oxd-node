@@ -29,7 +29,7 @@
                 return;
             }
 
-            jQuery.post("/Register",
+            jQuery.post("/SetupClient",
                 { redirectUrl: redirectUrl.val()},
                 function (data) {
                     jQuery("#email").prop("disabled", false);
@@ -397,6 +397,10 @@
             </div>
             </div>
         </form>
+    </div>
+    <div class="col-md-12">
+        <ul class="list-group" id="tokens">
+        </ul>
     </div>
 
     <div class="col-md-12">

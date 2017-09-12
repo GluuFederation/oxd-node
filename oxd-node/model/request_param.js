@@ -28,4 +28,5 @@ exports.id_token_hint=null;
 exports.session_state=null;
 exports.port=8099;
 exports.host="<OXD Server Host>";
-exports.httpBaseUrl="<OXD-TO-HTTP Server Host>";
+exports.httpBaseUrl="<OXD-HTTPS-EXTENSION Url Server Host>";
+exports.url=""
