@@ -13,6 +13,18 @@ var url = require('url');
 var properties = require('../properties');
 var httpRequest = require('request');
 
+router.get('/', function(req, res) {
+    jsonfile.readFile(setting, function(err, obj) {
+        jsonfile.readFile(parameters, function(err, objRpConfig) {
+            if(obj.oxd_id != ""){
+                res.redirect('/login');
+            } else {
+                res.redirect('/settings');
+            }
+        });
+    });
+});
+
 router.get('/settings', function(req, res) {
     jsonfile.readFile(setting, function(err, obj) {
         jsonfile.readFile(parameters, function(err, objRpConfig) {
@@ -133,7 +145,7 @@ router.post('/SetupClient', function(req, res){
     }else if(req.body.conn_type == "web"){
         var url = req.body.oxd_web_value+"/setup-client";
     }
-     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     httpRequest.get({url:req.body.op_host+'/.well-known/openid-configuration'} ,function (error, response, body) {
         console.log(error);
         var hasRegistrationEndPoint = true;
