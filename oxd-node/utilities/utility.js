@@ -1,71 +1,107 @@
-
 var net = require('net');
 var httpRequest = require('request');
 
-exports.oxdSocketRequest = function(port,host,param,command,callback) {
+/**
+ * Function for oxd-server socket manipulation
+ * @param {int} port - OXD port number for oxd-server
+ * @param {int} host - URL of the oxd-server
+ * @param {object} params - List of parameters to request oxd-server command
+ * @param {string} command - OXD Command name
+ * @returns {function} callback - Callback response function
+ */
+function oxdSocketRequest(port, host, params, command, callback) {
+  // OXD data
+  var data = {
+    command: command,
+    params: params
+  };
 
-        var data = {};
-        var client = new net.Socket();
-        client.connect(port, host, function() {
-        data.command = command;
-        data.params = param;
-        var string = JSON.stringify(data);
-        console.log(string.length);
-        console.log('Connected');
-        //console.log("Send Data : " + ("0" + string.length + string));
-        try {
-          if(string.length > 0 && string.length < 100){
-            console.log("Send Data1 : " + ("00" + string.length + string));
-            client.write(("00" + string.length + string));
-          }
-          else if(string.length > 100 && string.length < 1000){
-              console.log("Send Data2 : " + ("0" + string.length + string));
-              client.write(("0" + string.length + string));
-          }
-        } catch (err) {
-            console.log("send data error:" + err);
-        }
-      });
+  // Create socket object
+  var client = new net.Socket();
 
-      client.on('data', function(req) {
-        var data = req.toString();
-        console.log("response3 : " + data);
-        callback(data.substring(4,data.length));
-        client.end(); // kill client after server's response
-      });
+  // Initiate a connection on a given socket.
+  client.connect(port, host, function () {
+    data = JSON.stringify(data);
+    console.log('Connected', 'Request : ' + data);
+    try {
+      if (data.length > 0 && data.length <= 100) {
+        console.log('Send data : ' + ('00' + data.length + data));
+        client.write(('00' + data.length + data));
+      }
+      else if (data.length > 100 && data.length < 1000) {
+        console.log('Send data : ' + ('0' + data.length + data));
+        client.write(('0' + data.length + data));
+      }
+    } catch (err) {
+      console.log('Send data error:' + err);
+    }
+  });
 
-      client.on('error', function(err) {
-        console.log('error: ' + err);
-        client.end(); // kill client after server's response
-      });
+  // Emitted when data is received
+  client.on('data', function (req) {
+    var data = req.toString();
+    console.log('Response : ' + data);
+    callback(data.substring(4, data.length));
+    client.end(); // kill client after server's response
+  });
 
-      client.on('close', function() {
-        console.log('Connection closed');
-      });
-};
+  // Emitted when an error occurs. The 'close' event will be called directly following this event.
+  client.on('error', function (err) {
+    console.log('Error: ' + err);
+    callback(err);
+    client.end(); // kill client after server's response
+  });
 
-exports.oxdHttpRequest = function(url,param,callback) {
-    
-    // param = JSON.stringify(param);
-    console.log(param);
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";//this line is to over come self signed certificate request issue, in real time this should be removed
-    var options = {
-            url:url,
-            body:param,
-            json:true};
-        
-        if(param.protection_access_token != null){
-            options['headers'] = {
-                Authorization : "Bearer "+param.protection_access_token
-            };
-        }
-        console.log(options);
-    httpRequest.post(options ,function (error, response, body) {
-            console.log(error);
-            console.log(body);
-            console.log(url);
-            if (!error && response.statusCode == 200) {
-                callback(JSON.stringify(body));
-            }
-    });
+  // Emitted when the server closes.
+  client.on('close', function () {
+    console.log('Connection closed');
+  });
+}
+
+/**
+ *
+ * @param {string} url - URL of oxd-https-extension with particular command request
+ * @param {object} params - List of parameters to request oxd-server command
+ * @returns {function} callback - Callback response function
+ */
+function oxdHttpRequest(url, params, callback) {
+
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; //This line is to over come self signed certificate request issue, in real time this should be removed
+
+  // oxd-https-extension request
+  var options = {
+    url: url,
+    body: params,
+    json: true
+  };
+
+  // Set protection_access_token in header
+  if (params.protection_access_token != null) {
+    options['headers'] = {
+      Authorization: 'Bearer ' + params.protection_access_token
+    };
+  }
+
+  console.log('Request :' + JSON.stringify(options));
+
+  // http request
+  httpRequest.post(options, function (error, response, body) {
+    if (!!error) {
+      console.log('Error: ' + error);
+      callback(JSON.stringify(error));
+    }
+
+    if (!error && response.statusCode == 200) {
+      console.log('Request :' + JSON.stringify(body));
+      callback(JSON.stringify(body));
+    }
+
+    console.log('Fail Request :' + JSON.stringify(body));
+    callback(JSON.stringify(body));
+  });
+}
+
+module.exports = {
+  oxdSocketRequest: oxdSocketRequest,
+  oxdHttpRequest: oxdHttpRequest
 };
