@@ -22,7 +22,7 @@ function oxdSocketRequest(port, host, params, command, callback) {
   // Initiate a connection on a given socket.
   client.connect(port, host, function () {
     data = JSON.stringify(data);
-    console.log('Connected', 'Request : ' + data);
+    console.log('Connected');
     try {
       if (data.length > 0 && data.length <= 100) {
         console.log('Send data : ' + ('00' + data.length + data));
@@ -41,14 +41,14 @@ function oxdSocketRequest(port, host, params, command, callback) {
   client.on('data', function (req) {
     var data = req.toString();
     console.log('Response : ' + data);
-    callback(data.substring(4, data.length));
+    callback(null, JSON.parse(data.substring(4, data.length)));
     client.end(); // kill client after server's response
   });
 
   // Emitted when an error occurs. The 'close' event will be called directly following this event.
   client.on('error', function (err) {
     console.log('Error: ' + err);
-    callback(err);
+    callback(err, null);
     client.end(); // kill client after server's response
   });
 
@@ -88,16 +88,16 @@ function oxdHttpRequest(url, params, callback) {
   httpRequest.post(options, function (error, response, body) {
     if (!!error) {
       console.log('Error: ' + error);
-      callback(JSON.stringify(error));
+      return callback(error, null);
     }
 
     if (!error && response.statusCode == 200) {
-      console.log('Request :' + JSON.stringify(body));
-      callback(JSON.stringify(body));
+      console.log('Response :' + JSON.stringify(body));
+      return callback(null, body);
     }
 
-    console.log('Fail Request :' + JSON.stringify(body));
-    callback(JSON.stringify(body));
+    console.log('Fail Response :' + JSON.stringify(body));
+    return callback(body, null);
   });
 }
 
