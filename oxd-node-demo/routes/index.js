@@ -18,9 +18,9 @@ router.get('/', function(req, res) {
     jsonfile.readFile(setting, function(err, obj) {
         jsonfile.readFile(parameters, function(err, objRpConfig) {
             if(obj.oxd_id != ""){
-                res.redirect('/login');
+                res.redirect('login');
             } else {
-                res.redirect('/settings');
+                res.redirect('settings');
             }
         });
     });
@@ -163,7 +163,7 @@ router.get('/delete', function(req, res) {
                 jsonfile.writeFile(parameters,objRpConfig,function(){
                     jsonfile.writeFile(setting,obj,function(){
                         res.writeHead(302, {
-                            'Location': '/settings'
+                            'Location': 'settings'
                         });
                         res.end();
                     });
@@ -278,7 +278,7 @@ router.post('/SetupClient', function(req, res){
                         jsonfile.writeFile(parameters,parametersData, function(err) {
                             if(req.body.client_id == "" || req.body.client_secret == ""){
                                 res.writeHead(302, {
-                                    'Location': '/settings'
+                                    'Location': 'settings'
                                 });
                                 res.end();
                             }else{
