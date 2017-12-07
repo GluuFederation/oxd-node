@@ -12,11 +12,122 @@ var properties = require('../properties');
 var url = require('url');
 var properties = require('../properties');
 var httpRequest = require('request');
+var protectedResource = "";
 
 router.get('/settings', function(req, res) {
     jsonfile.readFile(setting, function(err, obj) {
         jsonfile.readFile(parameters, function(err, objRpConfig) {
             res.render('settings',{oxdObject : obj, oxdRpConfig : objRpConfig});
+        });
+    });
+});
+
+router.post('/getProtectedResource', function(req, res) {
+    console.log(req.body.protected_resource);
+//    return false;
+    jsonfile.readFile(setting, function(err, obj) {
+        jsonfile.readFile(parameters, function(err, objRpConfig) {
+            obj.protected_resource_url = req.body.protected_resource;
+            jsonfile.writeFile(setting, obj, function() {
+                process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+                console.log(req.body);
+                var options = {
+                    url: req.body.protected_resource
+                };
+
+                httpRequest.post(options ,function (error, response, ticket) {
+                    console.log("ticket: "+ticket);
+                    oxd.Request.op_host = objRpConfig.op_host;
+                    oxd.Request.oxd_id = obj.oxd_id;
+                    oxd.Request.client_id = obj.client_id;
+                    oxd.Request.client_secret = obj.client_secret;
+                    if(obj.conn_type == "local"){
+                        var url = "";
+                    }else if(obj.conn_type == "web"){
+                        var url = objRpConfig.httpBaseUrl+"/get-client-token";
+                    }
+                    oxd.Request.url = url;
+                    oxd.get_client_access_token(oxd.Request, function(access_token_response){
+                        var access_token_data = JSON.parse(access_token_response);
+                        oxd.Request.protection_access_token = access_token_data.data.access_token;
+                        oxd.Request.ticket = ticket;
+                        if(obj.conn_type == "local"){
+                            var url = "";
+                        }else if(obj.conn_type == "web"){
+                            var url = objRpConfig.httpBaseUrl+"/uma-rp-get-rpt";
+                        }
+                        oxd.uma_rp_get_rpt(oxd.Request, function(get_rpt_response){
+                            var objGet_rpt_response = JSON.parse(get_rpt_response);
+                            if(objGet_rpt_response.status == "error" && objGet_rpt_response.data.error == "need_info"){
+                                var rptTicket = objGet_rpt_response.data.details.ticket;
+                                oxd.Request.ticket = rptTicket;
+                                oxd.Request.claims_redirect_uri = req.protocol+"://"+req.hostname+":"+properties.app_port+"/claims_gathering_redirect";
+                                oxd.uma_rp_get_claims_gathering_url(oxd.Request, function(get_claims_gathering_response){
+                                    console.log(get_rpt_response);
+                                    var objGet_claims_gathering_response = JSON.parse(get_claims_gathering_response);
+                                    res.writeHead(301,
+                                        {Location: objGet_claims_gathering_response.data.url}
+                                    );
+                                    res.end();
+                                });
+                            } else if(objGet_rpt_response.status == "error") {
+                                console.log("error:"+get_rpt_response);
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
+
+router.get('/claims_gathering_redirect', function(req, res) {
+    console.log(req.query.ticket);
+    console.log(req.query.state);
+    jsonfile.readFile(setting, function(err, obj) {
+        jsonfile.readFile(parameters, function(err, objRpConfig) {
+            oxd.Request.op_host = objRpConfig.op_host;
+            oxd.Request.oxd_id = obj.oxd_id;
+            oxd.Request.client_id = obj.client_id;
+            oxd.Request.client_secret = obj.client_secret;
+            if(obj.conn_type == "local"){
+                var url = "";
+            }else if(obj.conn_type == "web"){
+                var url = objRpConfig.httpBaseUrl+"/get-client-token";
+            }
+            oxd.Request.url = url;
+            oxd.get_client_access_token(oxd.Request, function(access_token_response){
+                var access_token_data = JSON.parse(access_token_response);
+                oxd.Request.protection_access_token = access_token_data.data.access_token;
+                oxd.Request.ticket = req.query.ticket;
+                oxd.Request.state = req.query.state;
+                if(obj.conn_type == "local"){
+                    var url = "";
+                }else if(obj.conn_type == "web"){
+                    var url = objRpConfig.httpBaseUrl+"/uma-rp-get-rpt";
+                }
+                oxd.uma_rp_get_rpt(oxd.Request, function(get_rpt_response){
+                    var objGet_rpt_response = JSON.parse(get_rpt_response);
+                    console.log(JSON.stringify(objGet_rpt_response));
+                    var rptToken = objGet_rpt_response.data.access_token;
+                    rptToken.replace(/\r?\n?/g, '');
+                    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+                    var body = "RPT="+rptToken;
+                    var options = {
+                        headers:{'content-type' : 'application/x-www-form-urlencoded'},
+                        url:obj.protected_resource_url,
+                        body: body,
+                        json:true
+                    };
+
+                    httpRequest.post(options ,function (error, response, body) {
+                        console.log(JSON.stringify(body));
+                        res.writeHead(200, {'Content-Type': 'text/plain'});
+                        res.write(JSON.stringify(body));
+                        res.end();
+                    });
+                });
+            });
         });
     });
 });
@@ -121,7 +232,7 @@ router.post('/SetupClient', function(req, res){
     oxd.Request.grant_types = ["authorization_code","client_credentials"];
     oxd.Request.oxd_rp_programming_language = "node";
     oxd.Request.client_frontchannel_logout_uris = "";
-    oxd.Request.claims_redirect_uri = "";
+    oxd.Request.claims_redirect_uri = [req.protocol+"://"+req.hostname+":"+properties.app_port+"/claims_gathering_redirect"];
 
     if (acr_value.length > 0)
         oxd.Request.acr_values = acr_value;
@@ -516,6 +627,7 @@ router.get('/uma', function(req, res) {
 });
 
 router.get('/protect', function(req, res) {
+    console.log(req.subdomains);
     jsonfile.readFile(setting, function(err, obj) {
         oxd.Request.client_id = obj.client_id;
         oxd.Request.client_secret = obj.client_secret;
@@ -536,7 +648,7 @@ router.get('/protect', function(req, res) {
                         path: "/photo",
                         conditions: [
                             {
-                                httpMethods:["GET"],
+                                httpMethods:["GET","POST"],
                                 scopes:["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"],
                                 ticketScopes:["https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1"]
                             }

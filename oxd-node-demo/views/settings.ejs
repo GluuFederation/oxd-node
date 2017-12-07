@@ -84,6 +84,7 @@
                                 <input type="button" value="Edit" class="btn btn-primary" id="edit">
                                 <input type="button" value="Delete" class="btn btn-primary" id="del">
                                 <input type="button" value="Login" class="btn btn-primary" id="login">
+                                <input type="button" value="UMA" class="btn btn-primary" id="uma">
                             <% }else{ %>
                                 <input type="button" value="Register" class="btn btn-primary" id="register">
                             <% } %>
@@ -165,7 +166,7 @@
                     }
                     $("#loadingDiv").show();
                     jQuery.post(
-                        "/SetupClient",
+                        "SetupClient",
                         request_data,
                         function (data) {
                             data = JSON.stringify(data);
@@ -195,7 +196,7 @@
                 $("#update").click(function(){
                     $("#loadingDiv").show();
                     jQuery.post(
-                        "/Update",
+                        "Update",
                         { 
                             redirect_uri: $('input:text[name="redirect_uri"]').val(),
                             op_host: $('input:text[name="ophost"]').val(),
@@ -220,11 +221,14 @@
                 });
                 
                 $("#del").click(function(){
-                    window.location = "/delete";
+                    window.location = "delete";
                 });
                 
                 $("#login").click(function(){
-                    window.location = "/login";
+                    window.location = "login";
+                });
+                $("#uma").click(function(){
+                    window.location = "uma";
                 });
             });
         </script>
