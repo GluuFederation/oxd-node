@@ -76,7 +76,7 @@
             $(document).ready(function () {
                 jQuery('#btnLogout').click(function (event) {
                     $("#loadingDiv").show();
-                    jQuery.post("/GetLogoutUri",
+                    jQuery.post("GetLogoutUri",
                             {},
                             function (data) {
                                 window.location.href = data.logoutUri;
