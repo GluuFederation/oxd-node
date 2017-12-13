@@ -12,8 +12,8 @@ const httpRequest = require('request');
 function oxdSocketRequest(port, host, params, command, callback) {
   // OXD data
   let data = {
-    command: command,
-    params: params
+    command,
+    params
   };
 
   // Create socket object
@@ -68,7 +68,7 @@ function oxdHttpRequest(url, params, callback) {
 
   // oxd-https-extension request
   const options = {
-    url: url,
+    url,
     body: params,
     json: true
   };
@@ -84,7 +84,7 @@ function oxdHttpRequest(url, params, callback) {
 
   // http request
   httpRequest.post(options, (error, response, body) => {
-    if (!!error) {
+    if (error) {
       console.log('Error: ', error);
       return callback(error, null);
     }
@@ -100,6 +100,6 @@ function oxdHttpRequest(url, params, callback) {
 }
 
 module.exports = {
-  oxdSocketRequest: oxdSocketRequest,
-  oxdHttpRequest: oxdHttpRequest
+  oxdSocketRequest,
+  oxdHttpRequest
 };

@@ -19,11 +19,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/setup-client`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/setup-client`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'setup_client', (err, response) => callback(err, response));
     }
   };
@@ -39,11 +39,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/get-client-token`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/get-client-token`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'get_client_token', (err, response) => callback(err, response));
     }
   };
@@ -59,11 +59,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/register-site`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/register-site`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'register_site', (err, response) => callback(err, response));
     }
   };
@@ -79,32 +79,32 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/update-site`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/update-site`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'update_site_registration', (err, response) => callback(err, response));
     }
   };
 
   /**
-   * Function to get the authorization url that can be opened in the browser for the user to provide authorization and authentication
+   * Function to get the authorization https_extension that can be opened in the browser for the user to provide authorization and authentication
    * @param {object} param - All required properties
    * @param {function} callback - Callback response function. It return with two parameters.
    * {object} err - error response
    * {object} response - success response
    */
-  module.get_authorization_url = (param, callback) => {
+  module.get_authorization_https_extension = (param, callback) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/get-authorization-url`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/get-authorization-https_extension`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
-      utilities.oxdSocketRequest(data.port, data.host, data, 'get_authorization_url', (err, response) => callback(err, response));
+      // If https_extension is not set then request goes to oxd-server
+      utilities.oxdSocketRequest(data.port, data.host, data, 'get_authorization_https_extension', (err, response) => callback(err, response));
     }
   };
 
@@ -119,11 +119,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/get-tokens-by-code`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/get-tokens-by-code`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'get_tokens_by_code', (err, response) => callback(err, response));
     }
   };
@@ -139,11 +139,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/get-access-token-by-refresh-token`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/get-access-token-by-refresh-token`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'get_access_token_by_refresh_token', (err, response) => callback(err, response));
     }
   };
@@ -159,11 +159,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/get-user-info`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/get-user-info`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'get_user_info', (err, response) => callback(err, response));
     }
   };
@@ -179,11 +179,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/get-logout-uri`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/get-logout-uri`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'get_logout_uri', (err, response) => callback(err, response));
     }
   };
@@ -199,11 +199,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/uma-rs-protect`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/uma-rs-protect`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rs_protect', (err, response) => callback(err, response));
     }
   };
@@ -219,11 +219,11 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/uma-rs-check-access`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/uma-rs-check-access`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rs_check_access', (err, response) => callback(err, response));
     }
   };
@@ -239,32 +239,32 @@ module.exports = (config) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/uma_rp_get_rpt`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/uma_rp_get_rpt`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
+      // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rp_get_rpt', (err, response) => callback(err, response));
     }
   };
 
   /**
-   * Function to get the authorization url that can be opened in the browser for the user to provide authorization and authentication
+   * Function to get the authorization https_extension that can be opened in the browser for the user to provide authorization and authentication
    * @param {object} param - All required properties
    * @param {function} callback - Callback response function. It return with two parameters.
    * {object} err - error response
    * {object} response - success response
    */
-  module.uma_rp_get_claims_gathering_url = (param, callback) => {
+  module.uma_rp_get_claims_gathering_https_extension = (param, callback) => {
     // Filtered parameters
     const data = filterParameters(param);
 
-    // If url is set the request goes to oxd-https-extension
-    if (!!data.url) {
-      utilities.oxdHttpRequest(`${data.url}/uma-rp-get-claims-gathering-url`, data, (err, response) => callback(err, response));
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/uma-rp-get-claims-gathering-https_extension`, data, (err, response) => callback(err, response));
     } else {
-      // If url is not set then request goes to oxd-server
-      utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rp_get_claims_gathering_url', (err, response) => callback(err, response));
+      // If https_extension is not set then request goes to oxd-server
+      utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rp_get_claims_gathering_https_extension', (err, response) => callback(err, response));
     }
   };
 
