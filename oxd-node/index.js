@@ -270,7 +270,7 @@ module.exports = (config) => {
 
   // Filter parameters
   function filterParameters(request) {
-    const data = config;
+    const data = Object.assign({}, config);
     Object.keys(request).forEach((key) => {
       data[key] = request[key];
     });
