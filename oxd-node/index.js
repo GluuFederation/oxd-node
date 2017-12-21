@@ -95,16 +95,16 @@ module.exports = (config) => {
    * {object} err - error response
    * {object} response - success response
    */
-  module.get_authorization_https_extension = (param, callback) => {
+  module.get_authorization_url = (param, callback) => {
     // Filtered parameters
     const data = filterParameters(param);
 
     // If https_extension is set the request goes to oxd-https-extension
     if (data.https_extension) {
-      utilities.oxdHttpRequest(`${data.host}/get-authorization-https_extension`, data, (err, response) => callback(err, response));
+      utilities.oxdHttpRequest(`${data.host}/get-authorization-url`, data, (err, response) => callback(err, response));
     } else {
       // If https_extension is not set then request goes to oxd-server
-      utilities.oxdSocketRequest(data.port, data.host, data, 'get_authorization_https_extension', (err, response) => callback(err, response));
+      utilities.oxdSocketRequest(data.port, data.host, data, 'get_authorization_url', (err, response) => callback(err, response));
     }
   };
 
