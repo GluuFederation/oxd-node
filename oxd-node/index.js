@@ -75,7 +75,7 @@ module.exports = (config) => {
    * {object} err - error response
    * {object} response - success response
    */
-  module.update_site_registration = (param, callback) => {
+  module.update_site = (param, callback) => {
     // Filtered parameters
     const data = filterParameters(param);
 
@@ -84,7 +84,7 @@ module.exports = (config) => {
       utilities.oxdHttpRequest(`${data.host}/update-site`, data, (err, response) => callback(err, response));
     } else {
       // If https_extension is not set then request goes to oxd-server
-      utilities.oxdSocketRequest(data.port, data.host, data, 'update_site_registration', (err, response) => callback(err, response));
+      utilities.oxdSocketRequest(data.port, data.host, data, 'update_site', (err, response) => callback(err, response));
     }
   };
 
@@ -241,7 +241,7 @@ module.exports = (config) => {
 
     // If https_extension is set the request goes to oxd-https-extension
     if (data.https_extension) {
-      utilities.oxdHttpRequest(`${data.host}/uma_rp_get_rpt`, data, (err, response) => callback(err, response));
+      utilities.oxdHttpRequest(`${data.host}/uma-rp-get-rpt`, data, (err, response) => callback(err, response));
     } else {
       // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rp_get_rpt', (err, response) => callback(err, response));
@@ -255,16 +255,36 @@ module.exports = (config) => {
    * {object} err - error response
    * {object} response - success response
    */
-  module.uma_rp_get_claims_gathering_https_extension = (param, callback) => {
+  module.uma_rp_get_claims_gathering_url = (param, callback) => {
     // Filtered parameters
     const data = filterParameters(param);
 
     // If https_extension is set the request goes to oxd-https-extension
     if (data.https_extension) {
-      utilities.oxdHttpRequest(`${data.host}/uma-rp-get-claims-gathering-https_extension`, data, (err, response) => callback(err, response));
+      utilities.oxdHttpRequest(`${data.host}/uma-rp-get-claims-gathering-url`, data, (err, response) => callback(err, response));
     } else {
       // If https_extension is not set then request goes to oxd-server
-      utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rp_get_claims_gathering_https_extension', (err, response) => callback(err, response));
+      utilities.oxdSocketRequest(data.port, data.host, data, 'uma_rp_get_claims_gathering_url', (err, response) => callback(err, response));
+    }
+  };
+
+  /**
+   * Function to get the authorization https_extension that can be opened in the browser for the user to provide authorization and authentication
+   * @param {object} param - All required properties
+   * @param {function} callback - Callback response function. It return with two parameters.
+   * {object} err - error response
+   * {object} response - success response
+   */
+  module.remove_site = (param, callback) => {
+    // Filtered parameters
+    const data = filterParameters(param);
+
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/remove-site`, data, (err, response) => callback(err, response));
+    } else {
+      // If https_extension is not set then request goes to oxd-server
+      utilities.oxdSocketRequest(data.port, data.host, data, 'remove_site', (err, response) => callback(err, response));
     }
   };
 
