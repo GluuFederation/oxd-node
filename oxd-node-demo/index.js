@@ -1,33 +1,27 @@
-var express = require("express");
+var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
-var index = require('./routes/index');
+var routes = require('./routes/index');
 var app = express();
-var server = require('http').Server(app);
-var oxd = require("oxd-node");
 var jsonfile = require('jsonfile');
 var path = require('path');
-var setting = path.join(__dirname, '//settings.json');
-var properties = require('./properties');
 var vhost = require('vhost');
-
-app.use(session({
-    secret: 'asdfg1234',
-    cookie: {
-        maxAge: 300000
-    },
-    resave: true,
-    saveUninitialized: true
-}))
-var mysession;
-
 var https = require('https');
 var fs = require('fs');
 
+app.use(session({
+  secret: 'qwertyuiop',
+  cookie: {
+    maxAge: 300000
+  },
+  resave: true,
+  saveUninitialized: true
+}));
+
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
@@ -36,14 +30,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
-app.use('/', index);
+app.use('/', routes);
 
 var options = {
-    key: fs.readFileSync(__dirname + '<path to host key file>'),
-    cert: fs.readFileSync(__dirname + '<path to host cert file>')
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
 };
 
 app.use(vhost('client.example.com', app)); // Serves top level domain via Main server app
-var a = https.createServer(options, app).listen(properties.app_port);
-module.exports = app;
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+https.createServer(options, app).listen(5053, function () {
+  console.log('-----------------------\nServer started successfully!, Open this URL https://localhost:5053\n-----------------------');
+});
