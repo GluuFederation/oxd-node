@@ -155,7 +155,7 @@ describe('Get authorization url', () => {
       https_extension: true,
       host: 'http://gluu.local.org:8553',
       oxd_id: 'bcad760f-91ba-46e1-a020-05e4281d91b6',
-      scope: ['openid', 'profile', 'email', 'uma_protection', 'uma_authorization'],
+      scope: ['openid', 'profile', 'email', 'uma_protection'],
       protection_access_token: 'b75434ff-f465-4b70-92e4-b7ba6b6c58f2'
     };
 
@@ -240,8 +240,8 @@ describe('Get access token by refresh token', () => {
       https_extension: true,
       host: 'http://gluu.local.org:8553',
       oxd_id: 'bcad760f-91ba-46e1-a020-05e4281d91b6',
-      code: '0b9f1518-15aa-47b2-9477-d4c607447e18',
-      state: '6q1ec90hn6ui4ipigv91hrbodj',
+      refresh_token: '0b9f1518-15aa-47b2-9477-d4c607447e18',
+      scope: ['openid', 'profile'],
       protection_access_token: 'b75434ff-f465-4b70-92e4-b7ba6b6c58f2'
     };
 
