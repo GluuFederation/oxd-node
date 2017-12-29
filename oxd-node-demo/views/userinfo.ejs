@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>oxd OpenID Connect</title>
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/custom.css">
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container body-content">
+  <div id="loadingDiv">
+    <div>
+      <h7>Please wait...</h7>
+    </div>
+  </div>
+  <div class="row" id="notify" style="position: fixed;top: 0px;z-index: 1000;width: 100%;opacity: 100%;height:50px">
+    <div class="col-md-8 col-md-offset-2">
+      <div id="notify-message"></div>
+    </div>
+  </div>
+
+  <div class="jumbotron" style="margin-top: 70px;">
+    <h1>Gluu OXD Node Library Demo web application</h1>
+    <p class="lead">This Node application is used to demo the Gluu's OXD Server Node Library APIs.</p>
+  </div>
+
+  <br><br><br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Getting User Info</h2>
+      <form>
+        <div class="form-group">
+          <div class="row">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="email" placeholder="email" disabled="disabled"
+                     value="<%= email %>">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="name" placeholder="name" disabled="disabled"
+                     value="<%= name %>">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12">
+      <h2>Getting Logout URI</h2>
+      <form>
+        <div class="form-group">
+          <input class="btn btn-primary" type="button" value="Logout" id="btnLogout">
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; <%= new Date().getYear() ; %> - My Node.js Application</p>
+  </footer>
+</div>
+<script>
+  $(document).ready(function () {
+    jQuery('#btnLogout').click(function (event) {
+      $("#loadingDiv").show();
+      jQuery.post("/GetLogoutUri",
+        {},
+        function (data) {
+          window.location.href = data.logoutUri;
+        }
+      );
+    });
+  });
+</script>
+</body>
+</html>
