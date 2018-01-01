@@ -27,38 +27,46 @@ router.get('/', function (req, res) {
 
 router.get('/settings', function (req, res) {
   jsonfile.readFile(setting, function (err, oSetting) {
-    jsonfile.readFile(parameters, function (err, oRpConfig) {
-      res.render('settings', {oxdObject: oSetting, oxdRpConfig: oRpConfig});
-    });
+    res.render('settings', {oxdObject: oSetting, port: process.env.PORT});
   });
 });
 
 router.get('/delete', function (req, res) {
-  setTimeout(function () {
-    jsonfile.readFile(setting, function (err, obj) {
-      jsonfile.readFile(parameters, function (err, objRpConfig) {
-        objRpConfig.op_host = '';
-        objRpConfig.authorization_redirect_uri = '';
-        objRpConfig.port = '8099';
-        objRpConfig.httpBaseUrl = '';
-        objRpConfig.post_logout_uri = '';
-        obj.oxd_id = '';
-        obj.conn_type = 'local';
-        obj.client_id = '';
-        obj.client_secret = '';
-        obj.client_name = '';
-        obj.message = '';
-        obj.has_registration_endpoint = true;
-        jsonfile.writeFile(parameters, objRpConfig, function () {
-          jsonfile.writeFile(setting, obj, function () {
-            res.writeHead(302, {
-              'Location': '/settings'
+  jsonfile.readFile(setting, function (err, oSetting) {
+    if (oSetting.oxd_id) {
+      if (oSetting.https_extension) {
+        return oxd.get_client_token(oSetting, function (err, resToken) {
+          if (err) {
+            return res.status(500).json(err);
+          }
+
+          oSetting.protection_access_token = resToken.data.access_token;
+          oxd.remove_site(oSetting, function (err, resAuth) {
+            if (err) {
+              return res.status(500).json(err);
+            }
+
+            return jsonfile.writeFile(setting, {}, function () {
+              return res.redirect('/settings');
             });
-            res.end();
           });
         });
-      });
-    });
+      } else {
+        return oxd.remove_site(oSetting, function (err, response) {
+          if (err) {
+            return res.status(500).json(err);
+          }
+
+          return jsonfile.writeFile(setting, {}, function () {
+            return res.redirect('/settings');
+          });
+        });
+      }
+
+    }
+    else {
+      return res.json({'error': 'please register first.'});
+    }
   });
 });
 
@@ -69,7 +77,8 @@ router.post('/register', function (req, res) {
     grant_types: ['authorization_code'],
     authorization_redirect_uri: req.body.redirect_uri,
     post_logout_redirect_uri: req.body.post_logout_uri,
-    op_host: req.body.op_host
+    op_host: req.body.op_host,
+    client_name: req.body.client_name
   };
 
   //Define acr_values
@@ -130,7 +139,7 @@ router.post('/register', function (req, res) {
     }
 
     if (response.status && response.status == 'ok') {
-      response.data.https_extension = req.body.https_extension;
+      response.data.client_name = req.body.client_name;
       response.data.message = 'Successfully Registered';
       response.data.https_extension = oxdRequest.https_extension;
       response.data.host = oxdRequest.host;
@@ -147,64 +156,57 @@ router.post('/register', function (req, res) {
   });
 });
 
-router.post('/Update', function (req, res) {
+router.post('/update', function (req, res) {
   jsonfile.readFile(setting, function (err, obj) {
     if (obj.oxd_id != '') {
-      jsonfile.readFile(parameters, function (err, parametersData) {
-        oxd.Request.authorization_redirect_uri = req.body.redirect_uri;
-        oxd.Request.op_host = req.body.op_host;
-        oxd.Request.client_frontchannel_logout_uris = req.body.post_logout_uri;
-        oxd.Request.post_logout_redirect_uri = req.body.post_logout_uri;
-        oxd.Request.port = req.body.oxd_local_value;
-        oxd.Request.oxd_id = obj.oxd_id;
-        oxd.Request.client_name = req.body.client_name;
-        parametersData.authorization_redirect_uri = req.body.redirect_uri;
-        parametersData.op_host = req.body.op_host;
-        parametersData.client_frontchannel_logout_uris = req.body.post_logout_uri;
-        parametersData.post_logout_uri = req.body.post_logout_uri;
-        parametersData.port = req.body.oxd_local_value;
-        parametersData.op_host = req.body.op_host;
-        parametersData.httpBaseUrl = req.body.oxd_web_value;
-        if (req.body.conn_type == 'web') {
-          obj.conn_type = 'web';
-        } else {
-          obj.conn_type = 'local';
+      jsonfile.readFile(setting, function (err, oSetting) {
+        oSetting.op_host = req.body.op_host || oSetting.op_host;
+        oSetting.client_id = req.body.client_id || oSetting.client_id;
+        oSetting.client_secret = req.body.client_secret || oSetting.client_secret;
+        oSetting.client_name = req.body.client_name || oSetting.client_name;
+
+        if (req.body.conn_type == 'local') {
+          oSetting.https_extension = false;
+          oSetting.host = 'localhost';
+          oSetting.port = req.body.oxd_local_value || oSetting.port;
+        } else if (req.body.conn_type == 'web') {
+          oSetting.https_extension = true;
+          oSetting.host = req.body.oxd_web_value || oSetting.host;
         }
-        obj.message = 'Successfully Updated';
-        console.log(parametersData);
-        jsonfile.writeFile(parameters, parametersData, function (err) {
-          jsonfile.writeFile(setting, obj, function (err) {
-            if (obj.has_registration_endpoint) {
-              oxd.Request.client_id = obj.client_id;
-              oxd.Request.client_secret = obj.client_secret;
-              if (req.body.conn_type == 'local') {
-                var url = '';
-              } else if (req.body.conn_type == 'web') {
-                var url = req.body.oxd_web_value + '/get-client-token';
-              }
-              oxd.Request.url = url;
-              oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-                var access_token_data = JSON.parse(access_token_response);
-                oxd.Request.protection_access_token = access_token_data.data.access_token;
 
-                if (req.body.conn_type == 'local') {
-                  var url = '';
-                } else if (req.body.conn_type == 'web') {
-                  var url = req.body.oxd_web_value + '/update-site';
-                }
-                oxd.Request.url = url;
-                oxd.update_site_registration(oxd.Request, function (response) {
-                  res.json(response);
-                });
-
-              });
-            } else {
-              res.json({status: 'ok'});
+        if (oSetting.https_extension) {
+          oxd.get_client_token(oSetting, function (err, resToken) {
+            if (err) {
+              return res.status(500).json(err);
             }
-          });
-        });
-      });
 
+            oSetting.protection_access_token = resToken.data.access_token;
+            oxd.update_site(oSetting, function (err, resSite) {
+              if (err) {
+                return res.status(500).json(err);
+              }
+              jsonfile.writeFile(setting, oSetting, function (err) {
+                if (err) {
+                  return res.status(500).json(err);
+                }
+                return res.json(oSetting);
+              });
+            });
+          });
+        } else {
+          oxd.update_site(oSetting, function (err, resSite) {
+            if (err) {
+              return res.status(500).json(err);
+            }
+            jsonfile.writeFile(setting, oSetting, function (err) {
+              if (err) {
+                return res.status(500).json(err);
+              }
+              return res.json(oSetting);
+            });
+          });
+        }
+      });
     }
     else {
       var data = {'error': 'please register first.'};
@@ -242,6 +244,11 @@ router.get('/authorization', function (req, res) {
                 }
 
                 console.log(resAuth.data.claims);
+
+                if (!resAuth.data.claims.email) {
+                  return res.status(500).send({message: 'Email Not found in return scope.'});
+                }
+
                 var data = {
                   email: resAuth.data.claims.email[0] || '',
                   name: resAuth.data.claims.name[0] || ''
@@ -266,11 +273,16 @@ router.get('/authorization', function (req, res) {
               }
 
               console.log(resAuth.data.claims);
+
+              if (!resAuth.data.claims.email) {
+                return res.status(500).send({message: 'Email Not found in return scope.'});
+              }
+
               var data = {
                 email: resAuth.data.claims.email[0] || '',
                 name: resAuth.data.claims.name[0] || ''
               };
-              return res.render('/userinfo', data);
+              return res.render('userinfo', data);
             });
           });
         }
@@ -316,334 +328,39 @@ router.get('/Login', function (req, res) {
   res.render('login');
 });
 
-router.get('/Login_redirect', function (req, res) {
-  var url = require('url');
-  var url_parts = url.parse(req.url, true);
-  jsonfile.readFile(setting, function (err, obj) {
-    if (obj.oxd_id != '') {
-      jsonfile.readFile(parameters, function (err, parametersData) {
-        parametersData.code = oxd.Request.code = url_parts.query.code;
-        parametersData.state = oxd.Request.state = url_parts.query.state;
-        oxd.Request.oxd_id = obj.oxd_id;
-        oxd.Request.op_host = parametersData.op_host;
-        oxd.Request.scope = ['openid', 'profile', 'email', 'uma_protection', 'uma_authorization'];
-        jsonfile.writeFile(parameters, parametersData, function (err) {
-          if (obj.has_registration_endpoint) {
-            oxd.Request.client_id = obj.client_id;
-            oxd.Request.client_secret = obj.client_secret;
-            if (obj.conn_type == 'local') {
-              var url = '';
-            } else if (obj.conn_type == 'web') {
-              var url = parametersData.httpBaseUrl + '/get-client-token';
-            }
-            oxd.Request.url = url;
-            oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-              var access_token_data = JSON.parse(access_token_response);
-              oxd.Request.protection_access_token = access_token_data.data.access_token;
-              if (obj.conn_type == 'local') {
-                var url = '';
-              } else if (obj.conn_type == 'web') {
-                var url = parametersData.httpBaseUrl + '/get-tokens-by-code';
-              }
-              oxd.Request.url = url;
-              oxd.get_tokens_by_code(oxd.Request, function (response) {
-                response = JSON.parse(response);
-                console.log(response);
-                var refresh_token = response.data.refresh_token;
-                jsonfile.readFile(setting, function (err, obj) {
-                  if (obj.oxd_id != '') {
-                    oxd.Request.oxd_id = obj.oxd_id;
-                    oxd.Request.client_id = obj.client_id;
-                    oxd.Request.client_secret = obj.client_secret;
-                    if (obj.conn_type == 'local') {
-                      var url = '';
-                    } else if (obj.conn_type == 'web') {
-                      var url = parametersData.httpBaseUrl + '/get-client-token';
-                    }
-                    oxd.Request.url = url;
-                    oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-                      var access_token_data = JSON.parse(access_token_response);
-                      oxd.Request.protection_access_token = access_token_data.data.access_token;
-                      oxd.Request.refresh_token = refresh_token;
-                      oxd.Request.oxd_id = obj.oxd_id;
-                      if (obj.conn_type == 'local') {
-                        var url = '';
-                      } else if (obj.conn_type == 'web') {
-                        var url = parametersData.httpBaseUrl + '/get-access-token-by-refresh-token';
-                      }
-                      oxd.Request.url = url;
-                      oxd.get_access_token_by_refresh_token(oxd.Request, function (access_token) {
-                        oxd.Request.oxd_id = obj.oxd_id;
-                        var access_token_data = JSON.parse(access_token);
-                        oxd.Request.access_token = access_token_data.data.access_token;
-                        if (obj.conn_type == 'local') {
-                          var url = '';
-                        } else if (obj.conn_type == 'web') {
-                          var url = parametersData.httpBaseUrl + '/get-user-info';
-                        }
-                        oxd.Request.url = url;
-                        oxd.get_user_info(oxd.Request, function (response) {
-                          console.log(response);
-                          response = JSON.parse(response);
-                          var data = {};
-                          data['userName'] = response.data.claims.name[0];
-                          data['userEmail'] = response.data.claims.email[0];
-                          res.render('login_redirect', {data: data});
-                        });
-                      });
-                    });
-                  }
-                  else {
-                    var data = {'error': 'please register first.'};
-                    res.json(data);
-                  }
-                });
-              });
-            });
-          } else {
-            if (obj.conn_type == 'local') {
-              var url = '';
-            } else if (obj.conn_type == 'web') {
-              var url = parametersData.httpBaseUrl + '/get-tokens-by-code';
-            }
-            oxd.Request.scope = ['openid', 'profile', 'email'];
-            oxd.Request.url = url;
-            oxd.get_tokens_by_code(oxd.Request, function (response) {
-              response = JSON.parse(response);
-              oxd.Request.oxd_id = obj.oxd_id;
-              oxd.Request.access_token = response.data.access_token;
-              if (obj.conn_type == 'local') {
-                var url = '';
-              } else if (obj.conn_type == 'web') {
-                var url = parametersData.httpBaseUrl + '/get-user-info';
-              }
-              oxd.get_user_info(oxd.Request, function (response) {
-                console.log(response);
-                response = JSON.parse(response);
-                var data = {};
-                data['userName'] = response.data.claims.name[0];
-                data['userEmail'] = response.data.claims.email[0];
-                res.render('login_redirect', {data: data});
-              });
-            });
+router.get('/logout', function (req, res) {
+  jsonfile.readFile(setting, function (err, oSetting) {
+    if (oSetting.oxd_id) {
+      if (oSetting.https_extension) {
+        oxd.get_client_token(oSetting, function (err, resToken) {
+          if (err) {
+            return res.status(500).json(err);
           }
-        });
-      });
 
+          oSetting.protection_access_token = resToken.data.access_token;
+          oxd.get_logout_uri(oSetting, function (err, resAuth) {
+            if (err) {
+              return res.status(500).json(err);
+            }
+
+            console.log(resAuth.data.uri);
+            return res.redirect(resAuth.data.uri);
+          });
+        });
+      } else {
+        oxd.get_logout_uri(oSetting, function (err, response) {
+          if (err) {
+            return res.status(500).json(err);
+          }
+
+          console.log(response.data.uri);
+          return res.redirect(response.data.uri);
+        });
+      }
     }
     else {
-      var data = {'error': 'please register first.'};
-      res.json(data);
+      return res.json({'error': 'please register first.'});
     }
-  });
-});
-
-router.get('/uma', function (req, res) {
-  res.render('uma');
-});
-
-router.get('/protect', function (req, res) {
-  jsonfile.readFile(setting, function (err, obj) {
-    oxd.Request.client_id = obj.client_id;
-    oxd.Request.client_secret = obj.client_secret;
-    jsonfile.readFile(parameters, function (err, parametersData) {
-      if (obj.conn_type == 'local') {
-        var url = '';
-      } else if (obj.conn_type == 'web') {
-        var url = parametersData.httpBaseUrl + '/get-client-token';
-      }
-      oxd.Request.op_host = parametersData.op_host;
-      oxd.Request.url = url;
-      oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-        var access_token_data = JSON.parse(access_token_response);
-        oxd.Request.protection_access_token = access_token_data.data.access_token;
-        oxd.Request.oxd_id = obj.oxd_id;
-        var resources = [
-          {
-            path: '/photo',
-            conditions: [
-              {
-                httpMethods: ['GET'],
-                scopes: ['https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1'],
-                ticketScopes: ['https://scim-test.gluu.org/identity/seam/resource/restv1/scim/vas1']
-              }
-            ]
-          }
-        ];
-        oxd.Request.resources = resources;
-        if (obj.conn_type == 'local') {
-          var url = '';
-        } else if (obj.conn_type == 'web') {
-          var url = parametersData.httpBaseUrl + '/uma-rs-protect';
-        }
-        oxd.Request.url = url;
-        oxd.uma_rs_protect(oxd.Request, function (response) {
-          res.render('uma_response', {data: response});
-        });
-      });
-    });
-  });
-});
-
-router.get('/check_access', function (req, res) {
-  jsonfile.readFile(setting, function (err, obj) {
-    oxd.Request.client_id = obj.client_id;
-    oxd.Request.client_secret = obj.client_secret;
-    jsonfile.readFile(parameters, function (err, parametersData) {
-      if (obj.conn_type == 'local') {
-        var url = '';
-      } else if (obj.conn_type == 'web') {
-        var url = parametersData.httpBaseUrl + '/get-client-token';
-      }
-      oxd.Request.url = url;
-      oxd.Request.op_host = parametersData.op_host;
-      oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-        var access_token_data = JSON.parse(access_token_response);
-        oxd.Request.protection_access_token = access_token_data.data.access_token;
-        oxd.Request.oxd_id = obj.oxd_id;
-        if (obj.conn_type == 'local') {
-          var url = '';
-        } else if (obj.conn_type == 'web') {
-          var url = parametersData.httpBaseUrl + '/uma-rs-check-access';
-        }
-        oxd.Request.url = url;
-        oxd.Request.rpt = '';
-        oxd.Request.http_method = 'GET';
-        oxd.Request.path = '/photo';
-        oxd.uma_rs_check_access(oxd.Request, function (response) {
-          res.render('uma_response', {data: response});
-        });
-      });
-    });
-
-  });
-});
-
-router.get('/get_rpt', function (req, res) {
-  jsonfile.readFile(setting, function (err, obj) {
-    oxd.Request.client_id = obj.client_id;
-    oxd.Request.client_secret = obj.client_secret;
-    jsonfile.readFile(parameters, function (err, parametersData) {
-      if (obj.conn_type == 'local') {
-        var url = '';
-      } else if (obj.conn_type == 'web') {
-        var url = parametersData.httpBaseUrl + '/get-client-token';
-      }
-      oxd.Request.url = url;
-      oxd.Request.op_host = parametersData.op_host;
-      oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-        var access_token_data = JSON.parse(access_token_response);
-        oxd.Request.protection_access_token = access_token_data.data.access_token;
-        oxd.Request.oxd_id = obj.oxd_id;
-        if (obj.conn_type == 'local') {
-          var url = '';
-        } else if (obj.conn_type == 'web') {
-          var url = parametersData.httpBaseUrl + '/uma-rp-get-rpt';
-        }
-        oxd.Request.url = url;
-        oxd.Request.ticket = '09f32169-de52-42fe-9796-59ba21637a64';
-        oxd.uma_rp_get_rpt(oxd.Request, function (response) {
-          res.render('uma_response', {data: response});
-        });
-      });
-    });
-  });
-});
-
-router.get('/claims_gathering_url', function (req, res) {
-  jsonfile.readFile(setting, function (err, obj) {
-    oxd.Request.client_id = obj.client_id;
-    oxd.Request.client_secret = obj.client_secret;
-    jsonfile.readFile(parameters, function (err, parametersData) {
-      if (obj.conn_type == 'local') {
-        var url = '';
-      } else if (obj.conn_type == 'web') {
-        var url = parametersData.httpBaseUrl + '/get-client-token';
-      }
-      oxd.Request.op_host = parametersData.op_host;
-      oxd.Request.url = url;
-      oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-        var access_token_data = JSON.parse(access_token_response);
-        oxd.Request.protection_access_token = access_token_data.data.access_token;
-        oxd.Request.oxd_id = obj.oxd_id;
-        if (obj.conn_type == 'local') {
-          var url = '';
-        } else if (obj.conn_type == 'web') {
-          var url = parametersData.httpBaseUrl + '/uma-rp-get-claims-gathering-url';
-        }
-        oxd.Request.ticket = '09f32169-de52-42fe-9796-59ba21637a64';
-        oxd.Request.claims_redirect_uri = 'https://node.oxdexample.com:5053/settings';
-        oxd.Request.url = url;
-        console.log(oxd.Request);
-        oxd.uma_rp_get_claims_gathering_url(oxd.Request, function (response) {
-          res.render('uma_response', {data: response});
-        });
-      });
-    });
-  });
-});
-
-router.post('/logout', function (req, res) {
-  jsonfile.readFile(setting, function (err, obj) {
-    jsonfile.readFile(parameters, function (err, parametersData) {
-      if (obj.has_registration_endpoint) {
-        if (obj.oxd_id != '') {
-          oxd.Request.oxd_id = obj.oxd_id;
-          oxd.Request.client_id = obj.client_id;
-          oxd.Request.client_secret = obj.client_secret;
-          oxd.Request.op_host = parametersData.op_host;
-          if (obj.conn_type == 'local') {
-            var url = '';
-          } else if (obj.conn_type == 'web') {
-            var url = parametersData.httpBaseUrl + '/get-client-token';
-          }
-          oxd.Request.url = url;
-          oxd.get_client_access_token(oxd.Request, function (access_token_response) {
-            var access_token_data = JSON.parse(access_token_response);
-            console.log('access_token_response');
-            console.log(access_token_response);
-            oxd.Request.protection_access_token = access_token_data.data.access_token;
-            oxd.Request.state = null;
-            if (obj.conn_type == 'local') {
-              var url = '';
-            } else if (obj.conn_type == 'web') {
-              var url = parametersData.httpBaseUrl + '/get-logout-uri';
-            }
-            oxd.Request.url = url;
-            oxd.get_logout_uri(oxd.Request, function (response) {
-              console.log(response);
-              response = JSON.parse(response);
-              var data = {};
-              data['logoutUri'] = response.data.uri;
-              console.log('response');
-              console.log(data);
-              res.json(data);
-            });
-          });
-        } else {
-          var data = {'error': 'please register first.'};
-          res.json(data);
-        }
-      } else {
-        oxd.Request.oxd_id = obj.oxd_id;
-        oxd.Request.op_host = parametersData.op_host;
-        if (obj.conn_type == 'local') {
-          var url = '';
-        } else if (obj.conn_type == 'web') {
-          var url = parametersData.httpBaseUrl + '/get-logout-uri';
-        }
-        oxd.Request.url = url;
-        oxd.get_logout_uri(oxd.Request, function (response) {
-          console.log(response);
-          response = JSON.parse(response);
-          var data = {};
-          data['logoutUri'] = response.data.uri;
-          console.log('response');
-          console.log(data);
-          res.json(data);
-        });
-      }
-    });
   });
 });
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var dotenv = require('dotenv');
 var path = require('path');
 var logger = require('morgan');
 var routes = require('./routes/index');
@@ -11,6 +12,7 @@ var vhost = require('vhost');
 var https = require('https');
 var fs = require('fs');
 
+dotenv.config();
 app.use(session({
   secret: 'qwertyuiop',
   cookie: {
@@ -41,6 +43,6 @@ app.use(vhost('client.example.com', app)); // Serves top level domain via Main s
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-https.createServer(options, app).listen(5053, function () {
-  console.log('-----------------------\nServer started successfully!, Open this URL https://localhost:5053\n-----------------------');
+https.createServer(options, app).listen(process.env.PORT || 8000, function () {
+  console.log('-----------------------\nServer started successfully!, Open this URL https://localhost:' + process.env.PORT + '\n-----------------------');
 });
