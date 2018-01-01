@@ -11,14 +11,19 @@ oxd-node-library is a client library for the Gluu oxd Server. For information ab
 
 #### Optional
 OXD-TO-HTTP Server is required if you want to access OXD server over HTTP.
-- [OXD-TO-HTTP Server](https://github.com/GluuFederation/oxd-to-http)
 
 ## Installation
 
-### Source
 ```
 $ npm install oxd-node
 ```
+
+## Important Links
+
+* [oxd docs](https://gluu.org/docs/oxd)
+* See the code of a [oxd-node-demo](https://github.com/GluuFederation/oxd-node/tree/master/oxd-node-demo) built using oxd-node.
+* Browse the oxd-node [source code on Github](https://github.com/GluuFederation/oxd-node).
+
 
 ## Configuration 
 
@@ -363,3 +368,19 @@ oxd.remove_site({
   console.log(response);
 });
 ```
+
+## Test
+
+oxd-node contains extensive tests for quality assurance
+
+```
+npm test
+```
+
+## Examples
+
+The oxd-node-demo directory contains apps using oxd-node for OpenID Connect.
+
+## Support
+
+Please report technical issues and suspected bugs on our [Support Page](https://support.gluu.org/). You can use the same credentials you created to register your oxd license to sign in on Gluu support.

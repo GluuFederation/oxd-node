@@ -25,14 +25,7 @@ You can set port in .env property file.
 # How to use:
 
 1. Download source code for demo client application [oxd-node-demo]
-2. From command line, move into demo client application and enter `npm update`, and run it [node index].
+2. From command line, `node index.js`
 3. Go to web browser and access demo application with this url `https://localhost.com:{port}` (you can use any other port incase if 5053 port is busy in any other process)
 4. Register your website with oxd, fill the site registration form and submit it.
 5. Now your site user can login using oxd-server
-
-# Demo Video:
-
-```
-Have a look into this demo video, a screen recording of this demo website’s features.
-```
-[Demo video](http://screencast.com/t/7BD1DzYi)
