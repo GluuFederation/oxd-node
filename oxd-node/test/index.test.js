@@ -80,7 +80,7 @@ describe('Get client token', () => {
 });
 
 describe('Register site', () => {
-  it('Get client token request through oxd-https', (done) => {
+  it('Register site request through oxd-https', (done) => {
     const response = {
       status: 'ok',
       data: {
@@ -677,5 +677,87 @@ describe('Remove site', () => {
     });
 
     index.remove_site(request, callback);
+  });
+});
+
+
+describe('Introspect Access Token', () => {
+  it('Introspect Access Token request through oxd-https', (done) => {
+    const response = {
+		status: 'ok',
+		data: {
+			active: true,
+			client_id: 'l238j323ds-23ij4',
+			username: 'John Black',
+			scopes: ['read', 'write'],
+			token_type:'bearer',
+			sub: 'jblack',
+			aud: 'l238j323ds-23ij4',
+			iss: 'https://as.gluu.org/',
+			exp: 1419356238,
+			iat: 1419350238,
+			acr_values: ['basic','duo'],
+			extension_field: 'twenty-seven'
+			}
+		};
+
+    const request = {
+      https_extension: true,
+      host: 'http://gluu.local.org:8553',
+      oxd_id: '6F9619FF-8B86-D011-B42D-00CF4FC964FF',
+      access_token: 'b75434ff-f465-4b70-92e4-b7ba6b6c58f2',
+    };
+
+    nock(request.host)
+      .post('/introspect-access-token', request)
+      .reply(200, JSON.stringify(response));
+
+    const callback = sinon.spy((err, res) => {
+      expect(res.status).to.equal('ok');
+      done();
+    });
+
+    index.introspect_access_token(request, callback);
+  });
+});
+
+
+describe('Introspect RPT', () => {
+  it('Introspect RPT request through oxd-https', (done) => {
+    const response = {
+		status:'ok',
+		data:{
+			active:true,
+			exp:1256953732,
+			iat:1256912345,
+			permissions:[
+			{
+				resource_id:'112210f47de98100',
+				resource_scopes:[
+					'view',
+                    'http://photoz.example.com/dev/actions/print'
+                ],
+                exp:1256953732
+            }]
+		}
+	};
+
+    const request = {
+      https_extension: true,
+      host: 'http://gluu.local.org:8553',
+      oxd_id: '6F9619FF-8B86-D011-B42D-00CF4FC964FF',
+      rpt: 'b75434ff-f465-4b70-92e4-b7ba6b6c58f2',
+    };
+
+    nock(request.host)
+      .post('/introspect-rpt', request)
+      .reply(200, JSON.stringify(response));
+
+    const callback = sinon.spy((err, res) => {
+      expect(res.status).to.equal('ok');
+      done();
+    });
+
+    index.introspect_rpt(request, callback);
   });
 });

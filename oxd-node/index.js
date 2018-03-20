@@ -269,7 +269,7 @@ module.exports = (config) => {
   };
 
   /**
-   * Function to get the authorization https_extension that can be opened in the browser for the user to provide authorization and authentication
+   * Function to remove the site from oxd-server
    * @param {object} param - All required properties
    * @param {function} callback - Callback response function. It return with two parameters.
    * {object} err - error response
@@ -285,6 +285,46 @@ module.exports = (config) => {
     } else {
       // If https_extension is not set then request goes to oxd-server
       utilities.oxdSocketRequest(data.port, data.host, data, 'remove_site', (err, response) => callback(err, response));
+    }
+  };
+  
+  /**
+   * Function to introspect the access_token
+   * @param {object} param - All required properties
+   * @param {function} callback - Callback response function. It return with two parameters.
+   * {object} err - error response
+   * {object} response - success response
+   */
+  module.introspect_access_token = (param, callback) => {
+    // Filtered parameters
+    const data = filterParameters(param);
+
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/introspect-access-token`, data, (err, response) => callback(err, response));
+    } else {
+      // If https_extension is not set then request goes to oxd-server
+      utilities.oxdSocketRequest(data.port, data.host, data, 'introspect_access_token', (err, response) => callback(err, response));
+    }
+  };
+  
+  /**
+   * Function to introspect the RPT
+   * @param {object} param - All required properties
+   * @param {function} callback - Callback response function. It return with two parameters.
+   * {object} err - error response
+   * {object} response - success response
+   */
+  module.introspect_rpt = (param, callback) => {
+    // Filtered parameters
+    const data = filterParameters(param);
+
+    // If https_extension is set the request goes to oxd-https-extension
+    if (data.https_extension) {
+      utilities.oxdHttpRequest(`${data.host}/introspect-rpt`, data, (err, response) => callback(err, response));
+    } else {
+      // If https_extension is not set then request goes to oxd-server
+      utilities.oxdSocketRequest(data.port, data.host, data, 'introspect_rpt', (err, response) => callback(err, response));
     }
   };
 
