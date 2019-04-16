@@ -7,7 +7,7 @@ oxd-node-library is a client library for the Gluu oxd Server. For information ab
 #### Mandatory
 - Node >= 6.x.x and NPM >= 3.x.x
 - [GLUU Server](https://www.gluu.org/)
-- [OXD Server](https://gluu.org/docs/oxd)
+- [OXD Server 3.1.4](https://gluu.org/docs/oxd)
 
 #### Optional
 OXD-TO-HTTP Server is required if you want to access OXD server over HTTP.
